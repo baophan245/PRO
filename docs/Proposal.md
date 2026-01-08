@@ -1,18 +1,19 @@
 # Proposal – Flappy Bird Java
 
-## 1. Giới thiệu
-Dự án xây dựng game Flappy Bird đơn giản bằng Java nhằm rèn luyện kỹ năng lập trình hướng đối tượng và tư duy game loop.
+## 1. Introduction
+This project aims to develop a simple Flappy Bird game using Java in order to practice object-oriented programming and game loop concepts.
 
-## 2. Công nghệ sử dụng
-- Ngôn ngữ: Java
+## 2. Technologies Used
+- Programming Language: Java
 - IDE: NetBeans
-- Thư viện: Java Swing / AWT
-- Quản lý mã nguồn: GitHub
+- Libraries: Java Swing / AWT
+- Version Control: GitHub
 
-## 3. Chức năng chính
-- Nhấn phím SPACE để chim bay lên
-- Trọng lực kéo chim rơi xuống
-- Ống nước di chuyển từ phải sang trái
-- Phát hiện va chạm
-- Tính điểm khi vượt qua ống
-- Kết thúc game khi va chạm
+## 3. Main Features
+- Press the SPACE key to make the bird fly upward
+- Gravity continuously pulls the bird downward
+- Pipes move from right to left across the screen
+- Collision detection between the bird and pipes
+- Score increases when the bird passes through pipes
+- The game ends when a collision occurs
+
