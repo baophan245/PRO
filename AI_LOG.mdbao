@@ -98,4 +98,114 @@ File .jar sẽ được tạo trong thư mục dist.
 bash
 java -jar dist/FlappyBird.jar
 Bạn có muốn mình gộp phần này vào toàn bộ nội dung README hoàn chỉnh không? Mình có thể trình bày lại toàn bộ cho bạn dễ copy-paste.
+làm thế nào để tạo các file con trên github
+Trên GitHub, bạn không thể trực tiếp “tạo thư mục” như trên máy tính, mà cách làm là tạo file con (ví dụ README.md, Main.java, v.v.) bên trong một thư mục. Khi có ít nhất một file nằm trong thư mục thì GitHub sẽ hiển thị thư mục đó. Đây là cách thực hiện:
 
+📝 Cách tạo file con (thư mục + file) trên GitHub
+Vào repository của bạn trên GitHub.
+
+Nhấn nút Add file → chọn Create new file.
+
+Trong ô đặt tên file, bạn gõ theo cú pháp:
+
+foldername/filename.ext
+
+Ví dụ: docs/README.md hoặc src/Main.java.
+
+Khi bạn thêm dấu /, GitHub sẽ tự động tạo thư mục docs hoặc src và đặt file bên trong.
+
+Viết nội dung file.
+
+Kéo xuống dưới, nhập commit message rồi nhấn Commit new file.
+
+📂 Ví dụ
+Tạo thư mục src chứa file Game.java:
+
+Gõ tên file: src/Game.java.
+
+Tạo thư mục assets chứa file bird.png:
+
+Gõ tên file: assets/bird.png.
+
+💡 Lưu ý
+GitHub không cho tạo thư mục rỗng, nên bạn phải có ít nhất một file trong thư mục.
+
+Nếu muốn tạo nhiều file cùng lúc, bạn có thể clone repo về máy, tạo thư mục và file bằng IDE (như NetBeans), sau đó push lên GitHub.
+
+Bạn có muốn mình viết hướng dẫn chi tiết cách push project từ NetBeans lên GitHub để nhóm bạn dễ quản lý không?
+
+trên src thì sao
+Nếu bạn muốn tạo các file con trong thư mục src trên GitHub, thì cách làm cũng giống như tạo thư mục khác, chỉ cần đặt tên file kèm đường dẫn. GitHub sẽ tự động tạo thư mục src nếu chưa có.
+
+📂 Cách tạo file trong src trực tiếp trên GitHub
+Vào repository của bạn.
+
+Nhấn Add file → Create new file.
+
+Trong ô tên file, gõ:
+
+src/Main.java → tạo file Main.java trong thư mục src.
+
+src/Game.java → tạo file Game.java trong thư mục src.
+
+src/utils/Helper.java → tạo thư mục con utils bên trong src và file Helper.java.
+
+Viết nội dung code vào file.
+
+Kéo xuống dưới, nhập commit message rồi nhấn Commit new file.
+
+💡 Lưu ý
+Thư mục src thường dùng để chứa mã nguồn Java (các class, package).
+
+Bạn có thể tạo nhiều thư mục con bên trong src để quản lý code theo package, ví dụ:
+
+src/com/team/flappybird/Game.java
+
+src/com/team/flappybird/Bird.java
+
+🚀 Cách khác (qua NetBeans)
+Nếu bạn làm việc trên NetBeans, IDE sẽ tự tạo thư mục src khi bạn tạo project.
+
+Sau khi viết code, bạn chỉ cần push toàn bộ project lên GitHub bằng Git. Khi đó, toàn bộ cấu trúc src và các file con sẽ được giữ nguyên.
+
+👉 Bạn có muốn mình viết hướng dẫn chi tiết cách push project từ NetBeans lên GitHub để nhóm bạn dễ thao tác không?
+
+còn dât
+Bạn đang hỏi về phần data trong project trên GitHub đúng không? Mình giải thích chi tiết nhé:
+
+📂 Thư mục data trong project
+Thư mục data thường dùng để chứa tài nguyên hoặc dữ liệu mà chương trình cần khi chạy, ví dụ:
+
+Hình ảnh (sprites, background, icon).
+
+Âm thanh (nhạc nền, hiệu ứng).
+
+File cấu hình (config.json, settings.txt).
+
+Bất kỳ dữ liệu bổ sung nào mà game cần đọc.
+
+📝 Cách tạo thư mục data trên GitHub
+Vào repository của bạn.
+
+Nhấn Add file → Create new file.
+
+Trong ô tên file, gõ:
+
+data/example.txt → GitHub sẽ tạo thư mục data và file example.txt.
+
+data/bird.png → tạo file hình ảnh trong thư mục data.
+
+Commit để lưu lại.
+
+Lưu ý: GitHub không cho tạo thư mục rỗng, nên bạn phải thêm ít nhất một file vào data.
+
+🚀 Khi chạy trên NetBeans
+Nếu bạn có thư mục data trong project, hãy đặt nó cùng cấp với src.
+
+Khi build project, NetBeans sẽ copy các file trong data vào thư mục dist để chương trình có thể truy cập.
+
+Trong code Java, bạn có thể đọc file từ data bằng đường dẫn tương đối, ví dụ:
+
+java
+File imageFile = new File("data/bird.png");
+👉 Bạn có muốn mình viết mẫu cấu trúc thư mục hoàn chỉnh cho project Flappy Bird (gồm src, data, docs) để bạn dễ hình dung không?
