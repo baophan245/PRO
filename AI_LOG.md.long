@@ -7,3 +7,38 @@ viết cho tôi 1 code mẫu cho chặng 1
 b có thể giúp tôi làm những phần nào trong khi làm con game này giúp được chúng tôi bao nhiêu % trong con game này
 chúng tôi làm việc 2 người 1 nhóm chúng tôi phải phân chia như thế nào để hoàn thành nhanh nhất trong thời gian 3 tuần
 bây giờ tôi chưa biết gì về java tôi phải làm gì để học và hiểu biết chúng nhanh chóng
+🔰 GIAI ĐOẠN 1: Hiểu Java là gì (1–2 ngày)
+1️⃣ Java dùng để làm gì?
+
+Viết phần mềm máy tính
+
+Viết ứng dụng Android
+
+Viết backend web
+
+Dùng nhiều trong trường học & doanh nghiệp
+
+👉 Ưu điểm: dễ học cho người mới, cú pháp rõ ràng, tài liệu rất nhiều.
+
+🔰 GIAI ĐOẠN 2: Chuẩn bị môi trường học (1 ngày)
+2️⃣ Cài những thứ bắt buộc
+
+Bạn chỉ cần 2 thứ:
+
+✅ JDK (Java Development Kit)
+
+Tải: https://www.oracle.com/java/technologies/downloads/
+
+Chọn: JDK 17 hoặc 21 (LTS)
+
+✅ IDE (phần mềm viết code)
+👉 Dễ nhất cho người mới:
+
+NetBeans (rất hợp với sinh viên)
+
+Hoặc IntelliJ IDEA Community
+
+📌 Nếu bạn đang dùng NetBeans (mình thấy bạn có hỏi trước đó), thì cứ dùng NetBeans 👍
+
+🔰 GIAI ĐOẠN 3: Học Java cơ bản (Tuần 1–2)
+3️⃣ Những thứ BẮT BUỘC phải học (theo thứ tự)
