@@ -48,3 +48,54 @@ Game Over occurs when a collision happens.
 This now matches the short, clear, and technical style of a student project proposal.
 
 👉 Do you want me to merge this updated Main Features section back into the full proposal I drafted earlier so you have a complete polished document?
+tôi cần viết cái này và team tôi có 2 người là phan văn bảo và võ xuân long , và hãy giúp tôi ghi hướng dẫn chạy file
+Dưới đây là phần nội dung bạn cần cho file README.md, bao gồm giới thiệu dự án, thành viên nhóm, và hướng dẫn chạy file .jar:
+
+Giới thiệu dự án, thành viên, hướng dẫn chạy file jar
+🕹️ Giới thiệu dự án
+Đây là dự án game Flappy Bird được xây dựng bằng ngôn ngữ lập trình Java. Trò chơi mô phỏng lại gameplay đơn giản nhưng gây nghiện, nơi người chơi điều khiển chú chim bay qua các ống nước mà không va chạm.
+
+👥 Thành viên nhóm
+Phan Văn Bảo
+
+Võ Xuân Long
+
+🚀 Hướng dẫn chạy file .jar
+Đảm bảo máy đã cài đặt Java Runtime Environment (JRE) phiên bản 8 trở lên.
+
+Mở terminal hoặc command prompt.
+
+Di chuyển đến thư mục chứa file FlappyBird.jar.
+
+Chạy lệnh sau:
+
+bash
+java -jar FlappyBird.jar
+Game sẽ khởi động và bạn có thể bắt đầu chơi bằng cách nhấn phím SPACE để điều khiển chú chim.
+
+Nếu bạn cần thêm phần mô tả gameplay hoặc hình ảnh minh họa, mình có thể giúp bạn bổ sung.
+
+tôi chạy trên neatbean
+Cảm ơn bạn đã bổ sung thông tin! Vì bạn chạy dự án Flappy Bird bằng Java trên NetBeans, mình sẽ cập nhật phần hướng dẫn chạy file .jar cho phù hợp:
+
+🚀 Hướng dẫn chạy dự án trên NetBeans
+Mở NetBeans IDE.
+
+Import project: Vào File → Open Project, chọn thư mục chứa mã nguồn Flappy Bird.
+
+Đảm bảo project đã được cấu hình đúng với JDK 8 trở lên.
+
+Nhấn Run (hoặc phím F6) để chạy chương trình trực tiếp trong NetBeans.
+
+Nếu muốn xuất file .jar, làm như sau:
+
+Chuột phải vào project → Clean and Build.
+
+File .jar sẽ được tạo trong thư mục dist.
+
+Để chạy file .jar bên ngoài NetBeans, mở terminal và dùng lệnh:
+
+bash
+java -jar dist/FlappyBird.jar
+Bạn có muốn mình gộp phần này vào toàn bộ nội dung README hoàn chỉnh không? Mình có thể trình bày lại toàn bộ cho bạn dễ copy-paste.
+
