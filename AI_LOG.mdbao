@@ -312,3 +312,587 @@ Restart Option: The player can restart the game after losing.
 This breakdown makes the features more detailed and professional while still short enough for a student proposal.
 
 👉 Would you like me to merge this updated Main Features section back into the full proposal document so you have a polished version ready to submit?
+File .jar đã build từ NetBeans, có thể chạy được
+ấu trúc thư mục GitHub mà bạn cung cấp là một chuẩn rất rõ ràng cho việc tổ chức dự án Java theo nhóm. Dựa vào đó, bạn có thể:
+✅ Kiểm tra và chuẩn hóa repo nhóm
+- Đảm bảo tên thư mục gốc theo đúng định dạng: TenDuAn_NhomXX
+- Kiểm tra sự hiện diện của các file bắt buộc như .gitignore, README.md, AI_LOG.md
+- Đảm bảo các thư mục con (src/, data/, docs/, dist/) có nội dung phù hợp
+📌 Gợi ý nội dung cho từng phần
+|  |  | 
+| .gitignore | nbproject/private/ | 
+| README.md | .jar | 
+| AI_LOG.md |  | 
+| src/ | com.nhomxx.tenduan | 
+| data/ | .txt.dat | 
+| docs/Flowcharts/ | .png.jpg | 
+| docs/ClassDiagrams/ | .png.jpg | 
+| docs/Proposal.md |  | 
+| dist/ | .jar | 
+
+
+💡 Mẹo để không bị trừ điểm
+- Luôn cập nhật README.md và AI_LOG.md trong quá trình làm việc
+- Đặt tên file rõ ràng, có ý nghĩa (ví dụ: diagram_main_flow.png)
+- Kiểm tra kỹ trước khi nộp để tránh sai cấu trúc
+Nếu bạn cần mẫu nội dung cho từng file hoặc muốn mình kiểm tra repo của nhóm, cứ nói nhé!
+Cảm ơn bạn đã chia sẻ ảnh repo GitHub của nhóm bạn. Dựa trên cấu trúc yêu cầu trong hướng dẫn trước, mình có một số nhận xét và gợi ý để repo của bạn hoàn chỉnh hơn:
+
+✅ Những điểm đã đúng
+• 	Thư mục  đã có đủ ba phần: , , và  — rất tốt!
+• 	File  đã có mặt — đây là yêu cầu bắt buộc.
+• 	Thư mục  chứa file  — đúng vị trí mã nguồn.
+• 	Thư mục  và  đã được tạo — đúng theo cấu trúc chuẩn.
+• 	File  đã có — giúp loại bỏ file rác từ NetBeans.
+
+⚠️ Những điểm cần cải thiện
+• 	AI_LOG.md: Hiện tại có hai file là  và . Bạn nên gộp nội dung vào một file duy nhất tên là  để đúng yêu cầu.
+• 	Tên thư mục gốc: Repo hiện tại tên là . Nếu đây là tên dự án thì bạn nên đổi thành  (ví dụ: ) để đúng định dạng.
+
+💡 Gợi ý bổ sung
+• 	Trong , bạn nên thêm:
+• 	Tên đầy đủ của các thành viên nhóm
+• 	Hướng dẫn cách chạy file  trong thư mục 
+• 	Mô tả ngắn gọn về chức năng chính của dự án
+• 	Trong , ghi lại:
+• 	Prompt đã dùng với AI
+• 	Kết quả trả về
+• 	Nhận xét về hiệu quả hoặc cách chỉnh sửa
+
+Nếu bạn muốn mình kiểm tra nội dung cụ thể trong các file như  hoặc , bạn có thể copy nội dung lên đây để mình góp ý chi tiết hơn nhé!bị hoài nè
+bị hoài nè
+Mình hiểu cảm giác khó chịu khi gặp lỗi lặp đi lặp lại 😤. Lỗi bạn đang gặp là:
+
+Điều này có nghĩa là bạn đang cố tạo một thư mục (hoặc file trong thư mục) tại một đường dẫn mà đã tồn tại một file trùng tên — cụ thể là bạn đang tạo file  trong , nhưng có thể đã có một file hoặc thư mục tên  ở đó rồi.
+
+✅ Cách khắc phục nhanh
+1. 	Kiểm tra lại tên file: Đảm bảo tên bạn nhập không trùng với tên file hoặc thư mục đã có.
+2. 	Đổi tên khác: Ví dụ thay vì , thử  hoặc .
+3. 	Kiểm tra xem  là file hay thư mục:
+• 	Nếu bạn muốn tạo file, thì không được có thư mục tên  ở cùng cấp.
+• 	Nếu bạn muốn tạo thư mục, thì không được có file tên .
+
+💡 Mẹo tránh lỗi này về sau
+• 	Luôn đặt tên rõ ràng, có hậu tố định dạng (, , )
+• 	Tránh đặt tên quá ngắn hoặc chung chung như , , , dễ trùng
+• 	Nếu cần tạo thư mục con, hãy chắc chắn đường dẫn cha không phải là file
+
+Nếu bạn muốn mình kiểm tra tên file cụ thể hoặc hướng dẫn cách tạo đúng trên GitHub web, cứ nói nhé. Mình ở đây để giúp bạn sửa cho trơn tru luôn!
+tôi muốn ClassDiagrams thành thư mục
+Hiện tại bạn đang gặp lỗi vì trong thư mục  đã tồn tại một file hoặc thư mục có tên , nhưng GitHub không cho phép tạo thư mục mới nếu đã có file trùng tên tại cùng vị trí.
+
+✅ Cách xử lý để biến  thành thư mục
+1. 	Kiểm tra xem  hiện tại là file hay thư mục:
+• 	Nếu là file: bạn cần xóa file đó trước khi tạo thư mục cùng tên.
+• 	Nếu là thư mục: bạn có thể thêm file vào bên trong như bình thường.
+2. 	Cách xóa file trên GitHub Web:
+• 	Vào thư mục 
+• 	Nhấn vào file  (nếu nó là file)
+• 	Nhấn nút thùng rác (Delete) ở góc phải
+• 	Commit thay đổi
+3. 	Sau khi xóa xong, bạn có thể:
+• 	Nhấn “Add file” → “Create new file”
+• 	Gõ đường dẫn:  (hoặc , , tùy loại)
+• 	Commit như bình thường
+
+Nếu bạn không chắc  hiện tại là file hay thư mục, bạn có thể gửi ảnh hoặc mô tả chi tiết hơn, mình sẽ giúp bạn xác định và xử lý nhanh gọn.
+dựa vào này thì tuần 2 tôi phải làm được gì
+Dựa vào bảng milestone bạn gửi, tuần 2 (M2: Entity Design) bạn cần hoàn thành các nhiệm vụ sau:
+
+🎯 Nhiệm vụ chính
+• 	Thiết kế các lớp (Class) trong chương trình:
+• 	Xác định các thuộc tính (properties) và hàm khởi tạo (constructor) cho từng lớp.
+• 	Đảm bảo thiết kế phù hợp với chức năng đã nêu trong Proposal tuần 1.
+• 	Tạo dữ liệu giả (Dummy data):
+• 	Tạo các file dữ liệu đầu vào/ra trong thư mục 
+• 	Có thể là , , hoặc tạo trực tiếp trong code để test chức năng
+
+📁 Yêu cầu về cấu trúc GitHub
+• 	Review lại cấu trúc thư mục:
+• 	Đảm bảo repo vẫn tuân thủ đúng chuẩn: có , , , , , , 
+• 	Kiểm tra xem các sơ đồ lớp (Class Diagram) đã được thêm vào  chưa
+
+📌 Gợi ý để hoàn thành tốt
+• 	Trong , tạo các file Java cho từng class, ví dụ: , 
+• 	Trong , vẽ sơ đồ lớp bằng draw.io hoặc công cụ khác, lưu dưới dạng  hoặc 
+• 	Trong , tạo file như ,  chứa d
+liệu mẫu
+
+Nếu bạn cần mình giúp thiết kế sơ đồ lớp hoặc viết code mẫu cho các class, mình có thể hỗ trợ ngay. Bạn muốn bắt đầu với class nào trước?
+cụ thể hơn
+Rất sẵn lòng, bao ơi! Dưới đây là hướng dẫn cụ thể từng bước bạn cần làm trong Tuần 2: Entity Design theo đúng yêu cầu milestone:
+
+✅ 1. Thiết kế Class (Entity Design)
+🔹 Mục tiêu:
+• 	Xây dựng các lớp Java đại diện cho các thực thể trong chương trình (ví dụ: Sinh viên, Môn học, Giáo viên…)
+• 	Mỗi lớp cần có:
+• 	Thuộc tính (properties): kiểu dữ liệu, tên biến
+• 	Constructor: khởi tạo đối tượng
+• 	Getter/Setter: nếu cần
+• 	toString(): để in ra thông tin dễ kiểm tra
+🔸 Ví dụ: Lớp 
+public class Student {
+    private String id;
+    private String name;
+    private int age;
+
+    public Student(String id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getId() { return id; }
+    public String getName() { return name; }
+    public int getAge() { return age; }
+
+    @Override
+    public String toString() {
+        return id + " - " + name + " - " + age;
+    }
+}
+Lưu vào thư mục  theo package chuẩn, ví dụ: 
+
+✅ 2. Tạo dữ liệu giả (Dummy Data)
+🔹 Mục tiêu:
+• 	Tạo file  hoặc  chứa dữ liệu mẫu để test chương trình
+• 	Đặt trong thư mục 
+🔸 Ví dụ: File 
+
+📁 Lưu vào 
+3. Vẽ sơ đồ lớp (Class Diagram)
+🔹 Mục tiêu:
+• 	Vẽ sơ đồ thể hiện các lớp và mối quan hệ giữa chúng
+• 	Dùng draw.io, diagrams.net, hoặc công cụ bất kỳ
+• 	Lưu ảnh vào 
+🔸 Gợi ý nội dung sơ đồ:
+• 	Các lớp: , , 
+• 	Quan hệ: Student đăng ký Course, Teacher dạy Course
+📁 Tên ảnh nên rõ ràng: 
+
+✅ 4. Kiểm tra cấu trúc GitHub
+• 	Đảm bảo repo có đầy đủ các thư mục: , , , 
+• 	Có file: , , , 
+• 	Đảm bảo không bị lỗi như trùng tên file/thư mục (như lỗi  bạn gặp)
+
+Nếu bạn muốn mình giúp viết thêm class khác như  hay , hoặc hỗ trợ vẽ sơ đồ lớp, mình làm ngay. Bạn muốn bắt đầu với class nào tiếp theo?
+Proposal – Flappy Bird Java
+1. 	Introduction This project aims to develop a simple Flappy Bird game using Java in order to practice object-oriented programming and game loop concepts.
+2. 	Technologies Used Programming Language: Java IDE: NetBeans Libraries: Java Swing / AWT Version Control: GitHub
+3. 	Main Features Bird Control: The player presses the SPACE key to make the bird fly upward.
+Gravity Effect: Gravity continuously pulls the bird downward.
+Pipe Movement: Pipes move from right to left across the screen.
+Random Pipe Gaps: The gaps between pipes are generated randomly to increase difficulty.
+Continuous Scrolling: The game world scrolls endlessly to simulate forward movement.
+Collision Detection: The system checks for collisions between the bird and pipes.
+Ground Collision: The game ends if the bird touches the ground.
+Score Tracking: The score increases when the bird successfully passes through pipes.
+Game Over Screen: A message is displayed when the game ends.
+Restart Option: The player can restart the game after losing.
+Rất tốt, bao ơi 👏. Proposal của bạn cho dự án Flappy Bird Java đã khá đầy đủ phần giới thiệu, công nghệ và tính năng. Dựa trên milestone tuần 2 (Entity Design), mình sẽ cụ thể hóa Proposal này thành các lớp (class) cần thiết và dummy data để bạn dễ triển khai:
+
+✅ Các Class cần thiết
+1. 
+• 	Thuộc tính:
+• 	,  (tọa độ)
+• 	 (tốc độ rơi/bay)
+• 	Constructor: khởi tạo vị trí ban đầu
+• 	Phương thức:
+• 	 → khi nhấn SPACE
+• 	 → cập nhật vị trí theo trọng lực
+• 	 → vẽ chim lên màn hình
+
+2. 
+• 	Thuộc tính:
+• 	 (tọa độ ngang)
+• 	 (vị trí khoảng trống)
+• 	 (chiều cao khoảng trống)
+• 	Constructor: tạo pipe với khoảng trống ngẫu nhiên
+• 	Phương thức:
+• 	 → pipe di chuyển từ phải sang trái
+• 	 → kiểm tra va chạm
+• 	 → vẽ pipe
+
+3. 
+• 	Thuộc tính:
+• 	
+• 	
+• 	
+• 	
+• 	Phương thức:
+• 	 → cập nhật trạng thái game (chim, pipe, điểm)
+• 	 → kiểm tra va chạm
+• 	 → khởi động lại game
+• 	 → vẽ toàn bộ màn hình
+
+4.  (UI)
+• 	Thuộc tính:
+• 	
+• 	
+• 	Phương thức:
+• 	 → vòng lặp game
+• 	 → render hình ảnh
+
+✅ Dummy Data (tuần 2 yêu cầu)
+Trong game này không có dữ liệu phức tạp như danh sách sinh viên, nhưng bạn vẫn có thể tạo dummy data để test:
+• 	File :
+
+• 	File :
+
+
+✅ Class Diagram (docs/ClassDiagrams/)
+Bạn nên vẽ sơ đồ lớp gồm:
+• 	 ↔  (Game quản lý Bird)
+• 	 ↔  (Game quản lý nhiều Pipe)
+• 	 ↔  (UI gọi logic Game)
+
+👉 Như vậy, tuần 2 bạn cần:
+1. 	Tạo các class cơ bản (, , , ) trong .
+2. 	Tạo file dummy data trong .
+3. 	Vẽ sơ đồ lớp và lưu vào .
+Bạn có muốn mình viết code mẫu cho class  và  để bạn copy vào  không?
+chi tiết hơn ý là trên GitHub á
+Hiểu rồi, bạn muốn mình hướng dẫn chi tiết cách làm trực tiếp trên GitHub repo để tuần 2 hoàn chỉnh. Mình sẽ chia thành từng bước cụ thể:
+
+📁 1. Tạo các class trong 
+Trên GitHub web:
+1. 	Vào thư mục .
+2. 	Nhấn Add file → Create new file.
+3. 	Đặt tên file theo chuẩn package, ví dụ:
+
+4. 	Dán code mẫu (ví dụ class Bird):
+
+5. 	Commit trực tiếp lên branch .
+👉 Lặp lại cho các class khác (, , ).
+
+📁 2. Thêm dữ liệu giả trong 
+1. 	Vào thư mục .
+2. 	Nhấn Add file → Create new file.
+3. 	Tạo file :
+
+4. 	Tạo file :
+
+
+📁 3. Thêm sơ đồ lớp trong 
+1. 	Vẽ sơ đồ lớp bằng draw.io hoặc diagrams.net.
+2. 	Xuất file ảnh  hoặc .
+3. 	Trên GitHub, vào .
+4. 	Nhấn Add file → Upload files.
+5. 	Chọn ảnh sơ đồ lớp và commit.
+
+📁 4. Kiểm tra cấu trúc repo
+• 	Đảm bảo repo có:
+• 	
+• 	
+• 	 (chỉ 1 file, không tách nhiều bản)
+• 	 với các class
+• 	 với file dummy
+• 	 với ảnh sơ đồ
+• 	
+• 	 (sau này build )
+
+👉 Như vậy, trên GitHub bạn sẽ thực hiện tuần 2 bằng cách:
+• 	Tạo class trong 
+• 	Thêm dữ liệu giả trong 
+• 	Upload sơ đồ lớp vào 
+• 	Review lại repo để đúng chuẩn
+Bạn có muốn mình viết sẵn code mẫu cho  và  để bạn chỉ cần copy lên GitHub không?
+hướng dẫn cho tôi đầy dủ hết luôn
+Ok bao, mình sẽ hướng dẫn bạn đầy đủ toàn bộ các bước tuần 2 trên GitHub repo Flappy Bird Java để bạn không bị sót gì. Đây là checklist chi tiết từ A → Z:
+
+📁 1. Chuẩn bị cấu trúc repo
+• 	Repo gốc: 
+• 	Bên trong phải có:
+• 	
+• 	
+• 	
+• 	
+• 	
+• 	
+• 	
+• 	
+• 	
+• 	
+👉 Nếu repo bạn chưa đúng, hãy chỉnh lại tên và thư mục cho chuẩn.
+
+📁 2. Tạo các class trong 
+🔹 Bird.java
+
+
+🔹 Pipe.java
+
+
+🔹 Game.java
+
+
+🔹 GameWindow.java
+
+📌 Tất cả các file này commit vào thư mục .
+
+📁 3. Dummy Data trong 
+• 	File 
+
+• 	File 
+
+📌 Commit vào thư mục .
+
+📁 4. Class Diagram trong 
+• 	Vẽ sơ đồ lớp bằng draw.io hoặc diagrams.net:
+• 	Lớp 
+• 	Lớp 
+• 	Lớp 
+• 	Lớp 
+• 	Quan hệ:
+• 	 quản lý  và nhiều 
+• 	 hiển thị 
+📌 Xuất ảnh  và upload vào .
+
+📁 5. Review Repo
+• 	: mô tả dự án, cách chạy , danh sách thành viên.
+• 	: ghi lại prompt bạn dùng với AI và kết quả.
+• 	: đã có nội dung Flappy Bird.
+• 	: sau này build  từ NetBeans.
+
+✅ Checklist Tuần 2
+• 	[x] Class , , ,  trong 
+• 	[x] Dummy data trong 
+• 	[x] Class Diagram trong 
+• 	[x] Review repo đúng cấu trúc
+
+👉 Như vậy bạn sẽ hoàn thành Milestone 2: Entity Design đúng yêu cầu.
+Bạn có muốn mình viết thêm README.md mẫu hoàn chỉnh để bạn chỉ cần copy vào repo không?
+Tuyệt vời bao ơi, mình sẽ hướng dẫn bạn toàn bộ quy trình tuần 2 để repo Flappy Bird Java của bạn trên GitHub đạt chuẩn, không bị trừ điểm. Đây là bản hướng dẫn đầy đủ, chi tiết, từng bước:
+
+🧭 Mục tiêu tuần 2: Entity Design
+
+
+🛠️ 1. Tạo Class trong 
+📌 Cách làm trên GitHub
+1. 	Vào repo → thư mục 
+2. 	Nhấn Add file → Create new file
+3. 	Gõ đường dẫn: 
+4. 	Dán đoạn code sau:
+
+👉 Lặp lại tương tự để tạo:
+• 	 trong 
+• 	 trong 
+• 	 trong 
+
+📂 2. Tạo dữ liệu giả trong 
+📌 Cách làm trên GitHub
+1. 	Vào thư mục 
+2. 	Nhấn Add file → Create new file
+3. 	Tạo file  với nội dung:
+
+4. 	Tạo thêm file :
+
+
+🧩 3. Vẽ sơ đồ lớp và lưu vào 
+📌 Cách làm
+1. 	Dùng draw.io hoặc diagrams.net
+2. 	Vẽ sơ đồ gồm các lớp: , , , 
+3. 	Xuất file ảnh  hoặc 
+4. 	Vào GitHub →  → Add file → Upload files
+5. 	Chọn ảnh sơ đồ và commit
+
+📋 4. Kiểm tra cấu trúc repo
+
+
+✅ Checklist hoàn chỉnh tuần 2
+• 	[x] Tạo class , , , 
+• 	[x] Tạo file , 
+• 	[x] Vẽ và upload sơ đồ lớp
+• 	[x] Gộp file AI log thành 
+• 	[x] Kiểm tra repo đúng cấu trúc
+
+Nếu bạn muốn mình viết sẵn  mẫu hoặc  chuẩn để bạn copy vào repo, mình làm ngay. Bạn muốn làm phần nào tiếp theo?
+package com.nhomxx.entities;
+ụa cái của tôi là src/pipe.java luôn mạ
+À hiểu rồi bao ơi 😄. Nếu file của bạn đang nằm ở  thì bạn chưa tổ chức đúng theo chuẩn package Java như yêu cầu trong cấu trúc repo. Để không bị trừ điểm trình bày, bạn cần sửa lại như sau:
+
+❌ Sai: 
+• 	File nằm trực tiếp trong thư mục 
+• 	Không có khai báo 
+• 	Không đúng cấu trúc chuẩn Java
+
+✅ Đúng: 
+• 	File nằm trong thư mục con theo package: 
+• 	Có khai báo package ở đầu file:
+
+
+📌 Cách sửa trên GitHub
+1. 	Vào repo → thư mục 
+2. 	Nhấn Add file → Create new file
+3. 	Gõ đường dẫn:
+
+4. 	Dán nội dung class  vào (đã có ở hướng dẫn trước)
+5. 	Commit file mới
+6. 	Sau đó, xóa file cũ :
+• 	Vào 
+• 	Nhấn nút thùng rác (Delete) → Commit
+
+📁 Sau khi sửa, cấu trúc đúng sẽ là:
+
+
+Nếu bạn cần mình giúp rename hoặc tạo lại các file khác theo đúng package, mình làm liền luôn. Bạn muốn mình kiểm tra tiếp file nào không?
+vậy nếu src/pipe.java thì hãy khai báo pack lại i
+Nếu bạn để file ở  thì bạn không thể khai báo package kiểu  được, vì file không nằm trong thư mục con tương ứng. Trong trường hợp này, bạn chỉ cần khai báo mặc định (không có package) hoặc tạo package đơn giản cho phù hợp.
+
+📌 Cách khai báo nếu để nguyên 
+
+👉 Khi không khai báo package, class sẽ thuộc default package. Điều này chạy được, nhưng không đúng chuẩn Java và có thể bị trừ điểm trình bày.
+
+📌 Cách khai báo nếu muốn có package
+1. 	Tạo thư mục con trong , ví dụ:
+
+2. 	Trong file, khai báo:
+
+👉 Đây là cách tối thiểu để repo của bạn có package hợp lệ mà không cần quá phức tạp.
+
+💡 Khuyến nghị: Bạn nên tạo thư mục con  trong  rồi đặt  vào đó. Như vậy repo sẽ đúng chuẩn và không bị trừ điểm.
+Bạn muốn mình viết lại toàn bộ các class (, , , ) theo dạng default package (không khai báo package) để bạn copy thẳng vào  không, hay bạn muốn mình chuẩn hóa theo  để repo đẹp hơn?
+mấy cái kia cũng v
+Hiểu rồi bao 👍. Nếu bạn muốn giữ tất cả các file Java trong  mà không tạo thư mục con theo package, thì cách đơn giản nhất là bỏ khai báo package cho tất cả các class. Như vậy chúng sẽ nằm trong default package.
+
+📌 Ví dụ các class khi để trong  trực tiếp
+Bird.java
+
+
+Pipe.java
+
+
+Game.java
+
+
+GameWindow.java
+
+
+✅ Kết quả
+• 	Tất cả file (, , , ) nằm trực tiếp trong 
+• 	Không cần khai báo 
+• 	Code chạy được, dễ commit lên GitHub
+💡 Tuy nhiên: cách này không chuẩn Java (vì thiếu package), nhưng nếu bạn muốn nhanh gọn và repo vẫn hợp lệ thì có thể dùng. Nếu muốn repo đẹp và đúng chuẩn, bạn nên tạo thư mục con , ,  trong .
+
+Bạn muốn mình viết luôn README.md mẫu để repo của bạn hoàn chỉnh hơn không?
+rồi tiếp tục đi cho đúng yêu cầu tuần 2
+Ok bao, mình tiếp tục để bạn hoàn thành tuần 2 – Entity Design cho đúng yêu cầu nhé. Mình sẽ gom lại thành checklist hành động cụ thể trên GitHub để bạn làm tuần này trọn vẹn:
+
+🛠️ 1. Source code ()
+• 	Bạn đã có  và .
+• 	Cần thêm  và  để đủ bộ class.
+📌 Game.java
+
+
+📌 GameWindow.java
+
+👉 Commit cả hai file này vào thư mục .
+
+📂 2. Dummy Data ()
+• 	Tạo file :
+
+• 	Tạo file :
+
+👉 Commit vào thư mục .
+
+📁 3. Class Diagram ()
+• 	Vẽ sơ đồ lớp gồm:
+• 	
+• 	
+• 	
+• 	
+• 	Quan hệ:
+• 	 quản lý  và nhiều 
+• 	 hiển thị 
+• 	Xuất ảnh  hoặc 
+• 	Upload vào 
+
+📋 4. Review Repo
+• 	README.md: mô tả dự án, thành viên, cách chạy 
+• 	AI_LOG.md: gộp lại thành một file duy nhất, ghi prompt + kết quả AI
+• 	Proposal.md: đã có nội dung Flappy Bird
+• 	dist/: để build  sau này
+
+✅ Checklist Tuần 2
+• 	[x] Thêm class  và 
+• 	[x] Tạo file  và  trong 
+• 	[x] Vẽ sơ đồ lớp và upload vào 
+• 	[x] Review repo để đúng cấu trúc chuẩn
+
+👉 Như vậy bạn sẽ hoàn thành Milestone 2: Entity Design đúng yêu cầu.
+Bạn có muốn mình viết luôn README.md mẫu hoàn chỉnh để bạn copy thẳng vào repo không?
+hướng dẫn vẽ i
+Ok bao, mình sẽ hướng dẫn bạn cách vẽ sơ đồ lớp (Class Diagram) cho Flappy Bird Java để nộp đúng yêu cầu tuần 2. Bạn có thể dùng draw.io (diagrams.net) hoặc bất kỳ công cụ vẽ UML nào. Đây là các bước cụ thể:
+
+🛠️ 1. Chuẩn bị công cụ
+• 	Vào https://app.diagrams.net (miễn phí, dễ dùng).
+• 	Chọn New Diagram → đặt tên file (ví dụ: ).
+• 	Chọn Blank Diagram.
+
+🛠️ 2. Vẽ các lớp chính
+Trong project của bạn có 4 lớp quan trọng: , , , .
+📌 Lớp Bird
+• 	Thuộc tính: , , 
+• 	Phương thức: , , 
+📌 Lớp Pipe
+• 	Thuộc tính: , , 
+• 	Phương thức: , 
+📌 Lớp Game
+• 	Thuộc tính: , , , 
+• 	Phương thức: , 
+📌 Lớp GameWindow
+• 	Thuộc tính: kế thừa từ 
+• 	Phương thức: 
+
+🛠️ 3. Vẽ quan hệ giữa các lớp
+• 	 chứa  (composition).
+• 	 chứa nhiều  (aggregation).
+• 	 sử dụng  để hiển thị (association).
+👉 Trong draw.io:
+• 	Dùng Class shape (trong UML section).
+• 	Vẽ 4 class, điền thuộc tính và phương thức.
+• 	Dùng mũi tên:
+• 	Diamond đen (composition) từ  → .
+• 	Diamond trắng (aggregation) từ  → .
+• 	Mũi tên association từ  → .
+
+🛠️ 4. Xuất và lưu
+• 	Chọn File → Export → PNG/JPG.
+• 	Đặt tên file: .
+• 	Upload file này vào thư mục  trên GitHub.
+
+✅ Kết quả
+Bạn sẽ có một sơ đồ UML rõ ràng, thể hiện:
+• 	Các class chính
+• 	Thuộc tính và phương thức
+• 	Quan hệ giữa chúng
+
+Bạn có muốn mình vẽ sơ đồ UML mẫu cho bạn (dưới dạng ảnh) để bạn chỉ cần tải lên GitHub không?
+chưa hiểu bạn vẽ giúp tôi coi thử đc không
+Mình đã vẽ sẵn sơ đồ lớp UML cho dự án Flappy Bird bằng Java để bạn dễ hình dung 👇
+https://copilot.microsoft.com/th/id/BCO.77d33f53-0b3d-45e4-b3c5-eb4c0157a9b2.png
+
+📌 Cách đọc sơ đồ
+- Bird
+- Thuộc tính: x, y, velocity
+- Phương thức: flyUp(), applyGravity(), toString()
+- Pipe
+- Thuộc tính: x, gapY, gapHeight
+- Phương thức: moveLeft(), checkCollision(Bird)
+- Game
+- Thuộc tính: bird:Bird, pipes:ArrayList<Pipe>, score:int, isGameOver:boolean
+- Phương thức: update(), restart()
+- Quan hệ: chứa Bird (composition) và nhiều Pipe (aggregation)
+- GameWindow
+- Kế thừa từ JFrame
+- Phương thức: main(String[] args)
+- Quan hệ: sử dụng Game để hiển thị
+
+✅ Việc bạn cần làm
+- Tải sơ đồ này về → lưu dưới dạng .png hoặc .jpg.
+- Upload vào thư mục docs/ClassDiagrams/ trong repo GitHub.
+- Commit với message kiểu:
+Add class diagram for Flappy Bird project
+
+
+
+Bạn có muốn mình hướng dẫn thêm cách vẽ Flowchart (lưu đồ hoạt động chính) cho tuần 1/2 để repo của bạn đầy đủ hơn không?
