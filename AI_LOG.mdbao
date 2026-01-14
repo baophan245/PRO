@@ -209,3 +209,106 @@ Trong code Java, bạn có thể đọc file từ data bằng đường dẫn t�
 java
 File imageFile = new File("data/bird.png");
 👉 Bạn có muốn mình viết mẫu cấu trúc thư mục hoàn chỉnh cho project Flappy Bird (gồm src, data, docs) để bạn dễ hình dung không?
+Proposal – Flappy Bird Java
+1. Introduction
+This project aims to develop a simple Flappy Bird game using Java in order to practice object-oriented programming and game loop concepts.
+
+2. Technologies Used
+Programming Language: Java
+IDE: NetBeans
+Libraries: Java Swing / AWT
+Version Control: GitHub
+3. Main Features
+Press the SPACE key to make the bird fly upward
+Gravity continuously pulls the bird downward
+Pipes move from right to left across the screen
+Collision detection between the bird and pipes
+Score increases when the bird passes through pipes
+The game ends when a collision occurs
+Here’s your proposal polished into a clean student-report format, ready to be used as documentation or submission:
+
+Proposal – Flappy Bird Java
+1. Introduction
+This project aims to develop a simple Flappy Bird game using Java in order to practice object-oriented programming principles and game loop concepts. The game provides a straightforward yet engaging experience where the player controls a bird navigating through moving pipes while avoiding collisions.
+
+2. Technologies Used
+Programming Language: Java
+
+IDE: NetBeans
+
+Libraries: Java Swing / AWT
+
+Version Control: GitHub
+
+3. Main Features
+Press the SPACE key to make the bird fly upward.
+
+Gravity continuously pulls the bird downward.
+
+Pipes move from right to left across the screen.
+
+Collision detection between the bird and pipes.
+
+Score increases when the bird passes through pipes.
+
+The game ends when a collision occurs.
+
+This version is concise, structured, and matches the style of a student project proposal.
+
+👉 Do you want me to also add a Team Members section (with Phan Văn Bảo and Võ Xuân Long) so it aligns with your README and group work?
+
+dựa vào đó và hãy tách các tính năng thành 10 tính năng nhỏ hơn
+Rất hay 👍. Dựa trên phần Main Features bạn đưa, mình sẽ tách thành 10 tính năng nhỏ hơn để báo cáo chi tiết hơn, nhưng vẫn ngắn gọn, đúng kiểu sinh viên:
+
+3. Main Features (Detailed into 10 points)
+Bird Control: Người chơi nhấn phím SPACE để làm chim bay lên.
+
+Gravity Effect: Chim tự động bị kéo xuống liên tục bởi trọng lực.
+
+Pipe Movement: Các ống di chuyển từ phải sang trái trên màn hình.
+
+Random Pipe Gaps: Khoảng trống giữa các ống được tạo ngẫu nhiên để tăng độ khó.
+
+Continuous Scrolling: Màn hình game cuộn liên tục, tạo cảm giác chuyển động.
+
+Collision Detection: Hệ thống kiểm tra va chạm giữa chim và ống.
+
+Ground Collision: Game kết thúc nếu chim chạm đất.
+
+Score Tracking: Điểm số tăng khi chim vượt qua một cặp ống thành công.
+
+Game Over Screen: Hiển thị thông báo khi trò chơi kết thúc.
+
+Restart Option: Người chơi có thể bắt đầu lại sau khi thua.
+
+Như vậy, từ 6 tính năng ban đầu đã được chi tiết thành 10 tính năng nhỏ hơn, rõ ràng và dễ báo cáo.
+
+👉 Bạn có muốn mình viết lại toàn bộ Proposal với phần Main Features mới này để bạn có một bản hoàn chỉnh hơn không?
+
+bằng tiếng anh
+Here’s the Main Features section expanded into 10 smaller points in English, keeping the student-report style clear and concise:
+
+3. Main Features (Detailed into 10 points)
+Bird Control: The player presses the SPACE key to make the bird fly upward.
+
+Gravity Effect: Gravity continuously pulls the bird downward.
+
+Pipe Movement: Pipes move from right to left across the screen.
+
+Random Pipe Gaps: The gaps between pipes are generated randomly to increase difficulty.
+
+Continuous Scrolling: The game world scrolls endlessly to simulate forward movement.
+
+Collision Detection: The system checks for collisions between the bird and pipes.
+
+Ground Collision: The game ends if the bird touches the ground.
+
+Score Tracking: The score increases when the bird successfully passes through pipes.
+
+Game Over Screen: A message is displayed when the game ends.
+
+Restart Option: The player can restart the game after losing.
+
+This breakdown makes the features more detailed and professional while still short enough for a student proposal.
+
+👉 Would you like me to merge this updated Main Features section back into the full proposal document so you have a polished version ready to submit?
