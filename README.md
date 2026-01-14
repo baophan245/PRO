@@ -1,29 +1,26 @@
-🕹️ Giới thiệu dự án
+🕹️ Project Introduction
+This is a Flappy Bird game project developed in Java. The game recreates the simple yet addictive gameplay where the player controls a bird flying through pipes without hitting them.
 
-Đây là dự án game Flappy Bird được xây dựng bằng ngôn ngữ lập trình Java. Trò chơi mô phỏng lại gameplay đơn giản nhưng gây nghiện, nơi người chơi điều khiển chú chim bay qua các ống nước mà không va chạm.
-
-👥 Thành viên nhóm
-
+👥 Team Members
 Phan Văn Bảo
 
 Võ Xuân Long
 
-🚀 Hướng dẫn chạy dự án trên NetBeans
-Mở NetBeans IDE.
+🚀 How to Run the Project in NetBeans
+Open NetBeans IDE.
 
-Import project: Vào File → Open Project, chọn thư mục chứa mã nguồn Flappy Bird.
+Go to File → Open Project, then select the folder containing the Flappy Bird source code.
 
-Đảm bảo project đã được cấu hình đúng với JDK 8 trở lên.
+Make sure the project is configured with JDK 8 or higher.
 
-Nhấn Run (hoặc phím F6) để chạy chương trình trực tiếp trong NetBeans.
+Press Run (or hit F6) to start the game directly inside NetBeans.
 
-Nếu muốn xuất file .jar, làm như sau:
+Exporting and Running the .jar File
+Right‑click the project → choose Clean and Build.
 
-Chuột phải vào project → Clean and Build.
+A .jar file will be generated inside the dist folder.
 
-File .jar sẽ được tạo trong thư mục dist.
-
-Để chạy file .jar bên ngoài NetBeans, mở terminal và dùng lệnh:
+To run the .jar file outside NetBeans, open a terminal and type:
 
 bash
 java -jar dist/FlappyBird.jar
