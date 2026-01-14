@@ -1,5 +1,3 @@
-package com.nhomxx.entities;
-
 public class Bird {
     private int x, y;
     private int velocity;
@@ -11,11 +9,11 @@ public class Bird {
     }
 
     public void flyUp() {
-        velocity = -15; // bay lên khi nhấn SPACE
+        velocity = -15;
     }
 
     public void applyGravity() {
-        velocity += 2; // trọng lực kéo xuống
+        velocity += 2;
         y += velocity;
     }
 
