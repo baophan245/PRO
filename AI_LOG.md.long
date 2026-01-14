@@ -31,8 +31,8 @@ Tải: https://www.oracle.com/java/technologies/downloads/
 
 Chọn: JDK 17 hoặc 21 (LTS)
 
-✅ IDE (phần mềm viết code)
-👉 Dễ nhất cho người mới:
+ IDE (phần mềm viết code)
+Dễ nhất cho người mới:
 
 NetBeans (rất hợp với sinh viên)
 
@@ -40,5 +40,94 @@ Hoặc IntelliJ IDEA Community
 
 📌 Nếu bạn đang dùng NetBeans (mình thấy bạn có hỏi trước đó), thì cứ dùng NetBeans 👍
 
-🔰 GIAI ĐOẠN 3: Học Java cơ bản (Tuần 1–2)
-3️⃣ Những thứ BẮT BUỘC phải học (theo thứ tự)
+GIAI ĐOẠN 3: Học Java cơ bản (Tuần 1–2)
+Những thứ BẮT BUỘC phải học (theo thứ tự)
+chỉ cho tôi cách cài và chạy trên java với con game plappy bird
+Cài Java JDK (quan trọng nhất)
+
+👉 Java để viết & chạy game
+
+Bước 1: Tải JDK
+
+Vào: https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
+
+Tải JDK 17 (Windows x64) hoặc macOS tùy máy
+
+Bước 2: Cài đặt
+
+Bấm Next → Next → Install
+
+Không cần chỉnh gì phức tạp
+
+Bước 3: Kiểm tra đã cài chưa
+
+Mở Terminal / CMD, gõ:
+
+java -version
+
+
+Nếu hiện:
+
+java version "17.x"
+
+OK 
+
+Cài IDE để code Java (NetBeans – dễ cho sinh viên)
+Tải NetBeans
+
+https://netbeans.apache.org/download/index.html
+
+Chọn Apache NetBeans (Java SE)
+
+Cài đặt
+
+Next → Next → Finish
+
+Mở NetBeans lên là xong
+cho tôi những lưu ý khi làm con game plappy bird
+I. LƯU Ý QUAN TRỌNG NHẤT (BẮT BUỘC)
+Phải chạy được bản CƠ BẢN trước
+
+Sai lầm thường gặp:
+
+Vừa học Java đã làm ngay full game → bỏ cuộc giữa chừng
+
+Cách đúng:
+
+Chim rơi (gravity)
+
+Nhấn SPACE chim bay
+
+Ống di chuyển
+Chạy được rồi mới thêm tính năng
+
+Không viết hết code trong 1 file
+
+1 file 1000 dòng → không debug nổi
+
+Nên chia:
+
+plappybird/
+├── Main.java        // chạy game
+├── GamePanel.java  // vẽ + logic
+├── Bird.java       // chim
+├── Pipe.java       // ống
+├── Score.java      // điểm
+
+
+ Giáo viên rất thích code có cấu trúc
+
+3️Game Loop phải ổn định
+
+Dùng:
+
+Timer timer = new Timer(20, this);
+
+
+Không dùng:
+
+while(true)
+
+Thread.sleep lung tung
+
+Timer giúp game mượt + không treo máy
