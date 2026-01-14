@@ -131,3 +131,104 @@ while(true)
 Thread.sleep lung tung
 
 Timer giúp game mượt + không treo máy
+cho tôi những class của con game này
+I. SƠ ĐỒ TỔNG THỂ CLASS
+plappybird/
+├── Main.java
+├── GamePanel.java
+├── Bird.java
+├── Pipe.java
+├── PipeManager.java
+├── Score.java
+└── GameState.java
+
+
+ 7 class là vừa đẹp (không quá ít, không dư thừa)
+
+II. GIẢI THÍCH TỪNG CLASS (RẤT QUAN TRỌNG)
+Main.java – Khởi động game
+ Nhiệm vụ
+
+Tạo cửa sổ (JFrame)
+
+Gắn GamePanel
+
+Chạy game
+
+ Không viết logic game ở đây
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Plappy Bird");
+        frame.add(new GamePanel());
+        frame.setSize(400, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}
+
+
+ Câu bảo vệ hay gặp:
+
+Vì sao Main không chứa logic game?
+ Vì để tách khởi động và xử lý game → dễ bảo trì
+cho tôi lộ trình 3 tuần làm game
+TÓM TẮT LỘ TRÌNH 3 TUẦN – PLAPPY BIRD
+ TUẦN 1 – LÀM GAME CHẠY ĐƯỢC
+
+ Mục tiêu: Có thể chơi được bản cơ bản
+
+Cài JDK, NetBeans, tạo project
+
+Tạo các class chính:
+Main, GamePanel, Bird, Pipe
+
+Làm chim rơi (gravity), nhấn SPACE bay
+
+Ống di chuyển từ phải sang trái
+
+Game chạy mượt bằng Timer
+
+ Kết quả:
+ Game chạy, chim bay, có ống (chưa Game Over)
+
+ TUẦN 2 – HOÀN THIỆN LOGIC GAME
+
+ Mục tiêu: Game giống Plappy Bird thật
+
+Thêm va chạm (chim – ống – mặt đất)
+
+Xử lý Game Over
+
+Thêm điểm số
+
+Chơi lại (Restart)
+
+Chia code rõ ràng, thêm comment
+
+Thay màu/ảnh PNG cơ bản
+
+Kết quả:
+ Game đầy đủ chức năng, chơi lại được
+
+ TUẦN 3 – HOÀN THIỆN & NỘP BÀI
+
+ Mục tiêu: Sẵn sàng bảo vệ & nộp đồ án
+
+Fix bug, tối ưu mượt
+
+Test trên máy khác
+
+Thêm âm thanh (nếu có thời gian)
+
+Xuất file .jar
+
+Viết README (hướng dẫn chạy)
+
+Chuẩn bị câu hỏi bảo vệ
+
+Kết quả:
+ Game hoàn chỉnh, nộp được, bảo vệ tự tin
+
+1 CÂU NHỚ NHANH
+
+Tuần 1 chạy được – Tuần 2 giống game – Tuần 3 đẹp & nộp
