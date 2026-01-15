@@ -232,3 +232,168 @@ Kết quả:
 1 CÂU NHỚ NHANH
 
 Tuần 1 chạy được – Tuần 2 giống game – Tuần 3 đẹp & nộp
+Proposal – Flappy Bird Java
+1. Introduction
+This project aims to develop a simple Flappy Bird game using Java in order to practice object-oriented programming and game loop concepts.
+
+2. Technologies Used
+Programming Language: Java
+IDE: NetBeans
+Libraries: Java Swing / AWT
+Version Control: GitHub
+3. Main Features
+Bird Control: The player presses the SPACE key to make the bird fly upward.
+
+Gravity Effect: Gravity continuously pulls the bird downward.
+
+Pipe Movement: Pipes move from right to left across the screen.
+
+Random Pipe Gaps: The gaps between pipes are generated randomly to increase difficulty.
+
+Continuous Scrolling: The game world scrolls endlessly to simulate forward movement.
+
+Collision Detection: The system checks for collisions between the bird and pipes.
+
+Ground Collision: The game ends if the bird touches the ground.
+
+Score Tracking: The score increases when the bird successfully passes through pipes.
+
+Game Over Screen: A message is displayed when the game ends.
+
+Restart Option: The player can restart the game after losing. cho tôi biết dự án này có bao nhiêu lớp mỗi lớp có bao nhiêu thuộc tính, mỗi thuộc tính nó như thế nào 
+Tổng thể kiến trúc lớp (Class Design)
+Game
+ ├── GamePanel
+ │    ├── Bird
+ │    ├── ArrayList<Pipe>
+ │    ├── Score
+ │
+ ├── Bird
+ ├── Pipe
+ ├── PipePair (tùy chọn – gộp 2 ống)
+ ├── Score
+ ├── InputHandler
+ └── GameState (enum)
+
+1️⃣ Game (Main class)
+
+👉 Chạy chương trình
+
+Thuộc tính (2)
+Thuộc tính	Kiểu	Ý nghĩa
+WIDTH	int	Chiều rộng cửa sổ
+HEIGHT	int	Chiều cao cửa sổ
+
+👉 Không lưu logic game, chỉ tạo JFrame
+
+2️⃣ GamePanel (Trung tâm game)
+
+👉 Quản lý vòng lặp game, vẽ, cập nhật
+
+Thuộc tính (9)
+Thuộc tính	Kiểu	Ý nghĩa
+bird	Bird	Nhân vật chính
+pipes	ArrayList<Pipe>	Danh sách ống
+score	Score	Điểm
+timer	Timer	Game loop
+gameState	GameState	RUNNING / GAME_OVER
+pipeSpawnCounter	int	Đếm frame tạo ống
+GROUND_Y	int	Vị trí mặt đất
+WIDTH	int	Chiều rộng màn
+HEIGHT	int	Chiều cao màn
+
+👉 Đây là class quan trọng nhất
+
+3️⃣ Bird (Con chim)
+
+👉 Áp dụng OOP + vật lý
+
+Thuộc tính (7)
+Thuộc tính	Kiểu	Ý nghĩa
+x	int	Vị trí ngang
+y	int	Vị trí dọc
+width	int	Rộng
+height	int	Cao
+velocityY	double	Vận tốc rơi
+gravity	double	Gia tốc trọng lực
+lift	double	Lực bay lên khi nhấn SPACE
+
+📌 Ý nghĩa quan trọng
+
+velocityY += gravity
+
+Nhấn SPACE → velocityY = lift
+
+4️⃣ Pipe (Ống)
+
+👉 Mỗi object là 1 ống
+
+Thuộc tính (8)
+Thuộc tính	Kiểu	Ý nghĩa
+x	int	Vị trí ngang
+y	int	Vị trí dọc
+width	int	Rộng
+height	int	Cao
+speed	int	Tốc độ di chuyển
+isTop	boolean	Ống trên hay dưới
+passed	boolean	Đã tính điểm chưa
+gap	int	Khoảng trống (chỉ dùng khi tạo)
+5️⃣ PipePair (Khuyến nghị dùng ⭐)
+
+👉 Gộp ống trên + dưới thành 1 object
+
+Thuộc tính (6)
+Thuộc tính	Kiểu	Ý nghĩa
+topPipe	Pipe	Ống trên
+bottomPipe	Pipe	Ống dưới
+gapHeight	int	Khoảng trống
+x	int	Vị trí ngang
+passed	boolean	Đã qua chưa
+speed	int	Tốc độ
+
+📌 Dễ tính điểm + va chạm hơn
+
+6️⃣ Score (Điểm số)
+
+👉 Tách riêng để clean code
+
+Thuộc tính (2)
+Thuộc tính	Kiểu	Ý nghĩa
+value	int	Điểm hiện tại
+highScore	int	Điểm cao nhất
+7️⃣ InputHandler (Xử lý bàn phím)
+
+👉 Nhận phím SPACE / R
+
+Thuộc tính (2)
+Thuộc tính	Kiểu	Ý nghĩa
+bird	Bird	Điều khiển chim
+gamePanel	GamePanel	Restart game
+8️⃣ GameState (Enum)
+public enum GameState {
+    RUNNING,
+    GAME_OVER
+}
+
+
+👉 Không có thuộc tính
+
+📊 Tổng kết nhanh
+Thành phần	Số lớp
+Core game	4
+Hỗ trợ	3
+Tổng	7–8 lớp
+
+✔ Áp dụng OOP chuẩn
+✔ Dễ trình bày trong proposal / report
+✔ Rất phù hợp sinh viên
+
+👉 Nếu bạn muốn, mình có thể:
+
+Vẽ sơ đồ UML
+
+Viết skeleton code từng class
+
+Chia task cho 2 người làm trong 3 tuần
+
+Viết proposal tiếng Anh chuẩn nộp bài
