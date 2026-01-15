@@ -397,3 +397,295 @@ Viết skeleton code từng class
 Chia task cho 2 người làm trong 3 tuần
 
 Viết proposal tiếng Anh chuẩn nộp bài
+viết skeleton code từng class
+1️⃣ Game.java (Main)
+import javax.swing.JFrame;
+
+public class Game {
+
+    public static final int WIDTH = 400;
+    public static final int HEIGHT = 600;
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Flappy Bird Java");
+        GamePanel panel = new GamePanel();
+
+        frame.add(panel);
+        frame.setSize(WIDTH, HEIGHT);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+}
+
+2️⃣ GamePanel.java (Trung tâm game)
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+
+public class GamePanel extends JPanel {
+
+    private Bird bird;
+    private ArrayList<PipePair> pipes;
+    private Score score;
+    private Timer timer;
+    private GameState gameState;
+
+    private final int GROUND_Y = 550;
+
+    public GamePanel() {
+        bird = new Bird(100, 250);
+        pipes = new ArrayList<>();
+        score = new Score();
+        gameState = GameState.RUNNING;
+
+        setFocusable(true);
+        addKeyListener(new InputHandler(this, bird));
+
+        timer = new Timer(16, e -> gameLoop());
+        timer.start();
+    }
+
+    private void gameLoop() {
+        if (gameState == GameState.RUNNING) {
+            update();
+            repaint();
+        }
+    }
+
+    private void update() {
+        bird.update();
+        // update pipes
+        // check collision
+        // update score
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        bird.draw(g);
+
+        for (PipePair pipe : pipes) {
+            pipe.draw(g);
+        }
+
+        score.draw(g);
+
+        if (gameState == GameState.GAME_OVER) {
+            drawGameOver(g);
+        }
+    }
+
+    private void drawGameOver(Graphics g) {
+        g.setColor(Color.RED);
+        g.setFont(new Font("Arial", Font.BOLD, 30));
+        g.drawString("GAME OVER", 90, 300);
+    }
+
+    public void restartGame() {
+        bird.reset();
+        pipes.clear();
+        score.reset();
+        gameState = GameState.RUNNING;
+    }
+
+    public void setGameOver() {
+        gameState = GameState.GAME_OVER;
+    }
+}
+
+3️⃣ Bird.java
+import java.awt.*;
+
+public class Bird {
+
+    private int x, y;
+    private int width = 30;
+    private int height = 30;
+
+    private double velocityY = 0;
+    private final double gravity = 0.6;
+    private final double lift = -10;
+
+    public Bird(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void update() {
+        velocityY += gravity;
+        y += velocityY;
+    }
+
+    public void fly() {
+        velocityY = lift;
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.YELLOW);
+        g.fillOval(x, y, width, height);
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
+    }
+
+    public void reset() {
+        y = 250;
+        velocityY = 0;
+    }
+
+    public int getY() {
+        return y;
+    }
+}
+
+4️⃣ Pipe.java
+import java.awt.*;
+
+public class Pipe {
+
+    private int x, y;
+    private int width = 60;
+    private int height;
+    private int speed = 3;
+    private boolean passed;
+
+    public Pipe(int x, int y, int height) {
+        this.x = x;
+        this.y = y;
+        this.height = height;
+        this.passed = false;
+    }
+
+    public void update() {
+        x -= speed;
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.GREEN);
+        g.fillRect(x, y, width, height);
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public boolean isPassed() {
+        return passed;
+    }
+
+    public void setPassed(boolean passed) {
+        this.passed = passed;
+    }
+}
+
+5️⃣ PipePair.java
+import java.awt.*;
+import java.util.Random;
+
+public class PipePair {
+
+    private Pipe topPipe;
+    private Pipe bottomPipe;
+    private int gapHeight = 150;
+    private int x;
+
+    public PipePair(int startX, int panelHeight) {
+        Random rand = new Random();
+        int topHeight = rand.nextInt(200) + 50;
+        int bottomY = topHeight + gapHeight;
+
+        topPipe = new Pipe(startX, 0, topHeight);
+        bottomPipe = new Pipe(startX, bottomY, panelHeight - bottomY);
+        x = startX;
+    }
+
+    public void update() {
+        topPipe.update();
+        bottomPipe.update();
+    }
+
+    public void draw(Graphics g) {
+        topPipe.draw(g);
+        bottomPipe.draw(g);
+    }
+
+    public boolean checkCollision(Bird bird) {
+        return bird.getBounds().intersects(topPipe.getBounds())
+            || bird.getBounds().intersects(bottomPipe.getBounds());
+    }
+
+    public boolean isOffScreen() {
+        return topPipe.getX() + 60 < 0;
+    }
+}
+
+6️⃣ Score.java
+import java.awt.*;
+
+public class Score {
+
+    private int value = 0;
+    private int highScore = 0;
+
+    public void increase() {
+        value++;
+        if (value > highScore) {
+            highScore = value;
+        }
+    }
+
+    public void reset() {
+        value = 0;
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.drawString("Score: " + value, 20, 30);
+    }
+}
+
+7️⃣ InputHandler.java
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+public class InputHandler extends KeyAdapter {
+
+    private GamePanel gamePanel;
+    private Bird bird;
+
+    public InputHandler(GamePanel gamePanel, Bird bird) {
+        this.gamePanel = gamePanel;
+        this.bird = bird;
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            bird.fly();
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_R) {
+            gamePanel.restartGame();
+        }
+    }
+}
+
+8️⃣ GameState.java
+public enum GameState {
+    RUNNING,
+    GAME_OVER
+}
+
+✅ Tổng kết
+
+✔ Đây là bộ skeleton chuẩn OOP
+✔ Có thể copy từng class vào NetBeans → Run ngay
+✔ Phù hợp nộp project / report / demo
