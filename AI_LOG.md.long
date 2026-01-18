@@ -1048,6 +1048,83 @@ public class PipePair {
         topPipe.update();
         bottomPipe.update();
     }
+Phần nào là phần quan trọng nhất của game? Phần nào cần chú ý nhất?
+⭐ 1. PHẦN QUAN TRỌNG NHẤT CỦA GAME
+
+👉 GAMEPLAY CORE (CƠ CHẾ CHƠI CỐT LÕI)
+
+Cụ thể trong Plappy Bird là:
+
+Cách chim bay lên – rơi xuống
+
+Cảm giác điều khiển (nhấn là phản hồi ngay)
+
+Va chạm với ống
+
+Nhịp độ game (tốc độ, khoảng cách ống)
+
+📌 Nếu phần này không tốt:
+
+Game sẽ khó chịu
+
+Người chơi không muốn chơi lại
+
+Dù hình đẹp, âm thanh hay → vẫn thất bại
+
+👉 Gameplay tốt = game thành công
+
+⚠️ 2. PHẦN CẦN CHÚ Ý NHẤT
+
+👉 CÂN BẰNG & ĐỘ MƯỢT
+
+Những điểm PHẢI chú ý:
+🐦 a. Chuyển động của chim
+
+Trọng lực không quá mạnh
+
+Lực bay không quá yếu
+
+Bay lên – rơi xuống mượt, tự nhiên
+
+👉 Đây là cảm giác tay người chơi
+
+🚧 b. Va chạm (Collision)
+
+Không được va chạm “oan”
+
+Không được chạm mà không thua
+
+Hitbox phải hợp lý (đừng quá to)
+
+👉 Va chạm sai → người chơi ức chế
+
+⏱️ c. Tốc độ game
+
+Ống chạy đều
+
+Không tăng tốc đột ngột
+
+FPS ổn định
+
+👉 Game giật = điểm thấp
+
+🎨 d. Nhìn rõ – dễ chơi
+
+Chim phải nổi bật so với nền
+
+Khoảng trống giữa ống dễ nhận biết
+
+Điểm hiển thị rõ ràng
+
+👉 Người chơi phải “nhìn là hiểu”
+
+🧱 e. Cấu trúc code (đối với đồ án)
+
+Mỗi class làm 1 việc
+
+Không nhồi tất cả vào 1 class
+
+Dễ đọc – dễ sửa
 
     public void draw(Graphics g) {
         topPipe.draw(g);
