@@ -143,6 +143,135 @@ Canh chỉnh tốc độ
 khi làm con game đó cần những bước ra sao
 
 cho tôi lộ trình làm con game nó như thế nào
+🟢 GIAI ĐOẠN 1 – CHUẨN BỊ & TƯ DUY OOP (Ngày 1–2)
+
+🎯 Mục tiêu: Không code vội – hiểu game sẽ gồm những gì
+
+Việc cần làm
+
+Cài JDK + NetBeans
+
+Tạo Java Project
+
+Hiểu các class chính:
+
+GameFrame (cửa sổ)
+
+GamePanel (xử lý game)
+
+Bird (nhân vật)
+
+Pipe (chướng ngại)
+
+📌 Kết quả: Vẽ được sơ đồ class trên giấy
+
+🟢 GIAI ĐOẠN 2 – TẠO KHUNG GAME (Ngày 3)
+
+🎯 Mục tiêu: Có cửa sổ game chạy được
+
+Làm gì
+
+Tạo JFrame
+
+Tạo JPanel
+
+Set kích thước game
+
+Mở cửa sổ
+
+📌 Chạy được cửa sổ trống
+
+🟢 GIAI ĐOẠN 3 – LÀM CHIM BAY (Ngày 4–6)
+
+🎯 PHẦN QUAN TRỌNG NHẤT
+
+Làm gì
+
+Tạo class Bird
+
+Chim rơi xuống (gravity)
+
+Nhấn Space → chim bay lên
+
+Vẽ chim (hình chữ nhật hoặc ảnh)
+
+📌 Kết quả: Chim bay được, rơi mượt
+
+🟢 GIAI ĐOẠN 4 – TẠO ỐNG (Ngày 7–9)
+
+🎯 Tạo thử thách
+
+Làm gì
+
+Tạo class Pipe
+
+Random độ cao
+
+Ống di chuyển từ phải sang trái
+
+Dùng ArrayList<Pipe>
+
+📌 Ống chạy liên tục
+
+🟢 GIAI ĐOẠN 5 – VA CHẠM & GAME OVER (Ngày 10–11)
+
+🎯 Game bắt đầu hoàn chỉnh
+
+Làm gì
+
+Dùng Rectangle kiểm tra va chạm
+
+Chim chạm ống → thua
+
+Chim chạm đất → thua
+
+Dừng game
+
+📌 Có thắng – thua rõ ràng
+
+🟢 GIAI ĐOẠN 6 – TÍNH ĐIỂM & CHƠI LẠI (Ngày 12–13)
+
+🎯 Tạo mục tiêu cho người chơi
+
+Làm gì
+
+Qua mỗi cặp ống → +1 điểm
+
+Hiển thị điểm
+
+Nhấn phím để chơi lại
+
+📌 Game chơi được hoàn chỉnh
+
+🟢 GIAI ĐOẠN 7 – LÀM GỌN & ỔN ĐỊNH (Ngày 14–16)
+
+🎯 Ăn điểm PRO192
+
+Làm gì
+
+Tách code gọn
+
+Đặt tên biến rõ ràng
+
+Comment code
+
+Fix bug
+
+Canh tốc độ
+
+📌 Code đẹp – dễ đọc
+
+🟢 GIAI ĐOẠN 8 – NÂNG CẤP (NẾU CÒN THỜI GIAN)
+
+🎯 Không bắt buộc
+
+Âm thanh
+
+Menu
+
+Lưu điểm cao
+
+Hiệu ứng
 viết cho tôi 1 code mẫu cho chặng 1
 
 b có thể giúp tôi làm những phần nào trong khi làm con game này giúp được chúng tôi bao nhiêu % trong con game này
