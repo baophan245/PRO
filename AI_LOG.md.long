@@ -1,4 +1,145 @@
 tôi mới học xong prf192 giờ sang kì mới pro192 lập trình hướng đối tượng Java h tôi muốn tạo 1 con game plappy bird tôi phải làm sao
+Bạn vừa học xong PRF192 (lập trình cơ bản) → sang PRO192 (Lập trình hướng đối tượng Java) mà chọn làm game Plappy Bird là hướng đi RẤT ĐÚNG.
+
+Tôi sẽ hướng dẫn bạn từng bước – đúng trình độ – không bị ngợp – làm được thật.
+
+🧭 LỘ TRÌNH LÀM GAME PLAPPY BIRD CHO NGƯỜI MỚI HỌC OOP JAVA
+🎯 Mục tiêu
+
+Áp dụng OOP Java
+
+Làm game chạy được – nộp được – dễ hiểu
+
+Không cần đồ họa phức tạp
+
+🔰 GIAI ĐOẠN 0 – CHUẨN BỊ (1–2 NGÀY)
+
+👉 Trước khi code game, bạn cần nắm những thứ tối thiểu sau
+
+Cần biết trong PRO192
+
+class, object
+
+constructor
+
+private / public
+
+getter / setter
+
+ArrayList
+
+extends
+
+implements
+
+Override method
+
+📌 Chưa cần design pattern, chưa cần nâng cao
+
+Công cụ nên dùng
+
+NetBeans (dễ cho sinh viên)
+
+Java JDK 8 hoặc 11
+
+Game dùng Java Swing / AWT
+
+🧱 GIAI ĐOẠN 1 – VẼ RA GAME TRƯỚC (KHÔNG CODE) (1 NGÀY)
+
+👉 Đừng code liền ❌
+
+Hãy trả lời các câu hỏi này:
+
+Game có những đối tượng nào?
+
+Mỗi đối tượng làm gì?
+
+Các đối tượng chính
+Đối tượng	Vai trò
+Bird	Chim – nhân vật chính
+Pipe	Ống – chướng ngại
+GamePanel	Xử lý game
+GameFrame	Cửa sổ game
+
+📌 Đây chính là tư duy OOP
+
+🐦 GIAI ĐOẠN 2 – LÀM CHIM BAY (2–3 NGÀY)
+
+👉 Đây là phần QUAN TRỌNG NHẤT
+
+Việc cần làm
+
+Tạo class Bird
+
+Thuộc tính:
+
+int x, y;
+int width, height;
+int velocity;
+
+
+Hàm:
+
+void update();
+void jump();
+void draw(Graphics g);
+
+
+📌 Chỉ cần làm:
+
+Chim rơi xuống
+
+Nhấn Space → chim bay lên
+
+👉 CHƯA CẦN ỐNG
+
+🚧 GIAI ĐOẠN 3 – THÊM ỐNG (2–3 NGÀY)
+
+Tạo class Pipe
+
+Ống di chuyển từ phải sang trái
+
+Random độ cao
+
+Dùng ArrayList<Pipe>
+
+📌 Chưa cần điểm, chỉ cần ống chạy
+
+💥 GIAI ĐOẠN 4 – VA CHẠM & GAME OVER (2 NGÀY)
+
+Dùng Rectangle để check va chạm
+
+Chim chạm ống → thua
+
+Chim chạm đất → thua
+
+📌 Game bắt đầu giống game thật
+
+🧮 GIAI ĐOẠN 5 – TÍNH ĐIỂM & CHƠI LẠI (1–2 NGÀY)
+
+Qua 1 cặp ống → +1 điểm
+
+Hiển thị điểm
+
+Nhấn phím để restart
+
+🎨 GIAI ĐOẠN 6 – LÀM GỌN & ĐẸP (1–2 NGÀY)
+
+Tách code gọn
+
+Đặt tên biến rõ ràng
+
+Comment
+
+Canh chỉnh tốc độ
+
+⏱️ TỔNG THỜI GIAN: ~2–3 TUẦN (RẤT PHÙ HỢP PRO192)
+🧠 CÁCH HỌC KHÔN NGOAN
+
+✔ Làm từng phần nhỏ
+✔ Chạy được rồi mới thêm
+✔ Không copy full code
+✔ Hiểu từng dòng mình viết
 khi làm con game đó cần những bước ra sao
 
 cho tôi lộ trình làm con game nó như thế nào
