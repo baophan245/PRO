@@ -30,6 +30,444 @@ Bạn chỉ cần 2 thứ:
 Tải: https://www.oracle.com/java/technologies/downloads/
 
 Chọn: JDK 17 hoặc 21 (LTS)
+Những chức năng nào là bắt buộc, chức năng nào có thể bỏcủa con game plappy bird
+🐦 I. CÂU HỎI VỀ Ý TƯỞNG & CHỦ ĐỀ GAME
+
+Plappy Bird là game thuộc thể loại gì?
+
+Mục tiêu chính của người chơi trong Plappy Bird là gì?
+
+Điểm khác biệt của Plappy Bird so với Flappy Bird gốc là gì?
+
+Chủ đề hình ảnh của game là gì? (chim, màu sắc, bối cảnh…)
+
+Vì sao chọn chủ đề Plappy Bird cho đồ án Java?
+
+Đối tượng người chơi mà game hướng tới là ai?
+
+Game mang tính giải trí hay luyện phản xạ nhiều hơn?
+
+🎮 II. CÂU HỎI VỀ GAMEPLAY (CÁCH CHƠI)
+
+Người chơi điều khiển chim bằng cách nào?
+
+Khi nào chim bay lên? Khi nào chim rơi xuống?
+
+Điều gì xảy ra khi chim va vào ống hoặc chạm đất?
+
+Làm sao để người chơi ghi điểm?
+
+Game kết thúc trong những trường hợp nào?
+
+Game có cho phép chơi lại (restart) không?
+
+Có tăng độ khó theo thời gian không? Nếu có thì tăng như thế nào?
+
+🎨 III. CÂU HỎI VỀ GIAO DIỆN & ĐẸP MẮT
+
+Game có những màn hình nào? (Menu, Play, Game Over…)
+
+Màu nền được chọn có phù hợp với chủ đề không?
+
+Các đối tượng (chim, ống, đất) có kích thước hợp lý không?
+
+Font chữ hiển thị điểm có dễ nhìn không?
+
+Game có hiệu ứng chuyển động mượt không?
+
+Có âm thanh khi bay, va chạm, game over không?
+
+Có hình nền chuyển động (parallax) không?
+
+🧱 IV. CÂU HỎI VỀ THIẾT KẾ OOP (RẤT QUAN TRỌNG)
+
+Game được chia thành bao nhiêu class?
+
+Class Bird có nhiệm vụ gì?
+
+Class Pipe dùng để làm gì?
+
+Class GamePanel quản lý những gì?
+
+Class GameFrame dùng để làm gì?
+
+Các thuộc tính trong Bird là gì?
+
+Vì sao cần dùng OOP trong game này?
+
+Các class có mối quan hệ gì với nhau?
+
+Có áp dụng nguyên lý encapsulation không?
+
+⚙️ V. CÂU HỎI VỀ XỬ LÝ KỸ THUẬT
+
+Game dùng thư viện gì của Java?
+
+Game có dùng vòng lặp game loop không?
+
+Tốc độ game được xử lý như thế nào?
+
+Làm sao để kiểm tra va chạm?
+
+Game có dùng Timer hay Thread?
+
+Làm sao để vẽ hình ảnh lên màn hình?
+
+Game xử lý sự kiện bàn phím/chuột ra sao?
+
+🧪 VI. CÂU HỎI KIỂM TRA & HOÀN THIỆN
+
+Game có bị lag khi chơi lâu không?
+
+Có lỗi nào thường gặp khi chơi không?
+
+Game có chạy được trên nhiều máy không?
+
+Đã test đầy đủ các trường hợp chưa?
+
+Game có dễ hiểu khi người mới chơi không?
+
+📈 VII. CÂU HỎI MỞ RỘNG (ĂN ĐIỂM CAO)
+
+Nếu nâng cấp game, bạn sẽ thêm gì?
+
+Có thể thêm nhiều loại chim không?
+
+Có thể lưu điểm cao nhất không?
+
+Có thể thêm chế độ ban đêm không?
+
+Game có thể chuyển sang Android không?
+
+Học được gì sau khi hoàn thành Plappy Bird?
+
+✅ VIII. CÂU HỎI TỔNG KẾT (RẤT HAY ĐỂ KẾT BÀI)
+
+Điểm mạnh lớn nhất của game Plappy Bird là gì?
+
+Hạn chế của game là gì?
+
+Bạn tự đánh giá game của mình bao nhiêu điểm?
+
+Game có đáp ứng yêu cầu môn học không?
+
+Bạn rút ra được bài học gì về lập trình Java & OOP?
+
+👉 Nếu bạn muốn, tôi có thể:
+
+✅ Viết sẵn câu trả lời mẫu (ăn điểm cao)
+
+✅ Chuyển bộ câu hỏi này thành bài báo cáo Word/PDF
+
+✅ Chuẩn bị nội dung thuyết trình PowerPoint
+
+✅ Rút gọn còn 20 câu “xài đi nộp liền”
+
+Bạn muốn theo hướng nào tiếp theo?
+
+các câu hỏi để cho làm game 1 cách hài hoà
+
+Ok 👍
+Dưới đây là bộ câu hỏi cốt lõi để làm game Plappy Bird một cách HÀI HOÀ – CÂN ĐỐI – ĐẸP MẮT, không dư thừa, giúp bạn làm từ đầu đến hoàn thiện (rất hợp cho sinh viên làm đồ án).
+
+🎯 I. CÂU HỎI ĐỊNH HƯỚNG TỔNG THỂ
+
+Mục tiêu chính của game là gì?
+
+Người chơi cảm thấy gì khi chơi game này?
+
+Game hướng tới giải trí nhanh hay chơi lâu dài?
+
+Phạm vi game có vừa sức với thời gian làm không?
+
+Những chức năng nào là bắt buộc, chức năng nào có thể bỏ?
+
+👉 Giúp game không bị lan man, làm đúng trọng tâm
+
+🎮 II. CÂU HỎI CÂN BẰNG GAMEPLAY
+
+Người chơi điều khiển có đơn giản không?
+
+Chim bay lên – rơi xuống có mượt không?
+
+Khoảng cách giữa các ống có hợp lý không?
+
+Tốc độ game có quá nhanh hay quá chậm?
+
+Độ khó tăng từ từ hay tăng đột ngột?
+
+Người mới chơi có sống được ít nhất vài giây không?
+
+Game có tạo cảm giác “muốn chơi lại” không?
+
+👉 Gameplay hài hòa = không quá khó, không quá dễ
+
+🎨 III. CÂU HỎI VỀ HÌNH ẢNH & MÀU SẮC
+
+Màu nền có làm nổi bật chim và ống không?
+
+Màu sắc có quá chói hay quá tối không?
+
+Các đối tượng có cùng phong cách thiết kế không?
+
+Kích thước chim có cân đối với ống không?
+
+Nền, đất, ống có phối màu hài hòa không?
+
+Giao diện có gọn gàng, không rối mắt không?
+
+👉 Đẹp mắt = đơn giản + thống nhất
+
+🔊 IV. CÂU HỎI VỀ ÂM THANH & CẢM GIÁC
+
+Âm thanh có vừa đủ, không gây khó chịu không?
+
+Có âm thanh khi bay, khi va chạm không?
+
+Nhạc nền có phù hợp nhịp độ game không?
+
+Có cho phép tắt âm thanh không?
+
+👉 Âm thanh nên hỗ trợ, không lấn át
+
+🧱 V. CÂU HỎI VỀ CẤU TRÚC CODE (OOP HÀI HÒA)
+
+Mỗi class có một nhiệm vụ rõ ràng chưa?
+
+Có class nào đang làm quá nhiều việc không?
+
+Code có dễ đọc, dễ sửa không?
+
+Tên biến, tên hàm có đúng ý nghĩa không?
+
+Logic game có tách khỏi phần vẽ không?
+
+Nếu sửa chim, có ảnh hưởng ống không?
+
+👉 Code hài hòa = dễ bảo trì + dễ mở rộng
+
+⚙️ VI. CÂU HỎI VỀ HIỆU SUẤT & ĐỘ MƯỢT
+
+Game có bị giật khi chơi lâu không?
+
+Vòng lặp game có ổn định không?
+
+Va chạm có chính xác không?
+
+Có hiện tượng lỗi hình ảnh không?
+
+Game có chạy ổn trên nhiều máy không?
+
+👉 Mượt mà = trải nghiệm tốt
+
+🧪 VII. CÂU HỎI KIỂM TRA CUỐI
+
+Người chưa biết game có chơi được không?
+
+Game có lỗi nặng nào không?
+
+Có thể chơi lại nhanh không?
+
+Game có đúng yêu cầu giảng viên không?
+
+Game đã “đủ đẹp” hay còn rườm rà?
+
+Nếu cắt bớt, nên cắt phần nào?
+
+🏁 VIII. CÂU HỎI TỔNG KẾT HÀI HOÀ
+
+Game có cân bằng giữa chơi – nhìn – nghe – code không?
+
+Phần nào là mạnh nhất của game?
+
+Phần nào cần cải thiện nhất?
+
+Game có xứng đáng để nộp đồ án không?
+
+Game có khiến bạn tự hào không?
+
+✅ TÓM LẠI
+
+Game hài hoà =
+
+Gameplay đơn giản nhưng cuốn
+
+Hình ảnh rõ ràng, không rối
+
+Âm thanh vừa đủ
+
+Code gọn, đúng OOP
+
+Nếu bạn muốn, tôi có thể:
+
+✔️ Chuyển bộ câu hỏi này thành checklist làm game
+
+✔️ Ghép từng câu hỏi với class Plappy Bird cụ thể
+
+✔️ Viết bài nhận xét “game làm hài hoà” để nộp
+
+✔️ Rút gọn còn 20 câu cốt lõi
+
+👉 Bạn muốn làm tiếp theo hướng nào?
+
+Những chức năng nào là bắt buộc, chức năng nào có thể bỏcủa con game plappy bird
+
+Rất đúng trọng tâm 👍
+Dưới đây là phân loại RÕ RÀNG – DỄ HIỂU các chức năng BẮT BUỘC và chức năng CÓ THỂ BỎ của game Plappy Bird, đúng kiểu làm đồ án / bài tập Java mà vẫn đẹp – hài hoà – đủ điểm cao.
+
+✅ I. CÁC CHỨC NĂNG BẮT BUỘC (PHẢI CÓ)
+
+❗ Thiếu các chức năng này → game không chơi được / bị trừ điểm nặng
+
+🐦 1. Nhân vật chính (Bird)
+
+Chim có vị trí (x, y)
+
+Chim rơi xuống do trọng lực
+
+Chim bay lên khi nhấn phím / click chuột
+
+Có hình ảnh hiển thị
+
+👉 Đây là “linh hồn” của game
+
+🚧 2. Chướng ngại vật (Pipe)
+
+Ống trên và ống dưới
+
+Khoảng trống để chim bay qua
+
+Ống di chuyển từ phải sang trái
+
+Sinh ống liên tục theo thời gian
+
+👉 Không có ống → không có thử thách
+
+💥 3. Va chạm (Collision)
+
+Chim chạm ống → thua
+
+Chim chạm đất / trần → thua
+
+Xử lý va chạm chính xác
+
+👉 Quyết định thắng – thua
+
+🎮 4. Điều khiển (Input)
+
+Nhấn phím (Space / Click chuột) để bay
+
+Phản hồi ngay, không trễ
+
+👉 Trải nghiệm người chơi
+
+🔄 5. Vòng lặp game (Game Loop)
+
+Cập nhật vị trí chim
+
+Cập nhật ống
+
+Kiểm tra va chạm
+
+Vẽ lại màn hình liên tục
+
+👉 Game sống nhờ vòng lặp này
+
+🧮 6. Tính điểm (Score)
+
+Qua mỗi cặp ống +1 điểm
+
+Hiển thị điểm trên màn hình
+
+👉 Có mục tiêu cho người chơi
+
+☠️ 7. Game Over
+
+Dừng game khi thua
+
+Hiển thị trạng thái thua
+
+Cho phép chơi lại
+
+👉 Hoàn chỉnh trải nghiệm
+
+🖼️ 8. Hiển thị đồ họa
+
+Vẽ chim, ống, nền
+
+Không bị nhấp nháy
+
+Tỉ lệ phù hợp
+
+👉 Game phải nhìn được 😄
+
+⚠️ II. CÁC CHỨC NĂNG CÓ THỂ BỎ (KHÔNG BẮT BUỘC)
+
+✔️ Không có vẫn đủ nộp – đủ điểm
+
+🎵 1. Âm thanh
+
+Nhạc nền
+
+Âm thanh bay, va chạm
+
+👉 Có thì hay, không có vẫn ổn
+
+🎨 2. Hiệu ứng nâng cao
+
+Animation chim đập cánh
+
+Hiệu ứng rung màn hình
+
+Hiệu ứng mờ (fade)
+
+🏠 3. Menu chính
+
+Màn hình Start
+
+Màn hình hướng dẫn
+
+👉 Có thì đẹp, không có vẫn chơi được
+
+🏆 4. Lưu điểm cao (High Score)
+
+Ghi file
+
+Lưu điểm cũ
+
+🌙 5. Chế độ nâng cao
+
+Ngày / đêm
+
+Độ khó tăng dần
+
+Nhiều loại ống
+
+🎮 6. Nhiều cách điều khiển
+
+Chuột + phím
+
+Gamepad
+
+🎭 7. Tuỳ biến nhân vật
+
+Đổi màu chim
+
+Đổi skin
+
+🧠 III. CHỨC NĂNG NÊN CÓ (ĂN ĐIỂM, NHƯNG KHÔNG BẮT BUỘC)
+
+Nếu có → giảng viên rất thích
+
+Code chia class rõ ràng (Bird, Pipe, GamePanel…)
+
+Comment code dễ hiểu
+
+Tên biến chuẩn
+
+Restart nhanh
+
+Game chạy mượt, không lag
 
  IDE (phần mềm viết code)
 Dễ nhất cho người mới:
@@ -684,8 +1122,3 @@ public enum GameState {
     GAME_OVER
 }
 
-✅ Tổng kết
-
-✔ Đây là bộ skeleton chuẩn OOP
-✔ Có thể copy từng class vào NetBeans → Run ngay
-✔ Phù hợp nộp project / report / demo
