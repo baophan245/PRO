@@ -1437,4 +1437,131 @@ thêm tính năng nư
 
 Không có tệp nào được chọnKhông có tệp nào được chọn
 ChatGPT có thể mắc lỗi. Hãy kiểm tra các thông tin quan trọng. Vui lòng tham khảo Tùy chọn cookie.
+Tất nhiên rồi, bao! Mình sẽ giải thích rõ từng phần trong mục số 3 của bảng đó nhé:
 
+🔧 M3: Utility (Static)
+Đây là một phần trong bài học lập trình, tập trung vào việc sử dụng class tiện ích (utility class) với các phương thức tĩnh (static methods).
+
+1. Viết class  dùng static methods
+• 	Bạn sẽ tạo một lớp có tên là .
+• 	Trong lớp này, các hàm kiểm tra dữ liệu (ví dụ: kiểm tra email, số điện thoại, mật khẩu...) sẽ được viết dưới dạng static method.
+• 	Static method là phương thức không cần tạo đối tượng để gọi. Ví dụ:
+
+Gọi hàm: 
+
+2. Flowchart chi tiết: Vẽ luồng kiểm tra dữ liệu
+• 	Bạn cần vẽ sơ đồ luồng (flowchart) thể hiện quá trình kiểm tra dữ liệu.
+• 	Ví dụ: kiểm tra đầu vào → kiểm tra rỗng → kiểm tra định dạng → trả kết quả hợp lệ hoặc không hợp lệ.
+• 	Flowchart giúp hình dung rõ ràng logic xử lý.
+
+3. Q&A nhanh: Giải thích hàm static
+• 	Static method là gì?
+• 	Là phương thức thuộc về class, không thuộc về đối tượng.
+• 	Có thể gọi trực tiếp qua tên class mà không cần tạo đối tượng.
+• 	Khi nào dùng?
+• 	Khi hàm không cần lưu trạng thái, chỉ xử lý logic đơn giản như kiểm tra, tính toán.
+
+Nếu bạn muốn mình vẽ sơ đồ flowchart mẫu hoặc viết một class  hoàn chỉnh, mình có thể giúp ngay! Bạn muốn bắt đầu từ phần nào?
+ủa mà cái lớp validation là một lớp riêng hay sao
+Đúng rồi đó bao, lớp  thường là một lớp riêng biệt, không nằm trong các lớp xử lý chính như , , hay . Mục đích của nó là để tách biệt logic kiểm tra dữ liệu ra khỏi phần xử lý nghiệp vụ, giúp mã nguồn gọn gàng, dễ bảo trì và tái sử dụng.
+
+📦 Vì sao nên tạo lớp  riêng?
+• 	Tái sử dụng: Các hàm kiểm tra như , , ... có thể dùng ở nhiều nơi khác nhau trong chương trình.
+• 	Dễ bảo trì: Nếu cần thay đổi logic kiểm tra, bạn chỉ cần sửa trong lớp , không ảnh hưởng đến các lớp khác.
+• 	Tách biệt trách nhiệm: Theo nguyên tắc "Separation of Concerns", mỗi lớp nên có một nhiệm vụ rõ ràng.
+
+🧩 Ví dụ đơn giản
+
+Gọi từ lớp khác:
+
+
+Nếu bạn đang làm bài tập hoặc dự án, mình có thể giúp bạn thiết kế lớp  phù hợp với yêu cầu cụ thể. Bạn đang kiểm tra loại dữ liệu nào vậy?
+vậy nó đâu giống như cấu trúc thầy cho đâu
+À, mình hiểu ý bạn rồi 👍. Bạn thấy cái lớp  mình giải thích thì hơi khác với cấu trúc thầy đưa trong bảng (có “Utility (Static)”, “Flowchart”, “Q&A”) đúng không?
+Thật ra không mâu thuẫn đâu, mà là cách tổ chức:
+• 	Cấu trúc thầy cho:
+• 	Thầy muốn bạn tạo một module/nhóm gọi là Utility (Static).
+• 	Trong đó có một lớp riêng tên  chứa các hàm tĩnh (static methods).
+• 	Ngoài ra, bạn phải bổ sung flowchart để minh họa luồng kiểm tra dữ liệu, và phần Q&A để giải thích khái niệm static.
+• 	Cách mình giải thích:
+• 	Mình đi thẳng vào phần “lớp Validation” để bạn hình dung nó là một lớp riêng biệt, chuyên xử lý kiểm tra dữ liệu.
+• 	Còn flowchart và Q&A là phần bổ sung để hoàn thiện đúng yêu cầu thầy đưa ra.
+👉 Nói cách khác: Validation là một lớp riêng, nằm trong nhóm Utility (Static). Nó chỉ là một phần trong cấu trúc thầy yêu cầu, chứ không phải toàn bộ.
+
+📌 Nếu bạn muốn, mình có thể phác thảo lại cấu trúc đầy đủ theo đúng format thầy đưa, ví dụ:
+
+Bạn có muốn mình viết ra một flowchart mẫu để thấy rõ hơn sự liên kết giữa các phần không?
+Ừa bao, mình thấy bạn vừa gửi thêm một ảnh về cấu trúc thư mục GitHub cho dự án. Nếu bạn đang thắc mắc nó liên quan gì đến phần Validation hay “Utility (Static)” thì để mình nối lại cho rõ nhé:
+
+🔗 Mối liên hệ giữa phần "Utility (Static)" và cấu trúc thư mục GitHub
+Trong ảnh mới, thầy yêu cầu mỗi nhóm phải tổ chức repo GitHub theo cấu trúc chuẩn như sau:
+TenDuAn_NhomXX/
+├── src/                 # Source code Java (theo package chuẩn)
+├── docs/                # Tài liệu thiết kế
+│   ├── Flowcharts/      # Ảnh lưu đồ thuật toán (.png, .jpg)
+
+
+Vậy thì:
+- Class Validation bạn viết sẽ nằm trong thư mục src/, theo đúng package Java.
+- Flowchart kiểm tra dữ liệu (mà thầy yêu cầu trong phần M3) sẽ được lưu dưới dạng ảnh .png hoặc .jpg trong docs/Flowcharts/.
+
+📁 Ví dụ cụ thể
+Giả sử bạn làm dự án kiểm tra thông tin người dùng:
+- Trong src/validation/Validation.java: chứa các hàm static như isEmailValid, isPhoneValid.
+- Trong docs/Flowcharts/validation_flow.png: là sơ đồ luồng kiểm tra dữ liệu đầu vào.
+- Trong README.md: bạn có thể ghi rõ “Validation logic nằm trong thư mục src/validation và flowchart ở docs/Flowcharts.”
+
+Nếu bạn muốn mình giúp tạo sơ đồ flowchart hoặc viết sẵn phần Validation.java, mình làm liền luôn. Bạn muốn bắt đầu từ phần nào?
+dự án của tôi là flappy bird
+Tuyệt vời luôn bao! Nếu dự án của bạn là Flappy Bird, thì phần  và cấu trúc thư mục GitHub sẽ được điều chỉnh cho phù hợp với game này. Mình sẽ giúp bạn hình dung rõ cách áp dụng nhé:
+
+🎮 Dự án: Flappy Bird
+📁 Cấu trúc GitHub (theo yêu cầu thầy)
+
+
+🧪 Lớp  trong Flappy Bird dùng để làm gì?
+Dù Flappy Bird là game đơn giản, bạn vẫn có thể dùng  để:
+• 	Kiểm tra dữ liệu đầu vào từ file cấu hình (ví dụ: tốc độ chim, khoảng cách ống).
+• 	Kiểm tra điểm số hợp lệ (không âm, không lỗi).
+• 	Kiểm tra trạng thái game (đã khởi tạo chưa, đang chơi hay kết thúc).
+Ví dụ:
+
+
+🧭 Flowchart bạn cần vẽ
+Trong thư mục , bạn nên vẽ sơ đồ như:
+• 	Luồng xử lý khi chim va chạm ống.
+• 	Luồng tính điểm.
+• 	Luồng khởi tạo game và reset.
+
+Nếu bạn muốn mình giúp bạn viết sẵn phần , hoặc phác thảo flowchart logic va chạm, mình làm ngay. Bạn đang muốn tập trung vào phần nào trước: code, flowchart hay README?
+tôi không hề biết vẻ flowcharts
+Không sao đâu bao, nhiều bạn cũng thấy flowchart hơi khó lúc đầu. Mình sẽ hướng dẫn bạn cách vẽ một flowchart đơn giản cho dự án Flappy Bird nhé:
+
+🌀 Flowchart là gì?
+Flowchart (lưu đồ) là sơ đồ dùng các hình khối để mô tả luồng xử lý của chương trình.
+• 	Hình oval: bắt đầu/kết thúc.
+• 	Hình chữ nhật: hành động/thao tác.
+• 	Hình thoi (diamond): điều kiện/kiểm tra.
+• 	Mũi tên: chỉ hướng đi của luồng.
+
+📊 Ví dụ Flowchart cho Flappy Bird
+1. Luồng kiểm tra va chạm
+• 	Start
+• 	Chim di chuyển → cập nhật vị trí
+• 	Kiểm tra va chạm với ống (diamond)
+• 	Nếu va chạm → Game Over
+• 	Nếu không va chạm → tiếp tục chơi
+• 	Lặp lại cho đến khi kết thúc.
+2. Luồng tính điểm
+• 	Start
+• 	Chim vượt qua ống (diamond)
+• 	Nếu vượt qua thành công → tăng điểm
+• 	Nếu chưa vượt qua → giữ nguyên điểm
+• 	Hiển thị điểm số.
+
+🧩 Mẹo để vẽ
+• 	Bạn có thể dùng giấy bút vẽ tay trước.
+• 	Hoặc dùng công cụ online miễn phí như draw.io, Lucidchart, hoặc thậm chí PowerPoint.
+• 	Chỉ cần nhớ: oval → rectangle → diamond → oval, nối bằng mũi tên.
+
+👉 Nếu bạn muốn, mình có thể phác thảo cho bạn một flowchart mẫu bằng hình ảnh để bạn dễ hình dung hơn. Bạn có muốn mình vẽ sơ đồ va chạm trong Flappy Bird hay tính điểm trước?
