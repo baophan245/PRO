@@ -1395,6 +1395,7 @@ Mỗi class làm 1 việc
 Không nhồi tất cả vào 1 class
 
 Dễ đọc – dễ sửa
+de toi ve diagram
 
     public void draw(Graphics g) {
         topPipe.draw(g);
@@ -1469,3 +1470,66 @@ public enum GameState {
     GAME_OVER
 }
 
+Dưới đây là diagram cho Flappy Bird Java để bạn vẽ lại hoặc đưa vào báo cáo.
+
+✅ 1. Class Diagram (UML)
++----------------+
+|   FlappyBird   |
++----------------+
+| + main()       |
++----------------+
+        |
+        v
++----------------+
+|   GamePanel    |
++----------------+
+| - bird: Bird   |
+| - pipes: List<Pipe> |
+| - score: int   |
+| - gameOver: boolean |
++----------------+
+| + resetGame()  |
+| + paintComponent() |
+| + actionPerformed() |
+| + keyPressed() |
++----------------+
+        |
+   ----------------
+   |              |
+   v              v
++---------+    +---------+
+|  Bird   |    |  Pipe   |
++---------+    +---------+
+| x, y    |    | x, width|
+| velocity|    | gap     |
++---------+    +---------+
+| update()|    | update()|
+| flap()  |    | draw()  |
+| draw()  |    | offScreen() |
++---------+    +---------+
+
+✅ 2. Flowchart (Luồng hoạt động game)
+Start
+  |
+Initialize Game
+  |
+Game Loop (Timer)
+  |
+Update Bird Position
+  |
+Update Pipes
+  |
+Check Collision?
+  |----Yes----> Game Over Screen
+  |
+Increase Score?
+  |
+Repaint Screen
+  |
+Repeat
+
+✅ 3. Sequence Diagram (SPACE key)
+User -> GamePanel : Press SPACE
+GamePanel -> Bird : flap()
+Bird -> GamePanel : update()
+GamePanel -> Screen : repaint()
