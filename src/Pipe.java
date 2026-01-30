@@ -1,25 +1,15 @@
-import java.util.Random;
+import java.awt.Color;
+import java.awt.Graphics;
 
-public class Pipe extends GameObject {
-    private int gapHeight;
-    private static final int WIDTH = 50;
-
-    public Pipe(int startX, int gapHeight) {
-        
-        super(startX, new Random().nextInt(200) + 100);
-        this.gapHeight = gapHeight;
-    }
+public class Pipe extends Movable {
+    public Pipe(int x, int y, int h) { super(x, y, 50, h, -5); }
 
     @Override
-    public void update() { 
-        x -= 5; 
-    }
+    public void update() { x += velocity; } // Chạy sang trái
 
-    public boolean checkCollision(Bird bird) {
-        int birdY = bird.getY();
-     
-        return (birdY < y || birdY > y + gapHeight) && x < 100 && x + WIDTH > 50;
+    @Override
+    public void draw(Graphics g) {
+        g.setColor(Color.GREEN);
+        g.fillRect(x, y, width, height); // Vẽ ống màu xanh
     }
-
-    public int getX() { return x; }
 }
