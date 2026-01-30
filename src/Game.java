@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Game {
     private Bird bird;
@@ -13,9 +14,9 @@ public class Game {
     }
 
     public void update() {
-        bird.applyGravity();
+        bird.update(); 
         for (Pipe pipe : pipes) {
-            pipe.moveLeft();
+            pipe.update(); 
             if (pipe.checkCollision(bird)) {
                 isGameOver = true;
             }
