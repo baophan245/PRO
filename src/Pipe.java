@@ -1,24 +1,24 @@
+import java.util.Random;
 
-
-public class Pipe {
-    private int x;
-    private int gapY;
+public class Pipe extends GameObject {
     private int gapHeight;
     private static final int WIDTH = 50;
 
     public Pipe(int startX, int gapHeight) {
-        this.x = startX;
+        
+        super(startX, new Random().nextInt(200) + 100);
         this.gapHeight = gapHeight;
-        this.gapY = new Random().nextInt(200) + 100;
     }
 
-    public void moveLeft() {
-        x -= 5;
+    @Override
+    public void update() { 
+        x -= 5; 
     }
 
     public boolean checkCollision(Bird bird) {
         int birdY = bird.getY();
-        return (birdY < gapY || birdY > gapY + gapHeight) && x < 100 && x + WIDTH > 50;
+     
+        return (birdY < y || birdY > y + gapHeight) && x < 100 && x + WIDTH > 50;
     }
 
     public int getX() { return x; }
