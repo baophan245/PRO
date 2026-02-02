@@ -1533,3 +1533,107 @@ User -> GamePanel : Press SPACE
 GamePanel -> Bird : flap()
 Bird -> GamePanel : update()
 GamePanel -> Screen : repaint()
+. vẻ cho tôi sơ đồ diagram
+# Flappy Bird Java – System Diagrams
+
+## 1. Game Flow Diagram
+
+```mermaid
+flowchart TD
+    A[Start Game] --> B[Initialize Game Objects]
+    B --> C[Display Start Screen]
+    C --> D[Player Presses SPACE]
+    D --> E[Game Loop Starts]
+    E --> F[Apply Gravity]
+    F --> G[Move Bird]
+    G --> H[Move Pipes]
+    H --> I[Check Collision]
+    I -->|Collision| J[Game Over Screen]
+    I -->|No Collision| K[Update Score]
+    K --> E
+    J --> L[Player Chooses Restart]
+    L --> B
+```
+
+---
+
+## 2. Class Diagram
+
+```mermaid
+classDiagram
+    class Game
+    class Bird
+    class Pipe
+    class PipeManager
+    class Score
+    class GamePanel
+
+    Game --> GamePanel
+    GamePanel --> Bird
+    GamePanel --> PipeManager
+    PipeManager --> Pipe
+    GamePanel --> Score
+
+    class Bird {
+        int x, y
+        int velocity
+        fly()
+        update()
+        draw()
+    }
+
+    class Pipe {
+        int x, gapY
+        move()
+        draw()
+        isPassed()
+    }
+
+    class PipeManager {
+        List<Pipe> pipes
+        spawnPipe()
+        update()
+        draw()
+    }
+
+    class Score {
+        int value
+        increase()
+        reset()
+        draw()
+    }
+
+    class GamePanel {
+        startGame()
+        update()
+        render()
+        checkCollision()
+    }
+```
+
+---
+
+## 3. Activity Diagram (Gameplay)
+
+```mermaid
+flowchart LR
+    A[Start] --> B[Show Menu]
+    B --> C[Press SPACE]
+    C --> D[Bird Flies]
+    D --> E[Gravity Pulls Down]
+    E --> F[Move Pipes]
+    F --> G{Collision?}
+    G -->|Yes| H[Game Over]
+    G -->|No| I[Increase Score]
+    I --> D
+```
+
+---
+
+Nếu bạn muốn, mình có thể:
+✅ Xuất sơ đồ sang hình PNG/JPG
+✅ Vẽ lại bằng Word / PowerPoint
+✅ Vẽ dạng UML chuẩn để nộp báo cáo
+
+Bạn muốn mình xuất loại nào? 😊
+
