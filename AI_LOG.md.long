@@ -275,7 +275,163 @@ Hiệu ứng
 viết cho tôi 1 code mẫu cho chặng 1
 
 b có thể giúp tôi làm những phần nào trong khi làm con game này giúp được chúng tôi bao nhiêu % trong con game này
+Những phần mình có thể giúp
+🔹 1. Phân tích đề tài & thiết kế UML
+
+Vẽ sơ đồ class
+
+Giải thích kế thừa, quan hệ giữa các lớp
+➡️ Hỗ trợ ~100%
+
+🔹 2. Viết code
+
+Viết từng class: Game, Bird, Pipe, GamePanel, ...
+
+Viết bản:
+
+Đúng UML (có thể không chạy)
+
+Bản chạy được hoàn chỉnh
+➡️ Hỗ trợ ~90–100%
+
+🔹 3. Debug & sửa lỗi
+
+Đọc lỗi Java
+
+Sửa logic sai
+➡️ Hỗ trợ ~90%
+
+🔹 4. Giải thích code
+
+Giải thích từng dòng
+
+Giải thích OOP: kế thừa, đa hình, abstract
+➡️ Hỗ trợ ~100%
+
+🔹 5. Báo cáo, thuyết trình
+
+Viết proposal
+
+Viết mô tả dự án
+
+Chuẩn bị nội dung trình bày
+➡️ Hỗ trợ ~100%
+
+📊 Tổng thể: mình giúp được bao nhiêu %?
+
+👉 Nếu tính toàn bộ quá trình làm game:
+
+Mình có thể hỗ trợ khoảng 80% – 95% công việc
+
+Phần còn lại bạn nên tự làm là:
+
+Gõ code
+
+Test trên máy
+
+Hiểu và chỉnh sửa theo yêu cầu giảng viên
 chúng tôi làm việc 2 người 1 nhóm chúng tôi phải phân chia như thế nào để hoàn thành nhanh nhất trong thời gian 3 tuần
+KẾ HOẠCH 3 TUẦN + PHÂN CÔNG RÕ RÀNG
+
+Giả sử:
+
+Bạn (Long) mạnh về logic / hiểu bài
+
+Bạn A mạnh về code / giao diện
+(Nếu khác mình sẽ điều chỉnh cho bạn)
+
+✅ TUẦN 1 – THIẾT KẾ & KHUNG GAME
+👤 Bạn (Long):
+
+Phân tích đề tài
+
+Vẽ UML (class diagram)
+
+Xác định:
+
+Lớp nào kế thừa lớp nào
+
+Thuộc tính & phương thức
+
+👤 Bạn A:
+
+Tạo project Java
+
+Làm khung:
+
+Game window
+
+Game loop
+
+Keyboard input
+
+🎯 Kết quả tuần 1:
+✔ Có UML hoàn chỉnh
+✔ Game mở được cửa sổ
+
+✅ TUẦN 2 – CORE GAMEPLAY
+👤 Bạn (Long):
+
+Viết logic:
+
+Bird bay
+
+Gravity
+
+Va chạm
+
+Review code bạn A
+
+👤 Bạn A:
+
+Code:
+
+Bird
+
+Pipe
+
+Spawn pipe
+
+Collision
+
+🎯 Kết quả tuần 2:
+✔ Game chơi được cơ bản
+
+✅ TUẦN 3 – HOÀN THIỆN & BÁO CÁO
+👤 Bạn (Long):
+
+Viết báo cáo
+
+Vẽ sơ đồ UML cuối
+
+Chuẩn bị thuyết trình
+
+👤 Bạn A:
+
+Sửa bug
+
+Thêm:
+
+Score
+
+Restart
+
+Âm thanh (nếu cần)
+
+🎯 Kết quả tuần 3:
+✔ Game hoàn chỉnh
+✔ Nộp được
+
+📊 TỶ LỆ PHÂN CÔNG TỐT NHẤT
+Người	Khối lượng
+Bạn	50%
+Bạn A	50%
+
+Nhưng vai trò khác nhau:
+
+Bạn = Thiết kế + Logic + Báo cáo
+
+Bạn A = Code + UI + Debug
 bây giờ tôi chưa biết gì về java tôi phải làm gì để học và hiểu biết chúng nhanh chóng
 🔰 GIAI ĐOẠN 1: Hiểu Java là gì (1–2 ngày)
 1️⃣ Java dùng để làm gì?
