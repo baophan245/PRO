@@ -2306,3 +2306,1039 @@ Lớp Pipe: Có các biến vị trí, khoảng trống và hằng số WIDTH.
 Ô cuối: Dấu + cho public, định dạng hàm() : void.
 
 Bạn có muốn mình lược bỏ luôn phần : void ở các hàm cho sơ đồ nhìn "thông thoáng" hơn nữa không?
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.*;
+
+import java.util.ArrayList;
+
+import java.util.Random;
+
+
+
+// --------------------------------------------------------
+
+// Lớp 1: BIRD (Con chim)
+
+// --------------------------------------------------------
+
+class Bird {
+
+    private int x;
+
+    private int y;
+
+    private int width;
+
+    private int height;
+
+    private int velocity; // Tốc độ rơi
+
+    private int gravity;  // Trọng lực hút xuống
+
+
+
+    public Bird() {
+
+        // Vị trí bắt đầu của chim
+
+        x = 100;
+
+        y = 250;
+
+        width = 30;
+
+        height = 30;
+
+        velocity = 0;
+
+        gravity = 1; // Mỗi lần cập nhật sẽ rơi nhanh hơn chút
+
+    }
+
+
+
+    // Hàm fly: Khi nhấn phím, chim bay lên
+
+    public void fly() {
+
+        velocity = -15; // Số âm để đi ngược lên trên
+
+    }
+
+
+
+    // Hàm update: Gọi hàm move
+
+    public void update() {
+
+        move();
+
+    }
+
+
+
+    // Hàm move: Tính toán vị trí rơi
+
+    public void move() {
+
+        velocity = velocity + gravity; // Tốc độ tăng dần do trọng lực
+
+        y = y + velocity;              // Thay đổi vị trí y
+
+    }
+
+
+
+    // Hàm draw: Vẽ con chim lên màn hình
+
+    public void draw(Graphics g) {
+
+        g.setColor(Color.RED); // Chọn màu đỏ
+
+        g.fillRect(x, y, width, height); // Vẽ hình chữ nhật đặc
+
+    }
+
+
+
+    // Hàm phụ trợ (không có trong hình nhưng cần để chạy game): Lấy khung hình chữ nhật của chim
+
+    // Để dùng kiểm tra va chạm
+
+    public Rectangle getRect() {
+
+        return new Rectangle(x, y, width, height);
+
+    }
+
+}
+
+
+
+// --------------------------------------------------------
+
+// Lớp 2: PIPE (Cống nước/Chướng ngại vật)
+
+// --------------------------------------------------------
+
+class Pipe {
+
+    // Khai báo đúng như trong hình
+
+    private int x;
+
+    private int y;
+
+    private int width;
+
+    private int height;
+
+    private int velocity;
+
+    private int gapY; // Vị trí khoảng trống để chim chui qua
+
+
+
+    public Pipe(int startX) {
+
+        this.x = startX;
+
+        this.y = 0;
+
+        this.width = 50;
+
+        this.height = 600; // Chiều cao mặc định
+
+        this.velocity = -5; // Di chuyển sang trái (trục x giảm dần)
+
+        
+
+        // Tạo khoảng trống ngẫu nhiên
+
+        Random rand = new Random();
+
+        this.gapY = rand.nextInt(300) + 100; // Khoảng trống nằm ở độ cao ngẫu nhiên
+
+    }
+
+
+
+    public void update() {
+
+        move();
+
+    }
+
+
+
+    public void move() {
+
+        x = x + velocity; // Trừ đi để ống chạy sang trái
+
+    }
+
+
+
+    public void draw(Graphics g) {
+
+        g.setColor(Color.GREEN);
+
+        
+
+        // 1. Vẽ ống trên
+
+        // Từ đỉnh (0) kéo dài xuống đến gapY
+
+        g.fillRect(x, 0, width, gapY); 
+
+
+
+        // 2. Vẽ ống dưới
+
+        // Cách ống trên một khoảng an toàn là 150 (để chim chui lọt)
+
+        int gapSize = 150; 
+
+        g.fillRect(x, gapY + gapSize, width, 600);
+
+    }
+
+
+
+    // Hàm phụ: Kiểm tra xem chim có đụng vào ống này không
+
+    public boolean collide(Rectangle birdRect) {
+
+        int gapSize = 150;
+
+        
+
+        // Tạo hình chữ nhật đại diện cho ống trên và ống dưới
+
+        Rectangle pipeTren = new Rectangle(x, 0, width, gapY);
+
+        Rectangle pipeDuoi = new Rectangle(x, gapY + gapSize, width, 600);
+
+
+
+        // Nếu chim chạm ống trên HOẶC chim chạm ống dưới => Thua
+
+        if (birdRect.intersects(pipeTren) || birdRect.intersects(pipeDuoi)) {
+
+            return true;
+
+        }
+
+        return false;
+
+    }
+
+
+
+    // Hàm lấy vị trí x (để biết khi nào đi hết màn hình thì xóa)
+
+    public int getX() { return x; }
+
+}
+
+
+
+// --------------------------------------------------------
+
+// Lớp 3: GAME (Quản lý trò chơi)
+
+// --------------------------------------------------------
+
+class Game {
+
+    private Bird bird;
+
+    private ArrayList<Pipe> pipes; // Danh sách các ống
+
+    private boolean over;          // Kiểm tra game over chưa
+
+
+
+    // Biến đếm thời gian để sinh ra ống mới
+
+    private int timeCount = 0;
+
+
+
+    public Game() {
+
+        bird = new Bird();
+
+        pipes = new ArrayList<>();
+
+        over = false;
+
+    }
+
+
+
+    public void update() {
+
+        if (over == true) return; // Nếu thua rồi thì dừng, không tính toán nữa
+
+
+
+        bird.update(); // Cập nhật chim
+
+
+
+        // Cứ mỗi 100 nhịp thì sinh ra một ống mới
+
+        timeCount++;
+
+        if (timeCount == 100) {
+
+            pipes.add(new Pipe(800)); // Thêm ống mới ở vị trí x = 800
+
+            timeCount = 0; // Reset đếm
+
+        }
+
+
+
+        // Cập nhật từng cái ống trong danh sách
+
+        for (int i = 0; i < pipes.size(); i++) {
+
+            Pipe p = pipes.get(i);
+
+            p.update();
+
+
+
+            // Kiểm tra va chạm: Nếu chim đụng ống
+
+            if (p.collide(bird.getRect())) {
+
+                over = true;
+
+            }
+
+
+
+            // Nếu ống chạy ra khỏi màn hình bên trái -> Xóa đi cho nhẹ máy
+
+            if (p.getX() < -50) {
+
+                pipes.remove(i);
+
+                i--; // Lùi chỉ số lại để không bị lỗi vòng lặp
+
+            }
+
+        }
+
+        
+
+        // Kiểm tra chim rơi xuống đất hoặc bay quá cao
+
+        Rectangle r = bird.getRect();
+
+        if (r.y > 550 || r.y < 0) {
+
+            over = true;
+
+        }
+
+    }
+
+
+
+    // Cần thêm hàm vẽ để GameWindow gọi
+
+    public void draw(Graphics g) {
+
+        bird.draw(g);
+
+        
+
+        // Vẽ tất cả các ống
+
+        for (Pipe p : pipes) {
+
+            p.draw(g);
+
+        }
+
+
+
+        // Nếu thua thì hiện chữ
+
+        if (over) {
+
+            g.setColor(Color.BLACK);
+
+            g.setFont(new Font("Arial", Font.BOLD, 30));
+
+            g.drawString("GAME OVER - Nhấn Space để chơi lại", 150, 300);
+
+        }
+
+    }
+
+
+
+    // Các hàm để nhận sự kiện từ bàn phím
+
+    public void jump() {
+
+        if (!over) {
+
+            bird.fly();
+
+        } else {
+
+            // Nếu đang game over mà bấm nút thì reset game
+
+            reset();
+
+        }
+
+    }
+
+
+
+    public void reset() {
+
+        bird = new Bird();
+
+        pipes.clear();
+
+        over = false;
+
+        timeCount = 0;
+
+    }
+
+}
+
+
+
+// --------------------------------------------------------
+
+// Lớp 4: GAMEWINDOW (Cửa sổ hiển thị)
+
+// --------------------------------------------------------
+
+public class GameWindow extends JPanel implements ActionListener {
+
+    
+
+    private Game game;
+
+    private Timer timer; // Đồng hồ bấm giờ để chạy game loop
+
+
+
+    public GameWindow() {
+
+        game = new Game();
+
+        
+
+        // Thiết lập sự kiện bàn phím
+
+        setFocusable(true); // Để cửa sổ nhận được phím bấm
+
+        addKeyListener(new KeyAdapter() {
+
+            @Override
+
+            public void keyPressed(KeyEvent e) {
+
+                // Nếu bấm phím SPACE (Dấu cách)
+
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+
+                    game.jump();
+
+                }
+
+            }
+
+        });
+
+
+
+        // Tạo bộ đếm thời gian: Cứ 20 mili-giây thì gọi hàm actionPerformed 1 lần
+
+        timer = new Timer(20, this);
+
+        timer.start();
+
+    }
+
+
+
+    // Hàm main: Điểm bắt đầu của chương trình
+
+    public static void main(String[] args) {
+
+        JFrame frame = new JFrame("Flappy Bird Simple");
+
+        GameWindow window = new GameWindow();
+
+
+
+        frame.add(window);
+
+        frame.setSize(800, 600);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.setVisible(true);
+
+    }
+
+
+
+    // Hàm update của GameWindow (gọi update của Game)
+
+    public void update() {
+
+        game.update();
+
+    }
+
+
+
+    // Hàm này chạy liên tục nhờ Timer
+
+    @Override
+
+    public void actionPerformed(ActionEvent e) {
+
+        update();   // Tính toán logic mới
+
+        repaint();  // Vẽ lại màn hình
+
+    }
+
+
+
+    // Hàm vẽ giao diện
+
+    @Override
+
+    protected void paintComponent(Graphics g) {
+
+        super.paintComponent(g); // Xóa màn hình cũ
+
+        this.setBackground(Color.CYAN); // Màu nền trời xanh
+
+        
+
+        game.draw(g); // Vẽ mọi thứ của game lên
+
+    }
+
+} bạn hãy thêm this. vào trong code của tôi
+
+Chào bạn! Việc thêm this. vào code là một thói quen tốt giúp phân biệt rõ ràng giữa biến thành viên (instance variables) của lớp và các biến cục bộ (local variables) hoặc tham số.
+
+Dưới đây là đoạn mã đã được mình cập nhật, thêm this. vào tất cả các vị trí truy cập thuộc tính và phương thức trong nội bộ lớp để code tường minh hơn:
+
+Java
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Random;
+
+// --------------------------------------------------------
+// Lớp 1: BIRD (Con chim)
+// --------------------------------------------------------
+class Bird {
+    private int x;
+    private int y;
+    private int width;
+    private int height;
+    private int velocity;
+    private int gravity;
+
+    public Bird() {
+        this.x = 100;
+        this.y = 250;
+        this.width = 30;
+        this.height = 30;
+        this.velocity = 0;
+        this.gravity = 1;
+    }
+
+    public void fly() {
+        this.velocity = -15;
+    }
+
+    public void update() {
+        this.move();
+    }
+
+    public void move() {
+        this.velocity = this.velocity + this.gravity;
+        this.y = this.y + this.velocity;
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.RED);
+        g.fillRect(this.x, this.y, this.width, this.height);
+    }
+
+    public Rectangle getRect() {
+        return new Rectangle(this.x, this.y, this.width, this.height);
+    }
+}
+
+// --------------------------------------------------------
+// Lớp 2: PIPE (Cống nước/Chướng ngại vật)
+// --------------------------------------------------------
+class Pipe {
+    private int x;
+    private int y;
+    private int width;
+    private int height;
+    private int velocity;
+    private int gapY;
+
+    public Pipe(int startX) {
+        this.x = startX;
+        this.y = 0;
+        this.width = 50;
+        this.height = 600;
+        this.velocity = -5;
+        
+        Random rand = new Random();
+        this.gapY = rand.nextInt(300) + 100;
+    }
+
+    public void update() {
+        this.move();
+    }
+
+    public void move() {
+        this.x = this.x + this.velocity;
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.GREEN);
+        
+        // Vẽ ống trên
+        g.fillRect(this.x, 0, this.width, this.gapY); 
+
+        // Vẽ ống dưới
+        int gapSize = 150; 
+        g.fillRect(this.x, this.gapY + gapSize, this.width, 600);
+    }
+
+    public boolean collide(Rectangle birdRect) {
+        int gapSize = 150;
+        Rectangle pipeTren = new Rectangle(this.x, 0, this.width, this.gapY);
+        Rectangle pipeDuoi = new Rectangle(this.x, this.gapY + gapSize, this.width, 600);
+
+        if (birdRect.intersects(pipeTren) || birdRect.intersects(pipeDuoi)) {
+            return true;
+        }
+        return false;
+    }
+
+    public int getX() { return this.x; }
+}
+
+// --------------------------------------------------------
+// Lớp 3: GAME (Quản lý trò chơi)
+// --------------------------------------------------------
+class Game {
+    private Bird bird;
+    private ArrayList<Pipe> pipes;
+    private boolean over;
+    private int timeCount = 0;
+
+    public Game() {
+        this.bird = new Bird();
+        this.pipes = new ArrayList<>();
+        this.over = false;
+    }
+
+    public void update() {
+        if (this.over) return;
+
+        this.bird.update();
+
+        this.timeCount++;
+        if (this.timeCount == 100) {
+            this.pipes.add(new Pipe(800));
+            this.timeCount = 0;
+        }
+
+        for (int i = 0; i < this.pipes.size(); i++) {
+            Pipe p = this.pipes.get(i);
+            p.update();
+
+            if (p.collide(this.bird.getRect())) {
+                this.over = true;
+            }
+
+            if (p.getX() < -50) {
+                this.pipes.remove(i);
+                i--;
+            }
+        }
+        
+        Rectangle r = this.bird.getRect();
+        if (r.y > 550 || r.y < 0) {
+            this.over = true;
+        }
+    }
+
+    public void draw(Graphics g) {
+        this.bird.draw(g);
+        
+        for (Pipe p : this.pipes) {
+            p.draw(g);
+        }
+
+        if (this.over) {
+            g.setColor(Color.BLACK);
+            g.setFont(new Font("Arial", Font.BOLD, 30));
+            g.drawString("GAME OVER - Nhấn Space để chơi lại", 150, 300);
+        }
+    }
+
+    public void jump() {
+        if (!this.over) {
+            this.bird.fly();
+        } else {
+            this.reset();
+        }
+    }
+
+    public void reset() {
+        this.bird = new Bird();
+        this.pipes.clear();
+        this.over = false;
+        this.timeCount = 0;
+    }
+}
+
+// --------------------------------------------------------
+// Lớp 4: GAMEWINDOW (Cửa sổ hiển thị)
+// --------------------------------------------------------
+public class GameWindow extends JPanel implements ActionListener {
+    
+    private Game game;
+    private Timer timer;
+
+    public GameWindow() {
+        this.game = new Game();
+        
+        this.setFocusable(true);
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    // Truy cập biến game của lớp ngoài
+                    GameWindow.this.game.jump();
+                }
+            }
+        });
+
+        this.timer = new Timer(20, this);
+        this.timer.start();
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Flappy Bird Simple");
+        GameWindow window = new GameWindow();
+
+        frame.add(window);
+        frame.setSize(800, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+    public void update() {
+        this.game.update();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        this.update();
+        this.repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        this.setBackground(Color.CYAN);
+        this.game.draw(g);
+    }
+}
+Một số lưu ý nhỏ về thay đổi:
+Tính rõ ràng: Bây giờ bạn có thể thấy ngay biến nào thuộc về lớp (như this.x, this.bird) và biến nào là biến tạm trong hàm (như r, p, gapSize).
+
+Inner Class: Trong phần addKeyListener, mình sử dụng GameWindow.this.game.jump(). Đây là cách chuẩn để truy cập thuộc tính của lớp bao ngoài khi bạn đang ở trong một lớp vô danh (Anonymous Class).
+
+Bạn có muốn mình bổ sung thêm tính năng tính điểm (Score) vào game này không?
+
+bạn hãy làm theo như này để thêm vào code của tôi
+
+Chào bạn! Mình đã hiểu yêu cầu của bạn. Theo đúng chỉ dẫn của thầy, mình đã áp dụng triệt để từ khóa this. cho tất cả các thuộc tính, đảm bảo các thuộc tính là private và các phương thức là public.
+
+Dưới đây là phiên bản code "chuẩn hóa" theo đúng yêu cầu học thuật của bạn:
+
+Java
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Random;
+
+// --------------------------------------------------------
+// Lớp 1: BIRD (Con chim)
+// --------------------------------------------------------
+class Bird {
+    // Tất cả thuộc tính phải là private
+    private int x;
+    private int y;
+    private int width;
+    private int height;
+    private int velocity; 
+    private int gravity;  
+
+    // Các phương thức thường là public
+    public Bird() {
+        // Sử dụng this. trước tất cả các thuộc tính
+        this.x = 100;
+        this.y = 250;
+        this.width = 30;
+        this.height = 30;
+        this.velocity = 0;
+        this.gravity = 1;
+    }
+
+    public void fly() {
+        this.velocity = -15; //
+    }
+
+    public void update() {
+        this.move(); // Gọi phương thức của lớp
+    }
+
+    public void move() {
+        this.velocity = this.velocity + this.gravity; //
+        this.y = this.y + this.velocity;             //
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.RED);
+        g.fillRect(this.x, this.y, this.width, this.height); //
+    }
+
+    public Rectangle getRect() {
+        return new Rectangle(this.x, this.y, this.width, this.height); //
+    }
+}
+
+// --------------------------------------------------------
+// Lớp 2: PIPE (Cống nước/Chướng ngại vật)
+// --------------------------------------------------------
+class Pipe {
+    private int x;
+    private int y;
+    private int width;
+    private int height;
+    private int velocity;
+    private int gapY; 
+
+    public Pipe(int startX) {
+        this.x = startX; //
+        this.y = 0;
+        this.width = 50;
+        this.height = 600;
+        this.velocity = -5;
+        
+        Random rand = new Random();
+        this.gapY = rand.nextInt(300) + 100; //
+    }
+
+    public void update() {
+        this.move();
+    }
+
+    public void move() {
+        this.x = this.x + this.velocity; //
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.GREEN);
+        
+        // Vẽ ống trên
+        g.fillRect(this.x, 0, this.width, this.gapY); //
+
+        // Vẽ ống dưới
+        int gapSize = 150; 
+        g.fillRect(this.x, this.gapY + gapSize, this.width, 600); //
+    }
+
+    public boolean collide(Rectangle birdRect) {
+        int gapSize = 150;
+        
+        Rectangle pipeTren = new Rectangle(this.x, 0, this.width, this.gapY); //
+        Rectangle pipeDuoi = new Rectangle(this.x, this.gapY + gapSize, this.width, 600);
+
+        if (birdRect.intersects(pipeTren) || birdRect.intersects(pipeDuoi)) {
+            return true;
+        }
+        return false;
+    }
+
+    public int getX() { 
+        return this.x; //
+    }
+}
+
+// --------------------------------------------------------
+// Lớp 3: GAME (Quản lý trò chơi)
+// --------------------------------------------------------
+class Game {
+    private Bird bird;
+    private ArrayList<Pipe> pipes; 
+    private boolean over;          
+    private int timeCount = 0;
+
+    public Game() {
+        this.bird = new Bird();    //
+        this.pipes = new ArrayList<>();
+        this.over = false;
+    }
+
+    public void update() {
+        if (this.over == true) return; 
+
+        this.bird.update(); 
+
+        this.timeCount++; //
+        if (this.timeCount == 100) {
+            this.pipes.add(new Pipe(800)); 
+            this.timeCount = 0; 
+        }
+
+        for (int i = 0; i < this.pipes.size(); i++) {
+            Pipe p = this.pipes.get(i);
+            p.update();
+
+            if (p.collide(this.bird.getRect())) { //
+                this.over = true;
+            }
+
+            if (p.getX() < -50) {
+                this.pipes.remove(i);
+                i--; 
+            }
+        }
+        
+        Rectangle r = this.bird.getRect();
+        if (r.y > 550 || r.y < 0) {
+            this.over = true;
+        }
+    }
+
+    public void draw(Graphics g) {
+        this.bird.draw(g); //
+        
+        for (Pipe p : this.pipes) {
+            p.draw(g);
+        }
+
+        if (this.over) {
+            g.setColor(Color.BLACK);
+            g.setFont(new Font("Arial", Font.BOLD, 30));
+            g.drawString("GAME OVER - Nhấn Space để chơi lại", 150, 300);
+        }
+    }
+
+    public void jump() {
+        if (!this.over) {
+            this.bird.fly();
+        } else {
+            this.reset();
+        }
+    }
+
+    public void reset() {
+        this.bird = new Bird();
+        this.pipes.clear();
+        this.over = false;
+        this.timeCount = 0;
+    }
+}
+
+// --------------------------------------------------------
+// Lớp 4: GAMEWINDOW (Cửa sổ hiển thị)
+// --------------------------------------------------------
+public class GameWindow extends JPanel implements ActionListener {
+    
+    private Game game;
+    private Timer timer; 
+
+    public GameWindow() {
+        this.game = new Game(); //
+        
+        this.setFocusable(true); 
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    // Truy cập biến game của lớp GameWindow
+                    GameWindow.this.game.jump(); 
+                }
+            }
+        });
+
+        this.timer = new Timer(20, this); //
+        this.timer.start();
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Flappy Bird Simple");
+        GameWindow window = new GameWindow();
+
+        frame.add(window);
+        frame.setSize(800, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+    public void update() {
+        this.game.update(); //
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        this.update();  
+        this.repaint(); 
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); 
+        this.setBackground(Color.CYAN); 
+        
+        this.game.draw(g); //
+    }
+}
+Các điểm mình đã thực hiện:
+Thêm this. máy móc: Tất cả các truy cập vào biến thành viên (như x, y, bird, over,...) đều được tiền tố hóa bằng this. để phân biệt rõ ràng với biến cục bộ.
+
+Access Modifiers: Đảm bảo tất cả thuộc tính là private và các phương thức cần thiết để tương tác bên ngoài là public.
+
+Imports: Giữ nguyên các dòng import thư viện cần thiết ở đầu file.
+
+Bạn có cần mình giải thích thêm về vị trí nào trong code hay cần thêm tính năng gì khác không?
