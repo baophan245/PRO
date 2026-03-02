@@ -2073,3 +2073,73 @@ Object at: 500, 250
 === After Move ===
 Bird is flying at height: 285
 Object at: 490, 250
+có kế thừa chỉ chạy được như thế này hảLong hỏi rất hay 👍
+
+👉 Không phải kế thừa chỉ chạy được như vậy.
+Hiện tại nó chỉ in ra console vì bạn đang dùng:
+
+System.out.println(...)
+
+Đó chỉ là ví dụ đơn giản để minh họa kế thừa (inheritance) thôi.
+
+🎯 Kế thừa dùng để làm gì thật sự?
+
+Trong game (như Flappy Bird bạn đang làm):
+
+GameObject = lớp cha (tọa độ x, y)
+
+Bird = con (thêm bay lên)
+
+Pipe = con (thêm di chuyển)
+
+Điểm mạnh của kế thừa là:
+
+✅ 1. Tái sử dụng code
+
+Bird và Pipe không cần viết lại x, y.
+
+✅ 2. Đa hình (Polymorphism)
+
+Ví dụ mạnh hơn nè:
+
+GameObject[] objects = new GameObject[2];
+
+objects[0] = new Bird(100, 300, 5);
+objects[1] = new Pipe(500, 250, 10);
+
+for (GameObject obj : objects) {
+    obj.display();
+}
+
+👉 Java sẽ tự gọi đúng display() của Bird hoặc GameObject.
+
+Đó mới là sức mạnh thật sự của kế thừa 🔥
+
+🚀 Nếu bạn muốn nó giống game thật
+
+Bạn cần dùng:
+
+JFrame
+
+JPanel
+
+paintComponent(Graphics g)
+
+Timer
+
+Chứ không phải println.
+
+🎮 Ví dụ nâng cấp Bird có rơi xuống
+
+Thêm vào Bird:
+
+public void fall() {
+    this.setY(this.getY() + velocity);
+}
+
+Rồi trong main:
+
+bird.flyUp();
+bird.fall();
+
+Lúc đó bạn sẽ thấy thay đổi liên tục.
