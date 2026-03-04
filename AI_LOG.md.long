@@ -2143,3 +2143,194 @@ bird.flyUp();
 bird.fall();
 
 Lúc đó bạn sẽ thấy thay đổi liên tục.
+đoạn code này có tính đa hình không
+Có ✅ ĐOẠN CODE NÀY CÓ ĐA HÌNH, nhưng là đa hình chưa hoàn toàn tối ưu.
+
+Anh Long đang học OOP PRO192 nên mình giải thích đúng bản chất cho hiểu sâu luôn nha.
+
+1️⃣ Đa hình nằm ở đâu?
+
+Đa hình (Polymorphism) xảy ra khi:
+
+Ta dùng kiểu cha (GameObject) để tham chiếu đến đối tượng con (Bird, Pipe)
+
+Trong code của bạn:
+
+ArrayList<GameObject> objectList = new ArrayList<GameObject>();
+
+Và:
+
+GameObject bird = new Bird(x, y, velocity);
+GameObject pipe = new Pipe(x, y, speed);
+
+👉 Đây chính là đa hình runtime (dynamic polymorphism).
+
+2️⃣ Vì sao nó là đa hình?
+
+Vì:
+
+for (GameObject obj : objectList) {
+    obj.display();
+}
+
+obj có kiểu là GameObject
+Nhưng thực tế bên trong có thể là:
+
+Bird
+
+Pipe
+
+Khi gọi:
+
+obj.display();
+
+Java sẽ tự động gọi:
+
+Bird.display() nếu obj là Bird
+
+Pipe.display() nếu obj là Pipe
+
+👉 Đây gọi là Method Overriding + Runtime Polymorphism
+
+3️⃣ Nhưng có một vấn đề 😎
+
+Ở đoạn này:
+
+if (obj instanceof Bird) {
+    ((Bird) obj).flyUp();
+}
+
+if (obj instanceof Pipe) {
+    ((Pipe) obj).moveLeft();
+}
+
+Đây KHÔNG phải đa hình thuần túy ❌
+Vì bạn đang:
+
+Kiểm tra kiểu
+
+Ép kiểu
+
+Gọi phương thức riêng
+
+👉 Đây là cách làm đúng nhưng chưa đẹp theo OOP chuẩn
+
+4️⃣ Đa hình chuẩn nên viết như thế nào?
+
+Cách đúng PRO hơn là:
+
+Trong GameObject thêm:
+public void move() {
+    // mặc định không làm gì
+}
+Override trong Bird:
+@Override
+public void move() {
+    flyUp();
+}
+Override trong Pipe:
+@Override
+public void move() {
+    moveLeft();
+}
+Lúc này trong Main chỉ cần:
+for (GameObject obj : objectList) {
+    obj.move();   // đa hình thật sự
+    obj.display();
+}
+
+🔥 Không cần instanceof
+🔥 Không cần ép kiểu
+🔥 Đúng chuẩn OOP
+🔥 Giảng viên rất thích kiểu này
+tại sao nó lại đa hình
+
+Câu hỏi này rất hay 👍
+Anh Long hỏi đúng bản chất của OOP luôn.
+
+🔥 Vì sao đoạn code đó là ĐA HÌNH?
+1️⃣ Định nghĩa cực dễ hiểu
+
+Đa hình =
+
+Cùng một tên phương thức
+nhưng hành vi khác nhau
+tùy vào đối tượng thực tế là gì.
+
+2️⃣ Nhìn vào code của anh
+GameObject bird = new Bird(x, y, velocity);
+GameObject pipe = new Pipe(x, y, speed);
+
+Ở đây:
+
+Biến có kiểu: GameObject
+
+Nhưng object thật sự là:
+
+Bird
+
+Pipe
+
+👉 Đây gọi là Upcasting
+👉 Và đây là nền tảng của đa hình
+
+3️⃣ Chỗ đa hình thật sự xảy ra ở đây
+for (GameObject obj : objectList) {
+    obj.display();
+}
+
+obj có kiểu là GameObject
+
+Nhưng khi chạy:
+
+Nếu obj là Bird → chạy Bird.display()
+
+Nếu obj là Pipe → chạy Pipe.display()
+
+🔥 Java tự quyết định lúc runtime
+
+Bạn không cần biết obj là gì
+Nhưng nó vẫn chạy đúng hàm con
+
+Đó chính là:
+
+👉 Runtime Polymorphism
+4️⃣ Tại sao Java biết gọi hàm con?
+
+Vì trong Bird và Pipe có:
+
+@Override
+public void display()
+
+Khi method bị override,
+Java dùng cơ chế gọi là:
+
+👉 Dynamic Method Dispatch
+
+Nghĩa là:
+
+Gọi phương thức dựa trên đối tượng thực tế trong bộ nhớ
+chứ không dựa vào kiểu biến
+
+5️⃣ Ví dụ đời thường cho dễ hiểu
+
+Giả sử:
+
+GameObject = "Động vật"
+Bird = "Chim"
+Pipe = "Ống nước"
+
+Bạn nói:
+
+animal.makeSound();
+
+Nhưng:
+
+Nếu animal là Chim → kêu "Chíp chíp"
+
+Nếu animal là Chó → kêu "Gâu gâu"
+
+Cùng một lệnh
+Nhưng hành vi khác nhau
+
+→ ĐA HÌNH
