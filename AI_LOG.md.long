@@ -2334,3 +2334,3486 @@ Cùng một lệnh
 Nhưng hành vi khác nhau
 
 → ĐA HÌNH
+move() laf sao
+
+Ok mình giải thích thật đơn giản nhé 👍
+
+move() là gì?
+
+move() là một phương thức (method) dùng để làm cho đối tượng di chuyển.
+
+Trong chương trình của bạn:
+
+public abstract void move();
+
+Nó nằm trong lớp:
+
+public abstract class GameObject
+📌 Tại sao lại là abstract?
+
+Vì:
+
+GameObject là lớp cha chung
+Nhưng mỗi đối tượng sẽ di chuyển khác nhau
+
+Ví dụ:
+
+🐦 Bird bay lên xuống
+🧱 Pipe trôi sang trái
+
+Nên lớp cha chỉ khai báo:
+
+public abstract void move();
+
+→ Nghĩa là:
+"Tất cả GameObject đều phải có move(), nhưng cách di chuyển thì lớp con tự quyết định."
+
+🐦 Trong lớp Bird
+@Override
+public void move() {
+    this.setY(this.getY() - this.velocity);
+}
+
+Giải thích:
+
+Y giảm → bay lên
+velocity là tốc độ
+🧱 Trong lớp Pipe (đúng chuẩn sẽ là)
+@Override
+public void move() {
+    this.setX(this.getX() - this.speed);
+}
+
+Giải thích:
+
+X giảm → di chuyển sang trái
+speed là tốc độ
+🔥 Khi nào move() được gọi?
+
+Nếu bạn viết:
+
+for (GameObject obj : objectList) {
+    obj.move();
+}
+
+Thì:
+
+Nếu obj là Bird → chạy Bird.move()
+Nếu obj là Pipe → chạy Pipe.move()
+
+Đây chính là đa hình.
+
+🎯 Tóm lại
+
+move() là:
+
+Phương thức định nghĩa hành động di chuyển của mỗi đối tượng.
+
+Khai báo ở lớp cha
+Cài đặt khác nhau ở lớp con
+Được gọi chung bằng obj.move()
+giải thích đoạn code này chi tiết và dễ hiểu nhất cho tôi
+
+Tôi sẽ giải thích từng phần của đoạn code trong hình cho bạn theo cách dễ hiểu nhất. Đây là chương trình Java dùng OOP (lập trình hướng đối tượng) để quản lý các đối tượng trong game giống Flappy Bird.
+
+1. Import thư viện
+import java.util.ArrayList;
+
+Dòng này dùng để import lớp ArrayList.
+
+ArrayList là gì?
+
+Là một danh sách động
+Có thể chứa nhiều object
+Có thể thêm, xoá, truy cập phần tử
+
+Ví dụ:
+
+ArrayList<Integer> list = new ArrayList<>();
+2. Khai báo class Main
+public class Main {
+
+Đây là class chính để chạy chương trình.
+
+Trong Java:
+
+Mỗi chương trình cần 1 class main
+Chương trình bắt đầu từ hàm main()
+3. Hàm main
+public static void main(String[] args)
+
+Đây là hàm bắt đầu chạy chương trình.
+
+Ý nghĩa:
+
+Phần	Ý nghĩa
+public	truy cập được từ mọi nơi
+static	không cần tạo object
+void	không trả về giá trị
+main	tên hàm bắt buộc
+String[] args	nhận tham số từ command line
+4. Tạo danh sách object
+ArrayList<GameObject> objectList = new ArrayList<>();
+
+Ý nghĩa:
+
+Tạo một ArrayList chứa các GameObject.
+
+Danh sách này có thể chứa:
+
+Bird
+Pipe
+
+Vì Bird và Pipe kế thừa GameObject
+
+Ví dụ:
+
+objectList
+   |
+   |--- Bird
+   |--- Pipe
+   |--- Bird
+   |--- Pipe
+5. Thêm object vào danh sách
+objectList.add(new Bird(100, 200, 5));
+
+Ý nghĩa:
+
+Tạo 1 con Bird
+
+Thông tin:
+
+x = 100
+y = 200
+velocity = 5
+objectList.add(new Pipe(300, 150, 10));
+
+Tạo 1 Pipe
+
+x = 300
+y = 150
+speed = 10
+
+Sau 4 dòng này danh sách có:
+
+objectList
+
+1 Bird
+1 Pipe
+1 Bird
+1 Pipe
+6. In ra BEFORE MOVE
+System.out.println("=== Before Move ===");
+
+In ra:
+
+=== Before Move ===
+7. Vòng lặp for
+for (GameObject object : objectList)
+
+Đây gọi là Enhanced For Loop
+
+Ý nghĩa:
+
+Lặp qua từng object trong danh sách
+
+Ví dụ:
+
+objectList
+
+Bird
+Pipe
+Bird
+Pipe
+
+Thì vòng lặp chạy:
+
+object = Bird
+object = Pipe
+object = Bird
+object = Pipe
+8. In object
+System.out.println(object);
+
+Java sẽ gọi:
+
+toString()
+
+của object đó.
+
+Ví dụ in ra:
+
+Bird[x=100,y=200]
+Pipe[x=300,y=150]
+9. In AFTER MOVE
+System.out.println("=== After Move ===");
+
+In ra:
+
+=== After Move ===
+10. Lặp lại danh sách
+for (GameObject object : objectList)
+
+Lại duyệt qua:
+
+Bird
+Pipe
+Bird
+Pipe
+11. Gọi hàm move()
+object.move();
+
+Đây là đa hình (Polymorphism).
+
+Java sẽ gọi move() đúng class thật của object
+
+Ví dụ:
+
+Object	Hàm chạy
+Bird	Bird.move()
+Pipe	Pipe.move()
+12. Ví dụ move()
+
+Ví dụ class Bird:
+
+public void move() {
+    y = y + velocity;
+}
+
+Bird sẽ bay lên/xuống
+
+Ví dụ class Pipe
+
+public void move() {
+    x = x - speed;
+}
+
+Pipe sẽ di chuyển sang trái
+
+13. In lại object
+System.out.println(object);
+
+In ra vị trí mới sau khi move
+
+Ví dụ:
+
+Before
+
+Bird x=100 y=200
+Pipe x=300 y=150
+
+After
+
+Bird x=100 y=205
+Pipe x=290 y=150
+14. Toàn bộ luồng chương trình
+
+Bước chạy:
+
+1 tạo danh sách object
+2 thêm Bird và Pipe
+3 in BEFORE MOVE
+4 gọi move()
+5 in AFTER MOVE
+15. Hình dung chương trình
+GameObject
+     ▲
+     │
+ ┌───┴─────┐
+ Bird     Pipe
+
+Main:
+
+ArrayList<GameObject>
+
+Bird
+Pipe
+Bird
+Pipe
+
+Sau đó:
+
+for -> move()
+16. Kết quả chương trình
+
+Ví dụ console:
+
+=== Before Move ===
+Bird[x=100,y=200]
+Pipe[x=300,y=150]
+Bird[x=120,y=220]
+Pipe[x=400,y=180]
+
+=== After Move ===
+Bird[x=100,y=205]
+Pipe[x=290,y=150]
+Bird[x=120,y=228]
+Pipe[x=394,y=180]
+17. Tại sao code này quan trọng
+
+Code này thể hiện 3 khái niệm OOP rất quan trọng
+
+1. Kế thừa
+Bird extends GameObject
+Pipe extends GameObject
+2. Đa hình
+object.move()
+
+Java tự biết gọi
+
+Bird.move()
+Pipe.move()
+3. Tính trừu tượng
+
+Dùng
+
+GameObject
+
+để quản lý tất cả object game.
+
+18. Tóm tắt cực dễ nhớ
+
+Code này làm:
+
+1 tạo danh sách object game
+2 thêm Bird và Pipe
+3 in vị trí trước khi di chuyển
+4 gọi move()
+5 in vị trí sau khi di chuyển
+
+✅ Nếu bạn muốn, tôi có thể giải thích luôn 4 class đầy đủ của game Flappy Bird nhỏ này:
+
+GameObject
+Bird
+Pipe
+Main
+giải thích đoạn code này chi tiết và dễ hiểu nhất cho tôi
+
+Tôi sẽ giải thích từng phần của đoạn code trong hình cho bạn theo cách dễ hiểu nhất. Đây là chương trình Java dùng OOP (lập trình hướng đối tượng) để quản lý các đối tượng trong game giống Flappy Bird.
+
+1. Import thư viện
+import java.util.ArrayList;
+
+Dòng này dùng để import lớp ArrayList.
+
+ArrayList là gì?
+
+Là một danh sách động
+Có thể chứa nhiều object
+Có thể thêm, xoá, truy cập phần tử
+
+Ví dụ:
+
+ArrayList<Integer> list = new ArrayList<>();
+2. Khai báo class Main
+public class Main {
+
+Đây là class chính để chạy chương trình.
+
+Trong Java:
+
+Mỗi chương trình cần 1 class main
+Chương trình bắt đầu từ hàm main()
+3. Hàm main
+public static void main(String[] args)
+
+Đây là hàm bắt đầu chạy chương trình.
+
+Ý nghĩa:
+
+Phần	Ý nghĩa
+public	truy cập được từ mọi nơi
+static	không cần tạo object
+void	không trả về giá trị
+main	tên hàm bắt buộc
+String[] args	nhận tham số từ command line
+4. Tạo danh sách object
+ArrayList<GameObject> objectList = new ArrayList<>();
+
+Ý nghĩa:
+
+Tạo một ArrayList chứa các GameObject.
+
+Danh sách này có thể chứa:
+
+Bird
+Pipe
+
+Vì Bird và Pipe kế thừa GameObject
+
+Ví dụ:
+
+objectList
+   |
+   |--- Bird
+   |--- Pipe
+   |--- Bird
+   |--- Pipe
+5. Thêm object vào danh sách
+objectList.add(new Bird(100, 200, 5));
+
+Ý nghĩa:
+
+Tạo 1 con Bird
+
+Thông tin:
+
+x = 100
+y = 200
+velocity = 5
+objectList.add(new Pipe(300, 150, 10));
+
+Tạo 1 Pipe
+
+x = 300
+y = 150
+speed = 10
+
+Sau 4 dòng này danh sách có:
+
+objectList
+
+1 Bird
+1 Pipe
+1 Bird
+1 Pipe
+6. In ra BEFORE MOVE
+System.out.println("=== Before Move ===");
+
+In ra:
+
+=== Before Move ===
+7. Vòng lặp for
+for (GameObject object : objectList)
+
+Đây gọi là Enhanced For Loop
+
+Ý nghĩa:
+
+Lặp qua từng object trong danh sách
+
+Ví dụ:
+
+objectList
+
+Bird
+Pipe
+Bird
+Pipe
+
+Thì vòng lặp chạy:
+
+object = Bird
+object = Pipe
+object = Bird
+object = Pipe
+8. In object
+System.out.println(object);
+
+Java sẽ gọi:
+
+toString()
+
+của object đó.
+
+Ví dụ in ra:
+
+Bird[x=100,y=200]
+Pipe[x=300,y=150]
+9. In AFTER MOVE
+System.out.println("=== After Move ===");
+
+In ra:
+
+=== After Move ===
+10. Lặp lại danh sách
+for (GameObject object : objectList)
+
+Lại duyệt qua:
+
+Bird
+Pipe
+Bird
+Pipe
+11. Gọi hàm move()
+object.move();
+
+Đây là đa hình (Polymorphism).
+
+Java sẽ gọi move() đúng class thật của object
+
+Ví dụ:
+
+Object	Hàm chạy
+Bird	Bird.move()
+Pipe	Pipe.move()
+12. Ví dụ move()
+
+Ví dụ class Bird:
+
+public void move() {
+    y = y + velocity;
+}
+
+Bird sẽ bay lên/xuống
+
+Ví dụ class Pipe
+
+public void move() {
+    x = x - speed;
+}
+
+Pipe sẽ di chuyển sang trái
+
+13. In lại object
+System.out.println(object);
+
+In ra vị trí mới sau khi move
+
+Ví dụ:
+
+Before
+
+Bird x=100 y=200
+Pipe x=300 y=150
+
+After
+
+Bird x=100 y=205
+Pipe x=290 y=150
+14. Toàn bộ luồng chương trình
+
+Bước chạy:
+
+1 tạo danh sách object
+2 thêm Bird và Pipe
+3 in BEFORE MOVE
+4 gọi move()
+5 in AFTER MOVE
+15. Hình dung chương trình
+GameObject
+     ▲
+     │
+ ┌───┴─────┐
+ Bird     Pipe
+
+Main:
+
+ArrayList<GameObject>
+
+Bird
+Pipe
+Bird
+Pipe
+
+Sau đó:
+
+for -> move()
+16. Kết quả chương trình
+
+Ví dụ console:
+
+=== Before Move ===
+Bird[x=100,y=200]
+Pipe[x=300,y=150]
+Bird[x=120,y=220]
+Pipe[x=400,y=180]
+
+=== After Move ===
+Bird[x=100,y=205]
+Pipe[x=290,y=150]
+Bird[x=120,y=228]
+Pipe[x=394,y=180]
+17. Tại sao code này quan trọng
+
+Code này thể hiện 3 khái niệm OOP rất quan trọng
+
+1. Kế thừa
+Bird extends GameObject
+Pipe extends GameObject
+2. Đa hình
+object.move()
+
+Java tự biết gọi
+
+Bird.move()
+Pipe.move()
+3. Tính trừu tượng
+
+Dùng
+
+GameObject
+
+để quản lý tất cả object game.
+
+18. Tóm tắt cực dễ nhớ
+
+Code này làm:
+
+1 tạo danh sách object game
+2 thêm Bird và Pipe
+3 in vị trí trước khi di chuyển
+4 gọi move()
+5 in vị trí sau khi di chuyển
+
+đoạn code này có tính đa hình hay không chỉ rỏ ràng và nói cho tôi hiểu
+
+Có. Đoạn code này CÓ sử dụng tính đa hình (Polymorphism).
+Tôi sẽ chỉ chính xác dòng nào thể hiện đa hình và giải thích dễ hiểu.
+
+1. Đa hình là gì (hiểu đơn giản)
+
+Đa hình = cùng 1 lời gọi hàm nhưng hành động khác nhau tùy object.
+
+Ví dụ:
+
+object.move()
+
+Nhưng:
+
+Bird.move()  → chim bay
+Pipe.move()  → ống di chuyển
+2. Dòng code thể hiện đa hình
+
+Đây là dòng quan trọng nhất:
+
+object.move();
+
+Trong vòng lặp:
+
+for (GameObject object : objectList) {
+    object.move();
+}
+3. Tại sao dòng này là đa hình
+
+Biến object được khai báo là:
+
+GameObject object
+
+Nhưng object thật bên trong có thể là:
+
+Bird
+Pipe
+
+Danh sách:
+
+objectList
+
+Bird
+Pipe
+Bird
+Pipe
+4. Khi chương trình chạy
+
+Vòng lặp chạy từng object:
+
+Lần 1
+object = Bird
+
+Java gọi
+
+Bird.move()
+Lần 2
+object = Pipe
+
+Java gọi
+
+Pipe.move()
+Lần 3
+object = Bird
+
+Java gọi
+
+Bird.move()
+Lần 4
+object = Pipe
+
+Java gọi
+
+Pipe.move()
+5. Minh họa dễ hiểu
+GameObject object
+        │
+        ▼
+   ┌───────────┐
+   │   Bird    │ → move() của Bird
+   └───────────┘
+
+   ┌───────────┐
+   │   Pipe    │ → move() của Pipe
+   └───────────┘
+
+Cùng gọi:
+
+object.move()
+
+Nhưng kết quả khác nhau.
+
+Đó chính là đa hình.
+
+6. Điều kiện để có đa hình
+
+Code này có đủ 3 điều kiện:
+
+1. Kế thừa
+Bird extends GameObject
+Pipe extends GameObject
+2. Override method
+
+Trong Bird:
+
+public void move()
+
+Trong Pipe:
+
+public void move()
+3. Gọi qua class cha
+GameObject object
+object.move()
+7. Dòng code thứ 2 giúp đa hình hoạt động
+ArrayList<GameObject> objectList
+
+Danh sách chứa:
+
+GameObject
+
+nhưng thật ra chứa
+
+Bird
+Pipe
+8. Tóm tắt cực ngắn
+
+Code này có đa hình ở đoạn:
+
+for (GameObject object : objectList) {
+    object.move();
+}
+
+Vì:
+
+object là GameObject
+nhưng object thật là Bird hoặc Pipe
+
+Nên Java gọi:
+
+Bird.move()
+Pipe.move()
+9. Nếu KHÔNG có đa hình thì code phải viết thế này
+
+Rất xấu:
+
+if(object instanceof Bird){
+    ((Bird)object).move();
+}
+
+if(object instanceof Pipe){
+    ((Pipe)object).move();
+}
+nói về tostring các class chi tiết dễ hiểu nhất
+
+
+Mình sẽ giải thích toString() trong các class của bạn một cách dễ hiểu nhất 👍 (đúng với code game Flappy Bird bạn đang làm).
+
+1. toString() là gì?
+
+toString() là phương thức có sẵn trong class Object của Java.
+
+Nó dùng để chuyển object thành chuỗi (String) để in ra màn hình.
+
+Ví dụ:
+
+System.out.println(object);
+
+Java tự động gọi
+
+object.toString();
+2. Nếu KHÔNG viết toString()
+
+Nếu bạn không override toString() thì khi in object sẽ ra dạng:
+
+Bird@6d06d69c
+Pipe@7852e922
+
+→ Đây là địa chỉ bộ nhớ, không có ý nghĩa.
+
+3. Vì vậy ta phải Override toString()
+
+Override nghĩa là viết lại phương thức của class cha.
+
+Trong code của bạn:
+
+Class GameObject
+@Override
+public String toString() {
+    return "Position: " + this.x + ", " + this.y;
+}
+
+Ý nghĩa:
+
+Nếu in GameObject thì sẽ ra:
+
+Position: 100, 200
+4. toString() trong class Bird
+@Override
+public String toString() {
+    return "Bird - " + super.toString() +
+           " - Velocity: " + this.velocity;
+}
+Giải thích từng phần
+super.toString()
+
+Gọi toString của class cha GameObject
+
+Class cha trả về:
+
+Position: x, y
+Ví dụ Bird
+Bird(100,200,5)
+
+super.toString() →
+
+Position: 100, 200
+
+Ghép lại thành:
+
+Bird - Position: 100, 200 - Velocity: 5
+5. toString() trong class Pipe
+
+Ví dụ:
+
+@Override
+public String toString() {
+    return "Pipe - " + super.toString() +
+           " - Speed: " + this.speed;
+}
+
+Ví dụ object:
+
+Pipe(300,150,10)
+
+Kết quả:
+
+Pipe - Position: 300, 150 - Speed: 10
+6. Khi Main in object
+
+Trong Main bạn có:
+
+System.out.println(object);
+
+Java tự động gọi:
+
+object.toString()
+Trước khi move()
+=== Before Move ===
+Bird - Position: 100, 200 - Velocity: 5
+Pipe - Position: 300, 150 - Speed: 10
+Bird - Position: 120, 220 - Velocity: 8
+Pipe - Position: 400, 180 - Speed: 6
+Sau khi move()
+=== After Move ===
+Bird - Position: 100, 195 - Velocity: 5
+Pipe - Position: 290, 150 - Speed: 10
+Bird - Position: 120, 212 - Velocity: 8
+Pipe - Position: 394, 180 - Speed: 6
+7. Tóm tắt dễ nhớ
+Class	toString() làm gì
+GameObject	in tọa độ x,y
+Bird	in Bird + vị trí + velocity
+Pipe	in Pipe + vị trí + speed
+8. Quan trọng nhất
+
+Dòng này:
+
+System.out.println(object);
+
+Thực chất là:
+
+object.toString()
+
+→ Và Java tự chọn đúng toString() của Bird hoặc Pipe
+
+👉 Đây chính là đa hình (polymorphism).
+
+9. Hiểu đơn giản như thế này
+
+1 biến:
+
+GameObject object
+
+Nhưng có thể là:
+
+Bird
+Pipe
+
+Khi in:
+
+object.toString()
+
+Java sẽ tự chọn:
+
+Bird.toString()
+Pipe.toString()
+
+→ 1 lệnh nhưng nhiều hành vi → đa hình
+nói rỏ ràng hơn
+
+Mình giải thích rõ và dễ hiểu nhất về toString() trong code của bạn nhé.
+
+1. toString() là gì trong Java?
+
+Trong Java, mọi class đều kế thừa từ class Object.
+Trong Object có sẵn phương thức:
+
+public String toString()
+
+Phương thức này dùng để trả về thông tin của object dưới dạng chuỗi (String).
+
+Ví dụ:
+
+System.out.println(object);
+
+Java tự động gọi
+
+object.toString();
+2. Nếu KHÔNG viết toString() thì chuyện gì xảy ra?
+
+Ví dụ:
+
+Bird bird = new Bird(100,200,5);
+System.out.println(bird);
+
+Kết quả sẽ là dạng:
+
+Bird@15db9742
+
+Ý nghĩa:
+
+TênClass@địa_chỉ_bộ_nhớ
+
+➡️ Không có ích cho người dùng.
+
+3. Vì vậy ta phải Override toString()
+
+Override nghĩa là viết lại phương thức của class cha.
+
+4. toString() trong class GameObject
+
+Code:
+
+@Override
+public String toString() {
+    return "Position: " + this.x + ", " + this.y;
+}
+
+Ý nghĩa:
+
+Trả về chuỗi:
+
+Position: x, y
+
+Ví dụ:
+
+Position: 100, 200
+5. toString() trong class Bird
+
+Code:
+
+@Override
+public String toString() {
+    return "Bird - " + super.toString() + 
+           " - Velocity: " + this.velocity;
+}
+Giải thích
+super.toString()
+
+nghĩa là gọi toString() của class cha GameObject
+
+Ví dụ dữ liệu
+Bird(100,200,5)
+
+Quá trình chạy:
+
+1️⃣ super.toString() →
+
+Position: 100, 200
+
+2️⃣ Ghép lại:
+
+Bird - Position: 100, 200 - Velocity: 5
+6. toString() trong class Pipe
+
+Code:
+
+@Override
+public String toString() {
+    return "Pipe - " + super.toString() +
+           " - Speed: " + this.speed;
+}
+
+Ví dụ:
+
+Pipe(300,150,10)
+
+Kết quả:
+
+Pipe - Position: 300, 150 - Speed: 10
+7. Khi Main chạy
+
+Code:
+
+System.out.println(object);
+
+Java sẽ tự gọi:
+
+object.toString()
+Ví dụ danh sách object
+Bird(100,200,5)
+Pipe(300,150,10)
+Bird(120,220,8)
+Pipe(400,180,6)
+Output
+=== Before Move ===
+
+Bird - Position: 100, 200 - Velocity: 5
+Pipe - Position: 300, 150 - Speed: 10
+Bird - Position: 120, 220 - Velocity: 8
+Pipe - Position: 400, 180 - Speed: 6
+8. toString() có liên quan đến đa hình
+
+Trong Main:
+
+for (GameObject object : objectList) {
+    System.out.println(object);
+}
+
+Kiểu biến:
+
+GameObject
+
+Nhưng object thật là:
+
+Bird
+Pipe
+
+Java sẽ tự động gọi:
+
+Bird.toString()
+Pipe.toString()
+
+➡️ Đây chính là đa hình (Polymorphism).
+
+9. Tóm tắt cực dễ hiểu
+Class	toString() trả về
+GameObject	Position: x,y
+Bird	Bird - Position - Velocity
+Pipe	Pipe - Position - Speed
+10. Luồng chạy thật của code
+System.out.println(object)
+
+↓ Java gọi
+
+object.toString()
+
+↓ nếu object là Bird
+
+Bird.toString()
+
+↓ nếu object là Pipe
+
+Pipe.toString()
+
+➡️ 1 lệnh nhưng nhiều cách thực hiện
+➡️ đó chính là ĐA HÌNH
+trong đoạn code của tôi nói rỏ và chi tiết về các yêu cầu của thầy 1 cách dễ hiểu nhất
+
+Thầy đang yêu cầu 4 việc chính trong project Java của bạn. Mình sẽ giải thích liên hệ trực tiếp với code Flappy Bird của bạn để bạn hiểu rõ nhất.
+
+1. Chỉnh sửa mã nguồn để dùng đa hình (Polymorphism)
+Thầy yêu cầu
+
+“Sửa lại dự án để đảm bảo có áp dụng tính đa hình một cách hợp lý”
+
+Nghĩa là gì
+
+Trong Java OOP có:
+
+Class cha: GameObject
+Class con:
+Bird
+Pipe
+
+Class cha có hàm:
+
+public abstract void move();
+
+Class con override:
+
+Bird
+
+@Override
+public void move() {
+    this.setY(this.getY() - this.velocity);
+}
+
+Pipe
+
+@Override
+public void move() {
+    this.setX(this.getX() - this.speed);
+}
+Đa hình xuất hiện ở đâu
+
+Trong Main
+
+ArrayList<GameObject> objectList = new ArrayList<>();
+
+Danh sách này khai báo kiểu GameObject nhưng chứa:
+
+Bird
+Pipe
+Bird
+Pipe
+
+Khi chạy
+
+for (GameObject object : objectList) {
+    object.move();
+}
+
+Java sẽ:
+
+Object thật	Hàm được gọi
+Bird	Bird.move()
+Pipe	Pipe.move()
+
+➡️ Cùng 1 lệnh move() nhưng hành vi khác nhau
+
+Đây chính là đa hình runtime
+
+2. Thay hàm display bằng toString()
+Thầy yêu cầu
+
+Thay thế các hàm xuất dữ liệu tự đặt (ví dụ display) bằng toString()
+
+Sai cách (cách cũ)
+obj.display();
+
+Bạn phải viết thêm hàm display trong mọi class.
+
+Cách đúng (thầy yêu cầu)
+
+Override toString()
+
+Ví dụ
+
+GameObject
+@Override
+public String toString() {
+    return "Position: " + this.x + ", " + this.y;
+}
+Bird
+@Override
+public String toString() {
+    return "Bird - " + super.toString() +
+           " - Velocity: " + this.velocity;
+}
+Pipe
+@Override
+public String toString() {
+    return "Pipe - " + super.toString() +
+           " - Speed: " + this.speed;
+}
+Trong Main chỉ cần
+System.out.println(object);
+
+Java sẽ tự gọi
+
+object.toString()
+
+Ví dụ output
+
+Bird - Position: 100, 200 - Velocity: 5
+Pipe - Position: 300, 150 - Speed: 10
+3. Cập nhật Class Diagram (UML)
+
+Thầy yêu cầu:
+
+Cập nhật lại sơ đồ lớp theo code mới.
+
+UML đúng cho code của bạn
+           GameObject
+        ----------------
+        - x : int
+        - y : int
+        ----------------
+        + getX()
+        + getY()
+        + setX()
+        + setY()
+        + move() (abstract)
+        + toString()
+
+             ▲
+             │
+      ------------------
+      │                │
+     Bird            Pipe
+  -----------     -----------
+  - velocity      - speed
+  -----------     -----------
+  + move()        + move()
+  + toString()    + toString()
+4. Tạo Mock Data (dữ liệu mẫu)
+Thầy nói
+
+Không cho nhập tay khi demo
+
+Tức là không dùng
+
+Scanner
+Thay vào đó tạo sẵn dữ liệu trong code
+
+Bạn đã làm đúng:
+
+objectList.add(new Bird(100, 200, 5));
+objectList.add(new Pipe(300, 150, 10));
+objectList.add(new Bird(120, 220, 8));
+objectList.add(new Pipe(400, 180, 6));
+
+Đây gọi là:
+
+hardcode data
+
+Thầy yêu cầu như vậy để:
+
+Chạy chương trình là test được ngay
+5. Chuẩn bị kiến thức mới
+
+Thầy nói sẽ học thêm:
+
+1️⃣ abstract class
+
+Ví dụ
+
+public abstract class GameObject
+
+Nghĩa là:
+
+Không tạo object từ class này
+
+Sai
+
+new GameObject()
+
+Đúng
+
+new Bird()
+new Pipe()
+2️⃣ interface
+
+Ví dụ
+
+interface Movable
+
+Class sẽ
+
+implements Movable
+
+Nhưng phần này chưa cần sửa code của bạn ngay.
+
+Tổng kết: Code của bạn đã đúng yêu cầu thầy chưa?
+Yêu cầu	Code bạn
+Đa hình	✅ Có
+Kế thừa	✅ Có
+abstract class	✅ Có
+toString()	✅ Có
+mock data	✅ Có
+UML cập nhật	cần vẽ
+nói về tostring dùng để làm gì chỉ trong bài cho tôi
+
+Trong Java, phương thức toString() dùng để chuyển thông tin của một object thành chuỗi (String) để dễ in ra màn hình hoặc xem dữ liệu của object.
+
+Trong bài của bạn (game Flappy Bird / GameObject)
+
+Khi bạn có các object như Bird hoặc Pipe, nếu muốn in thông tin của chúng ra, bạn dùng toString().
+
+Ví dụ:
+
+public class GameObject {
+    protected int x;
+    protected int y;
+
+    public GameObject(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public String toString() {
+        return "x=" + x + ", y=" + y;
+    }
+}
+
+Khi in:
+
+GameObject obj = new GameObject(100, 200);
+System.out.println(obj);
+
+Kết quả:
+
+x=100, y=200
+Ý nghĩa trong bài của bạn
+Dùng để hiển thị thông tin object (Bird, Pipe, GameObject).
+Giúp debug (kiểm tra dữ liệu) khi chạy chương trình.
+Khi System.out.println(object) thì Java tự gọi toString().
+Ví dụ với Bird
+public class Bird extends GameObject {
+    private int speed;
+
+    public Bird(int x, int y, int speed) {
+        super(x, y);
+        this.speed = speed;
+    }
+
+    @Override
+    public String toString() {
+        return "Bird: x=" + x + ", y=" + y + ", speed=" + speed;
+    }
+}
+
+In ra:
+
+Bird: x=100, y=200, speed=5
+
+✅ Tóm lại:
+toString() dùng để biến object thành chuỗi để in thông tin ra màn hình.
+
+Nếu bạn muốn, tôi có thể viết luôn GameObject, Bird, Pipe, Main dùng toString() đúng chuẩn để chạy 100% trong NetBeans cho bài game của bạn.
+
+trong các class có các over và void move là sao, giải thích chi tiết
+
+Trong bài game Flappy Bird Java OOP của bạn, thường có 2 thứ hay thấy trong các class:
+
+@Override
+void move()
+
+Tôi giải thích đúng theo bài của bạn để bạn hiểu rõ.
+
+1. @Override là gì?
+
+@Override dùng để ghi đè phương thức của class cha.
+
+Nghĩa là:
+class con viết lại phương thức của class cha để có cách hoạt động khác.
+
+Ví dụ trong bài của bạn
+Class cha
+public class GameObject {
+
+    protected int x;
+    protected int y;
+
+    public GameObject(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void move() {
+        System.out.println("GameObject dang di chuyen");
+    }
+}
+Class Bird kế thừa
+public class Bird extends GameObject {
+
+    public Bird(int x, int y) {
+        super(x, y);
+    }
+
+    @Override
+    public void move() {
+        y = y + 5;
+        System.out.println("Bird bay len");
+    }
+}
+Ý nghĩa
+GameObject có move()
+Bird ghi đè move() để bay lên
+
+Nếu không override thì Bird sẽ dùng move của GameObject.
+
+2. void move() là gì?
+
+void move() là phương thức di chuyển của object trong game.
+
+void nghĩa là:
+
+➡️ phương thức không trả về giá trị
+
+Chỉ thực hiện hành động.
+
+Ví dụ
+public void move() {
+    x = x + 10;
+}
+
+Ý nghĩa:
+
+object di chuyển sang phải 10 đơn vị
+3. Trong bài Flappy Bird của bạn
+
+Mỗi object sẽ move khác nhau
+
+Bird
+@Override
+public void move() {
+    y = y + speed;
+}
+
+Ý nghĩa
+
+chim bay lên hoặc rơi xuống
+Pipe
+@Override
+public void move() {
+    x = x - speed;
+}
+
+Ý nghĩa
+
+ống nước chạy sang trái
+4. Khi chạy chương trình
+
+Trong Main
+
+for(GameObject obj : objectList){
+    obj.move();
+}
+
+Java sẽ tự gọi đúng move của từng object
+
+Ví dụ:
+
+Bird.move()
+Pipe.move()
+Bird.move()
+Pipe.move()
+
+Đây gọi là đa hình (Polymorphism).
+
+5. Tóm tắt dễ nhớ
+Thành phần	Ý nghĩa
+@Override	ghi đè phương thức của class cha
+void move()	hàm di chuyển của object
+void	không trả về giá trị
+move()	thay đổi vị trí x hoặc y
+Ví dụ cực dễ hiểu
+Bird.move() -> chim bay
+Pipe.move() -> ống nước chạy
+nói về tostring dùng để làm gì chỉ trong bài cho tôi
+
+Trong Java, phương thức toString() dùng để chuyển thông tin của một object thành chuỗi (String) để dễ in ra màn hình hoặc xem dữ liệu của object.
+
+Trong bài của bạn (game Flappy Bird / GameObject)
+
+Khi bạn có các object như Bird hoặc Pipe, nếu muốn in thông tin của chúng ra, bạn dùng toString().
+
+Ví dụ:
+
+public class GameObject {
+    protected int x;
+    protected int y;
+
+    public GameObject(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public String toString() {
+        return "x=" + x + ", y=" + y;
+    }
+}
+
+Khi in:
+
+GameObject obj = new GameObject(100, 200);
+System.out.println(obj);
+
+Kết quả:
+
+x=100, y=200
+Ý nghĩa trong bài của bạn
+Dùng để hiển thị thông tin object (Bird, Pipe, GameObject).
+Giúp debug (kiểm tra dữ liệu) khi chạy chương trình.
+Khi System.out.println(object) thì Java tự gọi toString().
+Ví dụ với Bird
+public class Bird extends GameObject {
+    private int speed;
+
+    public Bird(int x, int y, int speed) {
+        super(x, y);
+        this.speed = speed;
+    }
+
+    @Override
+    public String toString() {
+        return "Bird: x=" + x + ", y=" + y + ", speed=" + speed;
+    }
+}
+
+In ra:
+
+Bird: x=100, y=200, speed=5
+
+✅ Tóm lại:
+toString() dùng để biến object thành chuỗi để in thông tin ra màn hình.
+
+Nếu bạn muốn, tôi có thể viết luôn GameObject, Bird, Pipe, Main dùng toString() đúng chuẩn để chạy 100% trong NetBeans cho bài game của bạn.
+
+trong các class có các over và void move là sao, giải thích chi tiết
+
+Trong bài game Flappy Bird Java OOP của bạn, thường có 2 thứ hay thấy trong các class:
+
+@Override
+void move()
+
+Tôi giải thích đúng theo bài của bạn để bạn hiểu rõ.
+
+1. @Override là gì?
+
+@Override dùng để ghi đè phương thức của class cha.
+
+Nghĩa là:
+class con viết lại phương thức của class cha để có cách hoạt động khác.
+
+Ví dụ trong bài của bạn
+Class cha
+public class GameObject {
+
+    protected int x;
+    protected int y;
+
+    public GameObject(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void move() {
+        System.out.println("GameObject dang di chuyen");
+    }
+}
+Class Bird kế thừa
+public class Bird extends GameObject {
+
+    public Bird(int x, int y) {
+        super(x, y);
+    }
+
+    @Override
+    public void move() {
+        y = y + 5;
+        System.out.println("Bird bay len");
+    }
+}
+Ý nghĩa
+GameObject có move()
+Bird ghi đè move() để bay lên
+
+Nếu không override thì Bird sẽ dùng move của GameObject.
+
+2. void move() là gì?
+
+void move() là phương thức di chuyển của object trong game.
+
+void nghĩa là:
+
+➡️ phương thức không trả về giá trị
+
+Chỉ thực hiện hành động.
+
+Ví dụ
+public void move() {
+    x = x + 10;
+}
+
+Ý nghĩa:
+
+object di chuyển sang phải 10 đơn vị
+3. Trong bài Flappy Bird của bạn
+
+Mỗi object sẽ move khác nhau
+
+Bird
+@Override
+public void move() {
+    y = y + speed;
+}
+
+Ý nghĩa
+
+chim bay lên hoặc rơi xuống
+Pipe
+@Override
+public void move() {
+    x = x - speed;
+}
+
+Ý nghĩa
+
+ống nước chạy sang trái
+4. Khi chạy chương trình
+
+Trong Main
+
+for(GameObject obj : objectList){
+    obj.move();
+}
+
+Java sẽ tự gọi đúng move của từng object
+
+Ví dụ:
+
+Bird.move()
+Pipe.move()
+Bird.move()
+Pipe.move()
+
+Đây gọi là đa hình (Polymorphism).
+
+5. Tóm tắt dễ nhớ
+Thành phần	Ý nghĩa
+@Override	ghi đè phương thức của class cha
+void move()	hàm di chuyển của object
+void	không trả về giá trị
+move()	thay đổi vị trí x hoặc y
+Ví dụ cực dễ hiểu
+Bird.move() -> chim bay
+Pipe.move() -> ống nước chạy
+
+giai thich chi tiet nhat theo cach hieu 
+
+Tôi sẽ giải thích toàn bộ code trong hình theo cách dễ hiểu nhất, đi từng dòng, và liên hệ với đa hình + toString + move() trong bài Flappy Bird của bạn.
+
+1. Import thư viện
+import java.util.ArrayList;
+
+Dòng này có nghĩa là:
+
+➡️ dùng lớp ArrayList của Java
+
+ArrayList là danh sách động (giống mảng nhưng thêm bớt được).
+
+Ví dụ:
+
+ArrayList = danh sách chứa nhiều object
+2. Khai báo class Main
+public class Main {
+
+Đây là class chính của chương trình.
+
+Java luôn chạy từ hàm:
+
+main()
+3. Hàm main()
+public static void main(String[] args)
+
+Ý nghĩa:
+
+Phần	Ý nghĩa
+public	cho phép chạy từ ngoài
+static	không cần tạo object
+void	không trả về
+main	điểm bắt đầu chương trình
+String[] args	tham số dòng lệnh
+
+➡️ Khi chạy chương trình Java sẽ chạy từ đây.
+
+4. Tạo danh sách object
+ArrayList<GameObject> objectList = new ArrayList<>();
+
+Ý nghĩa:
+
+Tạo một danh sách chứa các GameObject
+
+Nhưng quan trọng:
+
+GameObject là class cha
+
+Danh sách này có thể chứa:
+
+Bird
+Pipe
+
+Vì:
+
+Bird extends GameObject
+Pipe extends GameObject
+
+Đây là kế thừa + đa hình
+
+5. Thêm object vào danh sách
+objectList.add(new Bird(100, 200, 5));
+
+Tạo 1 con chim
+
+x = 100
+y = 200
+velocity = 5
+objectList.add(new Pipe(300, 150, 10));
+
+Tạo 1 ống nước
+
+x = 300
+y = 150
+speed = 10
+
+Sau đó:
+
+objectList.add(new Bird(120, 220, 8));
+objectList.add(new Pipe(400, 180, 6));
+
+Danh sách lúc này chứa:
+
+Bird
+Pipe
+Bird
+Pipe
+6. In trước khi di chuyển
+System.out.println("=== Before Move ===");
+
+In ra:
+
+=== Before Move ===
+7. Vòng lặp for
+for (GameObject object : objectList)
+
+Ý nghĩa:
+
+Lặp qua từng object trong danh sách
+
+Lần lượt:
+
+Bird
+Pipe
+Bird
+Pipe
+8. In object
+System.out.println(object);
+
+Quan trọng:
+
+Java sẽ tự gọi
+
+object.toString()
+
+Ví dụ kết quả:
+
+Bird(x=100,y=200,velocity=5)
+Pipe(x=300,y=150,speed=10)
+9. In tiêu đề sau khi di chuyển
+System.out.println("=== After Move ===");
+
+In ra:
+
+=== After Move ===
+10. Vòng lặp lần 2
+for (GameObject object : objectList)
+
+Lặp lại danh sách:
+
+Bird
+Pipe
+Bird
+Pipe
+11. Gọi move()
+object.move();
+
+Đây là điểm quan trọng nhất của bài
+
+Vì:
+
+object là GameObject
+
+Nhưng thực tế nó là:
+
+Bird hoặc Pipe
+
+Java sẽ tự gọi đúng hàm.
+
+Nếu object là Bird
+
+Java gọi:
+
+Bird.move()
+
+Ví dụ:
+
+y = y + velocity
+
+Chim bay lên.
+
+Nếu object là Pipe
+
+Java gọi:
+
+Pipe.move()
+
+Ví dụ:
+
+x = x - speed
+
+Ống chạy sang trái.
+
+Đây chính là ĐA HÌNH
+
+Cùng một lệnh:
+
+object.move()
+
+Nhưng chạy khác nhau:
+
+Bird.move()
+Pipe.move()
+12. In lại object
+System.out.println(object);
+
+Sau khi di chuyển thì tọa độ thay đổi
+
+Ví dụ:
+
+Before
+
+Bird x=100 y=200
+
+After
+
+Bird x=100 y=205
+13. Luồng chạy toàn bộ chương trình
+Tạo danh sách object
+
+Bird
+Pipe
+Bird
+Pipe
+
+↓
+
+In Before Move
+
+↓
+
+In vị trí ban đầu
+
+↓
+
+Gọi move()
+
+↓
+
+Bird bay
+Pipe chạy
+
+↓
+
+In vị trí mới
+14. Tóm tắt cực dễ hiểu
+
+Code này làm 4 việc:
+
+1️⃣ Tạo danh sách object
+ArrayList<GameObject>
+2️⃣ Thêm object
+Bird
+Pipe
+Bird
+Pipe
+3️⃣ In vị trí ban đầu
+Before Move
+4️⃣ Di chuyển object
+object.move()
+
+➡️ đa hình xảy ra ở đây
+
+15. Sơ đồ dễ hiểu
+GameObject
+     |
+  --------
+  |      |
+Bird    Pipe
+
+Main chứa:
+
+ArrayList<GameObject>
+
+Danh sách:
+
+Bird
+Pipe
+Bird
+Pipe
+16. Kết luận
+
+Code này minh họa:
+
+Kế thừa
+Bird extends GameObject
+Pipe extends GameObject
+Đa hình
+object.move()
+toString
+System.out.println(object)
+giai thich chi tiet nhat theo cach hieu 
+
+Tôi sẽ giải thích toàn bộ code trong hình theo cách dễ hiểu nhất, đi từng dòng, và liên hệ với đa hình + toString + move() trong bài Flappy Bird của bạn.
+
+1. Import thư viện
+import java.util.ArrayList;
+
+Dòng này có nghĩa là:
+
+➡️ dùng lớp ArrayList của Java
+
+ArrayList là danh sách động (giống mảng nhưng thêm bớt được).
+
+Ví dụ:
+
+ArrayList = danh sách chứa nhiều object
+2. Khai báo class Main
+public class Main {
+
+Đây là class chính của chương trình.
+
+Java luôn chạy từ hàm:
+
+main()
+3. Hàm main()
+public static void main(String[] args)
+
+Ý nghĩa:
+
+Phần	Ý nghĩa
+public	cho phép chạy từ ngoài
+static	không cần tạo object
+void	không trả về
+main	điểm bắt đầu chương trình
+String[] args	tham số dòng lệnh
+
+➡️ Khi chạy chương trình Java sẽ chạy từ đây.
+
+4. Tạo danh sách object
+ArrayList<GameObject> objectList = new ArrayList<>();
+
+Ý nghĩa:
+
+Tạo một danh sách chứa các GameObject
+
+Nhưng quan trọng:
+
+GameObject là class cha
+
+Danh sách này có thể chứa:
+
+Bird
+Pipe
+
+Vì:
+
+Bird extends GameObject
+Pipe extends GameObject
+
+Đây là kế thừa + đa hình
+
+5. Thêm object vào danh sách
+objectList.add(new Bird(100, 200, 5));
+
+Tạo 1 con chim
+
+x = 100
+y = 200
+velocity = 5
+objectList.add(new Pipe(300, 150, 10));
+
+Tạo 1 ống nước
+
+x = 300
+y = 150
+speed = 10
+
+Sau đó:
+
+objectList.add(new Bird(120, 220, 8));
+objectList.add(new Pipe(400, 180, 6));
+
+Danh sách lúc này chứa:
+
+Bird
+Pipe
+Bird
+Pipe
+6. In trước khi di chuyển
+System.out.println("=== Before Move ===");
+
+In ra:
+
+=== Before Move ===
+7. Vòng lặp for
+for (GameObject object : objectList)
+
+Ý nghĩa:
+
+Lặp qua từng object trong danh sách
+
+Lần lượt:
+
+Bird
+Pipe
+Bird
+Pipe
+8. In object
+System.out.println(object);
+
+Quan trọng:
+
+Java sẽ tự gọi
+
+object.toString()
+
+Ví dụ kết quả:
+
+Bird(x=100,y=200,velocity=5)
+Pipe(x=300,y=150,speed=10)
+9. In tiêu đề sau khi di chuyển
+System.out.println("=== After Move ===");
+
+In ra:
+
+=== After Move ===
+10. Vòng lặp lần 2
+for (GameObject object : objectList)
+
+Lặp lại danh sách:
+
+Bird
+Pipe
+Bird
+Pipe
+11. Gọi move()
+object.move();
+
+Đây là điểm quan trọng nhất của bài
+
+Vì:
+
+object là GameObject
+
+Nhưng thực tế nó là:
+
+Bird hoặc Pipe
+
+Java sẽ tự gọi đúng hàm.
+
+Nếu object là Bird
+
+Java gọi:
+
+Bird.move()
+
+Ví dụ:
+
+y = y + velocity
+
+Chim bay lên.
+
+Nếu object là Pipe
+
+Java gọi:
+
+Pipe.move()
+
+Ví dụ:
+
+x = x - speed
+
+Ống chạy sang trái.
+
+Đây chính là ĐA HÌNH
+
+Cùng một lệnh:
+
+object.move()
+
+Nhưng chạy khác nhau:
+
+Bird.move()
+Pipe.move()
+12. In lại object
+System.out.println(object);
+
+Sau khi di chuyển thì tọa độ thay đổi
+
+Ví dụ:
+
+Before
+
+Bird x=100 y=200
+
+After
+
+Bird x=100 y=205
+13. Luồng chạy toàn bộ chương trình
+Tạo danh sách object
+
+Bird
+Pipe
+Bird
+Pipe
+
+↓
+
+In Before Move
+
+↓
+
+In vị trí ban đầu
+
+↓
+
+Gọi move()
+
+↓
+
+Bird bay
+Pipe chạy
+
+↓
+
+In vị trí mới
+14. Tóm tắt cực dễ hiểu
+
+Code này làm 4 việc:
+
+1️⃣ Tạo danh sách object
+ArrayList<GameObject>
+2️⃣ Thêm object
+Bird
+Pipe
+Bird
+Pipe
+3️⃣ In vị trí ban đầu
+Before Move
+4️⃣ Di chuyển object
+object.move()
+
+➡️ đa hình xảy ra ở đây
+
+15. Sơ đồ dễ hiểu
+GameObject
+     |
+  --------
+  |      |
+Bird    Pipe
+
+Main chứa:
+
+ArrayList<GameObject>
+
+Danh sách:
+
+Bird
+Pipe
+Bird
+Pipe
+16. Kết luận
+
+Code này minh họa:
+
+Kế thừa
+Bird extends GameObject
+Pipe extends GameObject
+Đa hình
+object.move()
+toString
+System.out.println(object)
+sao de phan biet chim1 ong nuoc1 va chim2 ong nuoc2
+
+Trong code của bạn có:
+
+objectList.add(new Bird(100, 200, 5));
+objectList.add(new Pipe(300, 150, 10));
+objectList.add(new Bird(120, 220, 8));
+objectList.add(new Pipe(400, 180, 6));
+
+Danh sách sẽ chứa:
+
+Bird
+Pipe
+Bird
+Pipe
+
+Nhưng khi in ra bạn sẽ thắc mắc:
+
+Làm sao biết:
+chim1
+ống1
+chim2
+ống2
+Cách 1 (đơn giản nhất): dùng vị trí trong danh sách
+
+Danh sách ArrayList có index.
+
+0 → Bird1
+1 → Pipe1
+2 → Bird2
+3 → Pipe2
+
+Ví dụ:
+
+for (int i = 0; i < objectList.size(); i++) {
+    System.out.println("Object " + (i+1) + ": " + objectList.get(i));
+}
+
+Kết quả:
+
+Object 1: Bird x=100 y=200 velocity=5
+Object 2: Pipe x=300 y=150 speed=10
+Object 3: Bird x=120 y=220 velocity=8
+Object 4: Pipe x=400 y=180 speed=6
+Cách 2 (chuẩn OOP hơn): thêm id
+
+Trong GameObject
+
+protected int id;
+
+Constructor
+
+public GameObject(int id, int x, int y){
+    this.id = id;
+    this.x = x;
+    this.y = y;
+}
+Bird
+public Bird(int id, int x, int y, int velocity){
+    super(id, x, y);
+    this.velocity = velocity;
+}
+Pipe
+public Pipe(int id, int x, int y, int speed){
+    super(id, x, y);
+    this.speed = speed;
+}
+toString()
+@Override
+public String toString(){
+    return "ID=" + id + " x=" + x + " y=" + y;
+}
+Main
+objectList.add(new Bird(1,100,200,5));
+objectList.add(new Pipe(2,300,150,10));
+objectList.add(new Bird(3,120,220,8));
+objectList.add(new Pipe(4,400,180,6));
+
+In ra:
+
+Bird ID=1 x=100 y=200 velocity=5
+Pipe ID=2 x=300 y=150 speed=10
+Bird ID=3 x=120 y=220 velocity=8
+Pipe ID=4 x=400 y=180 speed=6
+Cách 3 (cách thầy hay yêu cầu): sửa toString()
+
+Trong Bird
+
+@Override
+public String toString(){
+    return "Bird: x=" + x + " y=" + y + " velocity=" + velocity;
+}
+
+Trong Pipe
+
+@Override
+public String toString(){
+    return "Pipe: x=" + x + " y=" + y + " speed=" + speed;
+}
+
+Output:
+
+Bird: x=100 y=200 velocity=5
+Pipe: x=300 y=150 speed=10
+Bird: x=120 y=220 velocity=8
+Pipe: x=400 y=180 speed=6
+
+Bạn sẽ phân biệt được chim và ống nước.
+
+Kết luận dễ hiểu
+
+Bạn phân biệt bằng:
+
+Cách	Ý nghĩa
+index	biết object thứ mấy
+id	mỗi object có mã riêng
+toString	in loại object (Bird/Pipe)
+giai thich tostring cho toi
+
+Tôi sẽ giải thích toString() trong đúng bài Java OOP Flappy Bird của bạn, theo cách dễ hiểu nhất.
+
+1. toString() là gì?
+
+toString() là một hàm dùng để biến object thành chuỗi (String) để in ra màn hình.
+
+Trong Java, mọi class đều có toString() vì nó được kế thừa từ class Object.
+
+Ví dụ:
+
+System.out.println(object);
+
+Thực ra Java sẽ tự làm:
+
+System.out.println(object.toString());
+2. Nếu không viết toString()
+
+Ví dụ:
+
+Bird b = new Bird(100,200,5);
+System.out.println(b);
+
+Java sẽ in:
+
+Bird@1a2b3c
+
+Ý nghĩa:
+
+Tên class + địa chỉ bộ nhớ
+
+➡️ Không hiểu object đang có dữ liệu gì
+
+3. Vì vậy ta phải override toString()
+
+Ta viết lại toString() để hiển thị thông tin object.
+
+4. Ví dụ trong bài của bạn
+Class GameObject
+public String toString(){
+    return "x=" + x + " y=" + y;
+}
+
+Ý nghĩa:
+
+In ra tọa độ object
+
+Class Bird
+@Override
+public String toString(){
+    return "Bird: x=" + x + " y=" + y + " velocity=" + velocity;
+}
+
+In ra:
+
+Bird: x=100 y=200 velocity=5
+Class Pipe
+@Override
+public String toString(){
+    return "Pipe: x=" + x + " y=" + y + " speed=" + speed;
+}
+
+In ra:
+
+Pipe: x=300 y=150 speed=10
+5. Khi chạy trong Main
+
+Trong code bạn có:
+
+for (GameObject object : objectList) {
+    System.out.println(object);
+}
+
+Java sẽ làm:
+
+object.toString()
+
+Ví dụ kết quả:
+
+Bird: x=100 y=200 velocity=5
+Pipe: x=300 y=150 speed=10
+Bird: x=120 y=220 velocity=8
+Pipe: x=400 y=180 speed=6
+6. Vì sao toString() quan trọng trong bài này?
+
+Nó giúp:
+
+1️⃣ Xem dữ liệu object
+tọa độ
+speed
+velocity
+2️⃣ Phân biệt object
+Bird
+Pipe
+3️⃣ Debug chương trình
+
+Xem object đã move hay chưa
+
+Ví dụ:
+
+Before move
+
+Bird x=100 y=200
+
+After move
+
+Bird x=100 y=205
+7. Liên hệ với code của bạn
+
+Trong code:
+
+System.out.println(object);
+
+Thực chất là:
+
+object.toString()
+
+Nên toString sẽ quyết định in cái gì ra màn hình.
+
+8. Tóm tắt cực dễ nhớ
+
+toString() dùng để:
+
+biến object → thành chuỗi để in ra
+
+Ví dụ:
+
+Bird object
+↓
+"Bird x=100 y=200 velocity=5"
+9. Sơ đồ dễ hiểu
+object (Bird)
+       ↓
+object.toString()
+       ↓
+"Bird x=100 y=200 velocity=5"
+       ↓
+System.out.println()
+cho nay them tostring duocj k
+
+Có thể thêm toString(), nhưng không thêm trực tiếp ở chỗ object.move();.
+Tôi giải thích rõ để bạn hiểu.
+
+1. Đoạn code của bạn
+for (GameObject object : objectList) {
+
+    object.move();
+
+    System.out.println(object);
+}
+
+Dòng này:
+
+System.out.println(object);
+
+Java tự động gọi
+
+object.toString();
+
+Tức là bạn đã dùng toString() rồi.
+
+2. Nếu viết rõ ra thì sẽ là
+System.out.println(object.toString());
+
+Nhưng hai cách này giống nhau 100%:
+
+System.out.println(object);
+
+và
+
+System.out.println(object.toString());
+3. toString() không viết trong Main
+
+toString() phải viết trong class object.
+
+Ví dụ:
+
+GameObject
+@Override
+public String toString() {
+    return "x=" + x + ", y=" + y;
+}
+Bird
+@Override
+public String toString() {
+    return "Bird x=" + x + " y=" + y + " velocity=" + velocity;
+}
+Pipe
+@Override
+public String toString() {
+    return "Pipe x=" + x + " y=" + y + " speed=" + speed;
+}
+4. Khi chạy chương trình
+
+Trước move:
+
+Bird x=100 y=200 velocity=5
+Pipe x=300 y=150 speed=10
+Bird x=120 y=220 velocity=8
+Pipe x=400 y=180 speed=6
+
+Sau move:
+
+Bird x=100 y=205 velocity=5
+Pipe x=290 y=150 speed=10
+Bird x=120 y=228 velocity=8
+Pipe x=394 y=180 speed=6
+5. Luồng hoạt động
+System.out.println(object)
+        ↓
+Java gọi
+        ↓
+object.toString()
+        ↓
+in thông tin object
+6. Tóm lại
+Chỗ	Có dùng toString không
+System.out.println(object)	✅ Có
+object.move()	❌ Không liên quan
+bay h bor static thi chuong trinh se nhuw the naof
+
+Nếu bỏ static trong main thì chương trình sẽ lỗi và không chạy được. Tôi giải thích rõ từng bước để bạn hiểu.
+
+1. Code hiện tại của bạn
+public class Main {
+
+    public static void main(String[] args) {
+
+        ArrayList<GameObject> objectList = new ArrayList<>();
+
+        objectList.add(new Bird(100, 200, 5));
+        objectList.add(new Pipe(300, 150, 10));
+        objectList.add(new Bird(120, 220, 8));
+        objectList.add(new Pipe(400, 180, 6));
+    }
+}
+
+main có:
+
+static
+2. Nếu bạn bỏ static
+
+Giả sử bạn sửa thành:
+
+public void main(String[] args)
+
+Chương trình sẽ không chạy.
+
+Java sẽ báo lỗi kiểu:
+
+Error: Main method is not static
+
+hoặc
+
+Main method not found
+3. Vì sao phải có static
+
+Khi Java chạy chương trình:
+
+1️⃣ JVM tìm điểm bắt đầu
+
+public static void main(String[] args)
+
+2️⃣ JVM chưa tạo object của class Main.
+
+Nếu main không static thì phải làm:
+
+Main m = new Main();
+m.main();
+
+Nhưng JVM không tự làm bước này.
+
+Vì vậy Java yêu cầu:
+
+main phải static
+4. Hiểu đơn giản
+Loại	Cách gọi
+static method	gọi trực tiếp
+non-static method	phải tạo object
+
+Ví dụ:
+
+static
+Main.main();
+non-static
+Main m = new Main();
+m.main();
+5. JVM chạy chương trình như thế nào
+
+Thực tế JVM chạy giống:
+
+Main.main(args);
+
+Nếu main không static → JVM không gọi được
+
+6. Ví dụ dễ hiểu
+Sai
+public void main(String[] args)
+
+❌ Không chạy
+
+Đúng
+public static void main(String[] args)
+
+✅ JVM chạy được
+
+7. Trong code của bạn
+
+Phần quan trọng nhất là:
+
+public static void main(String[] args)
+
+không được bỏ static.
+
+✅ Kết luận
+
+Nếu bỏ static:
+
+Chương trình không chạy
+JVM không tìm được main method
+bo static duoc k
+
+❌ Không nên bỏ static trong main nếu bạn muốn chương trình chạy bình thường.
+
+1️⃣ Java yêu cầu main phải như thế này
+public static void main(String[] args)
+
+Đây là quy tắc của Java. JVM chỉ tìm đúng hàm này để chạy chương trình.
+
+2️⃣ Nếu bạn bỏ static
+
+Ví dụ bạn sửa thành:
+
+public void main(String[] args)
+
+Thì khi chạy sẽ lỗi kiểu:
+
+Error: Main method not found in class Main
+
+hoặc
+
+Main method is not static
+
+👉 Nghĩa là Java không tìm được điểm bắt đầu chương trình.
+
+3️⃣ Vì sao phải static
+
+Khi chương trình bắt đầu:
+
+JVM chưa tạo object của class Main
+Nhưng cần gọi main() ngay
+
+Nên main phải là static để gọi trực tiếp.
+
+Ví dụ JVM gọi giống như:
+
+Main.main(args);
+4️⃣ Nếu muốn bỏ static thì phải làm gì?
+
+Bạn phải tạo object trước:
+
+public class Main {
+
+    public void start() {
+        System.out.println("Hello");
+    }
+
+    public static void main(String[] args) {
+        Main m = new Main();
+        m.start();
+    }
+}
+
+Ở đây:
+
+main vẫn phải static
+nhưng logic chính nằm trong hàm khác.
+5️⃣ Kết luận
+Trường hợp	Chạy được không
+public static void main	✅ Chạy được
+public void main	❌ Không chạy
+
+💡 Lời khuyên khi viết game Flappy Bird Java của bạn:
+
+Luôn giữ:
+
+public static void main(String[] args)
+giải thích đoạn code này y như yếu cầu của ảnh cho tôi chi tiết và dễ hiểu nhất phân tích đoạn code cho tôi và chỉ tôi nói sao cho đủ các ý thầy yêu cầu
+
+Tôi sẽ giải thích đúng theo các yêu cầu trong ảnh của thầy để bạn có thể thuyết trình / báo cáo đầy đủ ý. Tôi chia thành từng phần rõ ràng.
+
+1. Tổng quan chương trình
+
+Chương trình mô phỏng các đối tượng trong game Flappy Bird gồm:
+
+Bird (chim)
+Pipe (ống nước)
+
+Tất cả các đối tượng này kế thừa từ lớp chung GameObject.
+
+Mục đích:
+
+Thể hiện OOP trong Java
+Sử dụng kế thừa (Inheritance)
+Sử dụng đa hình (Polymorphism)
+Sử dụng abstract class
+Sử dụng toString() thay cho hàm display
+2. Phân tích class GameObject
+public abstract class GameObject
+Ý nghĩa
+
+GameObject là lớp cha (superclass) của tất cả đối tượng trong game.
+
+Ví dụ:
+
+Bird
+Pipe
+
+đều là GameObject.
+
+Thuộc tính
+private int x;
+private int y;
+
+Ý nghĩa:
+
+Biến	Ý nghĩa
+x	vị trí ngang
+y	vị trí dọc
+
+Ví dụ:
+
+x = 100
+y = 200
+Constructor
+public GameObject(int x, int y) {
+    this.x = x;
+    this.y = y;
+}
+
+Ý nghĩa:
+
+khởi tạo vị trí ban đầu của object
+
+Ví dụ:
+
+Bird(100,200)
+Getter
+public int getX()
+public int getY()
+
+Dùng để lấy vị trí x và y
+
+Setter
+public void setX(int x)
+public void setY(int y)
+
+Dùng để thay đổi vị trí
+
+Abstract Method
+public abstract void move();
+
+Ý nghĩa:
+
+GameObject không biết cách di chuyển.
+
+Nên bắt buộc các class con:
+
+Bird
+Pipe
+
+phải viết lại hàm move().
+
+Đây gọi là:
+
+Polymorphism
+toString()
+@Override
+public String toString() {
+    return "Position: " + this.x + ", " + this.y;
+}
+
+Dùng để in thông tin object.
+
+Ví dụ:
+
+Position: 100, 200
+3. Phân tích class Bird
+public class Bird extends GameObject
+
+Ý nghĩa:
+
+Bird kế thừa từ GameObject
+
+Thuộc tính
+private int velocity;
+
+Ý nghĩa:
+
+tốc độ bay của chim
+Constructor
+public Bird(int x, int y, int velocity) {
+    super(x, y);
+    this.velocity = velocity;
+}
+
+super(x,y) gọi constructor của GameObject
+
+move()
+this.setY(this.getY() - this.velocity);
+
+Ý nghĩa:
+
+chim bay lên trên
+
+Ví dụ
+
+y = 200
+velocity = 5
+
+sau move:
+
+y = 195
+toString()
+return "Bird - " + super.toString()
+       + " - Velocity: " + this.velocity;
+
+Ví dụ output:
+
+Bird - Position: 100, 200 - Velocity: 5
+4. Phân tích class Pipe
+public class Pipe extends GameObject
+
+Pipe cũng kế thừa GameObject
+
+Thuộc tính
+speed
+
+Ý nghĩa:
+
+tốc độ di chuyển của ống nước
+Constructor
+super(x,y)
+
+khởi tạo vị trí.
+
+move()
+this.setX(this.getX() - this.speed);
+
+Ý nghĩa:
+
+ống nước di chuyển sang trái
+
+Ví dụ
+
+x = 300
+speed = 10
+
+sau move:
+
+x = 290
+toString()
+
+Output ví dụ:
+
+Pipe - Position: 300,150 - Speed: 10
+5. Phân tích class Main
+
+Đây là class chạy chương trình
+
+Tạo danh sách object
+ArrayList<GameObject> objectList = new ArrayList<>();
+
+Danh sách này chứa GameObject
+
+nhưng có thể lưu:
+
+Bird
+Pipe
+
+Đây là đa hình (Polymorphism).
+
+Mock Data (dữ liệu mẫu)
+objectList.add(new Bird(100,200,5));
+objectList.add(new Pipe(300,150,10));
+objectList.add(new Bird(120,220,8));
+objectList.add(new Pipe(400,180,6));
+
+Theo yêu cầu của thầy:
+
+không nhập tay.
+
+phải tạo dữ liệu sẵn để test.
+
+In trước khi di chuyển
+System.out.println("=== Before Move ===");
+
+Sau đó:
+
+for(GameObject object : objectList)
+
+In thông tin.
+
+Java tự gọi:
+
+object.toString()
+Sau khi di chuyển
+object.move();
+
+Ở đây xảy ra đa hình.
+
+object	hàm move chạy
+Bird	move của Bird
+Pipe	move của Pipe
+
+Ví dụ
+
+Bird
+
+y giảm
+
+Pipe
+
+x giảm
+6. Kết quả chương trình
+
+Before move
+
+Bird - Position: 100,200 - Velocity:5
+Pipe - Position: 300,150 - Speed:10
+Bird - Position: 120,220 - Velocity:8
+Pipe - Position: 400,180 - Speed:6
+
+After move
+
+Bird - Position: 100,195 - Velocity:5
+Pipe - Position: 290,150 - Speed:10
+Bird - Position: 120,212 - Velocity:8
+Pipe - Position: 394,180 - Speed:6
+7. Các khái niệm OOP đã dùng
+1. Encapsulation
+private variables
+getter setter
+2. Inheritance
+Bird extends GameObject
+Pipe extends GameObject
+3. Polymorphism
+GameObject object
+nhưng có thể là Bird hoặc Pipe
+4. Abstract Class
+GameObject
+
+có:
+
+abstract move()
+5. Method Override
+Bird override move()
+Pipe override move()
+8. Vì sao dùng toString()
+
+Thầy yêu cầu:
+
+thay hàm display bằng toString
+
+Lợi ích:
+
+System.out.println(object)
+
+Java tự gọi:
+
+object.toString()
+
+Code gọn hơn.
+
+9. UML đơn giản của chương trình
+        GameObject
+        ----------
+        x
+        y
+        move()
+        toString()
+
+          ▲
+          │
+   -----------------
+   │               │
+  Bird           Pipe
+ velocity         speed
+ move()           move()
+10. Cách bạn nên nói khi thuyết trình
+
+Bạn có thể nói:
+
+Chương trình của nhóm em mô phỏng các đối tượng trong game Flappy Bird.
+
+Chúng em thiết kế một lớp cha GameObject chứa các thuộc tính chung
+là vị trí x và y.
+
+Sau đó hai lớp Bird và Pipe kế thừa từ GameObject.
+
+Mỗi lớp sẽ override phương thức move để định nghĩa cách di chuyển riêng.
+
+Bird sẽ di chuyển theo trục y với velocity,
+còn Pipe sẽ di chuyển theo trục x với speed.
+
+Chúng em sử dụng ArrayList<GameObject> để lưu các object
+và áp dụng tính đa hình khi gọi hàm move.
+
+Ngoài ra chúng em sử dụng phương thức toString để hiển thị
+thông tin object thay vì viết hàm display riêng.
+giải thích kĩ hàm main và nói rỏ tính đa hình tostring 
+
+Tôi sẽ giải thích rất kỹ hàm main và tính đa hình của toString() để bạn hiểu + nói lại cho thầy khi báo cáo.
+
+1. Phân tích chi tiết hàm main
+
+Code của bạn:
+
+public static void main(String[] args) {
+
+    ArrayList<GameObject> objectList = new ArrayList<>();
+
+    objectList.add(new Bird(100, 200, 5));
+    objectList.add(new Pipe(300, 150, 10));
+    objectList.add(new Bird(120, 220, 8));
+    objectList.add(new Pipe(400, 180, 6));
+
+    System.out.println("=== Before Move ===");
+    for (GameObject object : objectList) {
+        System.out.println(object);
+    }
+
+    System.out.println("=== After Move ===");
+    for (GameObject object : objectList) {
+
+        object.move();
+
+        System.out.println(object);
+    }
+}
+2. Tạo danh sách object
+ArrayList<GameObject> objectList = new ArrayList<>();
+
+Ý nghĩa:
+
+Tạo một danh sách chứa các GameObject.
+
+Quan trọng:
+
+ArrayList<GameObject>
+
+tức là danh sách này chỉ biết là GameObject.
+
+Nhưng thực tế nó có thể chứa:
+
+Bird
+Pipe
+
+Vì:
+
+Bird  là GameObject
+Pipe  là GameObject
+
+Đây chính là đa hình (Polymorphism).
+
+3. Tạo dữ liệu mẫu (Mock Data)
+objectList.add(new Bird(100, 200, 5));
+
+Tạo object Bird:
+
+x = 100
+y = 200
+velocity = 5
+objectList.add(new Pipe(300, 150, 10));
+
+Tạo Pipe:
+
+x = 300
+y = 150
+speed = 10
+
+Danh sách lúc này:
+
+objectList
+
+1 Bird
+2 Pipe
+3 Bird
+4 Pipe
+4. In trước khi di chuyển
+System.out.println("=== Before Move ===");
+
+In tiêu đề.
+
+Sau đó:
+
+for (GameObject object : objectList)
+
+Đây gọi là for-each loop.
+
+Java sẽ lấy từng object trong list.
+
+Lần lượt:
+
+object = Bird
+object = Pipe
+object = Bird
+object = Pipe
+5. In object
+System.out.println(object);
+
+Nhiều người nghĩ nó in object bình thường.
+
+Nhưng thật ra Java tự gọi
+
+object.toString()
+
+Tức là:
+
+System.out.println(object.toString());
+6. Đa hình của toString()
+
+Ở đây xảy ra Polymorphism.
+
+Biến:
+
+GameObject object
+
+Nhưng object thật có thể là:
+
+Bird
+Pipe
+
+Java sẽ tự động chọn toString() đúng với loại object.
+
+Trường hợp 1
+
+object là Bird
+
+Java gọi:
+
+Bird.toString()
+Trường hợp 2
+
+object là Pipe
+
+Java gọi:
+
+Pipe.toString()
+
+Đây gọi là:
+
+Dynamic Polymorphism
+7. Kết quả trước move
+
+Ví dụ:
+
+Bird - Position: 100, 200 - Velocity: 5
+Pipe - Position: 300, 150 - Speed: 10
+Bird - Position: 120, 220 - Velocity: 8
+Pipe - Position: 400, 180 - Speed: 6
+8. Sau đó chương trình di chuyển object
+object.move();
+
+Ở đây đa hình xảy ra lần nữa.
+
+Java sẽ kiểm tra:
+
+object là Bird hay Pipe
+Nếu object là Bird
+
+Java gọi:
+
+Bird.move()
+
+Code:
+
+this.setY(this.getY() - this.velocity);
+
+Ví dụ:
+
+y = 200
+velocity = 5
+
+Sau move:
+
+y = 195
+Nếu object là Pipe
+
+Java gọi:
+
+Pipe.move()
+
+Code:
+
+this.setX(this.getX() - this.speed);
+
+Ví dụ:
+
+x = 300
+speed = 10
+
+Sau move:
+
+x = 290
+9. In lại object
+System.out.println(object);
+
+Java lại gọi:
+
+object.toString()
+
+Lúc này vị trí đã thay đổi.
+
+10. Kết quả sau move
+Bird - Position: 100,195 - Velocity:5
+Pipe - Position: 290,150 - Speed:10
+Bird - Position: 120,212 - Velocity:8
+Pipe - Position: 394,180 - Speed:6
+11. Tóm tắt luồng chạy của main
+main()
+
+↓
+tạo danh sách GameObject
+
+↓
+thêm Bird và Pipe
+
+↓
+in trạng thái ban đầu
+
+↓
+gọi move()
+
+↓
+in trạng thái sau khi di chuyển
+12. Đa hình xảy ra ở đâu
+
+Có 2 chỗ.
+
+1️⃣ move()
+object.move()
+
+Java tự chọn:
+
+Bird.move()
+Pipe.move()
+2️⃣ toString()
+System.out.println(object)
+
+Java tự chọn:
+
+Bird.toString()
+Pipe.toString()
+13. Cách bạn nói với thầy
+
+Bạn có thể nói:
+
+Trong hàm main em tạo một ArrayList<GameObject> để lưu các object trong game.
+Danh sách này chứa cả Bird và Pipe vì hai class này đều kế thừa GameObject.
+
+Sau đó em sử dụng vòng lặp for-each để duyệt qua danh sách.
+
+Khi gọi object.move() thì Java sẽ áp dụng tính đa hình và tự động gọi phương thức move tương ứng với từng object thực tế, ví dụ Bird.move() hoặc Pipe.move().
+
+Tương tự, khi dùng System.out.println(object) thì Java sẽ tự động gọi phương thức toString() của class tương ứng, giúp hiển thị thông tin object một cách rõ ràng.
+giải thích kĩ hàm main và nói rỏ tính đa hình tostring 
+
+giải thích kĩ sau move của 2 cái này
+
+Tôi sẽ giải thích thật kỹ phần After Move của 2 object: Bird và Pipe, vì đây là chỗ thầy muốn kiểm tra đa hình và logic di chuyển.
+
+1. Đoạn code sau move trong main
+System.out.println("=== After Move ===");
+for (GameObject object : objectList) {
+
+    object.move();
+
+    System.out.println(object);
+}
+
+Chương trình làm 3 bước:
+
+1️⃣ Lấy từng object trong danh sách
+2️⃣ Gọi move() để di chuyển
+3️⃣ In thông tin object sau khi di chuyển
+
+2. Danh sách object ban đầu
+
+Trong main bạn tạo:
+
+objectList.add(new Bird(100, 200, 5));
+objectList.add(new Pipe(300, 150, 10));
+objectList.add(new Bird(120, 220, 8));
+objectList.add(new Pipe(400, 180, 6));
+
+Danh sách lúc này:
+
+Object	x	y	velocity/speed
+Bird	100	200	velocity = 5
+Pipe	300	150	speed = 10
+Bird	120	220	velocity = 8
+Pipe	400	180	speed = 6
+3. Khi vòng lặp chạy
+for (GameObject object : objectList)
+
+Java sẽ lấy từng object:
+
+Bird
+Pipe
+Bird
+Pipe
+4. Lần 1: Bird(100,200,5)
+
+Java gọi:
+
+object.move();
+
+Vì object là Bird, nên Java gọi:
+
+Bird.move()
+
+Code của Bird:
+
+this.setY(this.getY() - this.velocity);
+
+Giải thích:
+
+y mới = y cũ - velocity
+Tính toán
+
+Ban đầu
+
+x = 100
+y = 200
+velocity = 5
+
+Sau move
+
+y = 200 - 5
+y = 195
+
+Kết quả:
+
+Bird - Position: 100,195 - Velocity:5
+5. Lần 2: Pipe(300,150,10)
+
+Java gọi:
+
+Pipe.move()
+
+Code:
+
+this.setX(this.getX() - this.speed);
+
+Giải thích:
+
+x mới = x cũ - speed
+Tính toán
+
+Ban đầu
+
+x = 300
+y = 150
+speed = 10
+
+Sau move
+
+x = 300 - 10
+x = 290
+
+Kết quả
+
+Pipe - Position: 290,150 - Speed:10
+6. Lần 3: Bird(120,220,8)
+
+Java gọi:
+
+Bird.move()
+
+Code:
+
+y = y - velocity
+Tính toán
+
+Ban đầu
+
+x = 120
+y = 220
+velocity = 8
+
+Sau move
+
+y = 220 - 8
+y = 212
+
+Kết quả
+
+Bird - Position: 120,212 - Velocity:8
+7. Lần 4: Pipe(400,180,6)
+
+Java gọi:
+
+Pipe.move()
+
+Code:
+
+x = x - speed
+Tính toán
+
+Ban đầu
+
+x = 400
+y = 180
+speed = 6
+
+Sau move
+
+x = 400 - 6
+x = 394
+
+Kết quả
+
+Pipe - Position: 394,180 - Speed:6
+8. Kết quả cuối cùng After Move
+Bird - Position: 100,195 - Velocity:5
+Pipe - Position: 290,150 - Speed:10
+Bird - Position: 120,212 - Velocity:8
+Pipe - Position: 394,180 - Speed:6
+9. Điểm quan trọng thầy muốn thấy
+Đa hình xảy ra ở đây
+object.move();
+
+Biến chỉ là
+
+GameObject object
+
+Nhưng Java tự chọn hàm move đúng với object thật.
+
+Object thật	Hàm được gọi
+Bird	Bird.move()
+Pipe	Pipe.move()
+10. Sau đó in object
+System.out.println(object);
+
+Java tự gọi:
+
+object.toString()
+Object	toString được gọi
+Bird	Bird.toString()
+Pipe	Pipe.toString()
+
+Đây cũng là đa hình.
+
+11. Cách bạn nói với thầy
+
+Bạn có thể nói:
+
+Trong phần After Move, chương trình duyệt qua danh sách GameObject bằng vòng lặp for-each.
+Khi gọi object.move(), Java áp dụng tính đa hình và tự động gọi phương thức move tương ứng với từng object thực tế.
+Nếu object là Bird thì Bird.move() sẽ chạy và thay đổi vị trí theo trục y bằng velocity.
+Nếu object là Pipe thì Pipe.move() sẽ chạy và thay đổi vị trí theo trục x bằng speed.
+Sau khi di chuyển xong, chương trình dùng System.out.println(object) để in thông tin. Java sẽ tự động gọi phương thức toString() của từng class để hiển thị thông tin object.
+
+✅ Nếu bạn muốn, tôi có thể chỉ thêm 3 câu hỏi thầy rất hay hỏi sinh viên về bài này (90% thầy hỏi) để bạn chuẩn bị trước.
