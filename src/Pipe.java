@@ -1,15 +1,28 @@
-import java.awt.Color;
-import java.awt.Graphics;
+public class Pipe extends GameObject {
 
-public class Pipe extends Movable {
-    public Pipe(int x, int y, int h) { super(x, y, 50, h, -5); }
+    private int speed;
+
+    public Pipe(int x, int y, int speed) {
+        super(x, y);
+        this.speed = speed;
+    }
+
+    public int getSpeed() {
+        return this.speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
 
     @Override
-    public void update() { x += velocity; } // Chạy sang trái
+    public void move() {
+        this.setX(this.getX() - this.speed);
+    }
 
     @Override
-    public void draw(Graphics g) {
-        g.setColor(Color.GREEN);
-        g.fillRect(x, y, width, height); // Vẽ ống màu xanh
+    public String toString() {
+        return "Pipe - " + super.toString() + 
+               " - Speed: " + this.speed;
     }
 }
